@@ -237,7 +237,7 @@ footer .mark { font-size: 18px; }
         <a class="btn" href="#collection">View the collection</a>
       </div>
       <figure>
-        <img src="img/aqua-hero.jpg" alt="Woman in the Gulnaar kurta, aqua cotton with pink florals and a pom-pom trimmed V neckline" width="800" height="1000">
+        <img src="aqua-hero.jpg" alt="Woman in the Gulnaar kurta, aqua cotton with pink florals and a pom-pom trimmed V neckline" width="800" height="1000">
         <figcaption>Gulnaar · Aqua &amp; rose</figcaption>
       </figure>
     </div>
@@ -372,7 +372,7 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&
 
 function viewMarkup(p, v, label, big) {
   return p.have.includes(v)
-    ? `<img src="img/${p.id}-${v}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()} view" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`
+    ? `<img src="${p.id}-${v}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()} view" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`
     : `<div class="awaiting">${label} view<br>photo to come</div>`;
 }
 
@@ -452,7 +452,7 @@ function renderBag() {
   lines.innerHTML = bag.map((l, i) => {
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="line">
-      <img src="img/${p.id}-front.jpg" alt="" width="76" height="95">
+      <img src="${p.id}-front.jpg" alt="" width="76" height="95">
       <div><b>${esc(p.name)}</b><small>Size ${l.size}</small>
         <div class="qty"><button type="button" id="q-dec-${i}" data-i="${i}" data-d="-1" aria-label="One less">−</button><span>${l.qty}</span><button type="button" id="q-inc-${i}" data-i="${i}" data-d="1" aria-label="One more">+</button></div>
       </div>
