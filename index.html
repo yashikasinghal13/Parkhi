@@ -13,7 +13,7 @@
 /* Layout: quiet gallery. One wordmark, one hero, then a single column of product "sheets", each a large view plus five labelled views. Three colours only. */
 :root {
   --paper: #F4EEE5;   /* ivory ground */
-  --beige: #A3846A;   /* brownish beige, the brand colour */
+  --beige: #86684F;   /* brownish beige, the brand colour (deep enough to read as text) */
   --ink:   #3B2E25;   /* espresso, for text */
   --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
   --body: var(--display);  /* one typeface throughout; optical sizing keeps small text sturdy */
@@ -26,7 +26,7 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--paper); color: var(--ink);
-  font: 400 16px/1.7 var(--body);
+  font: 400 17px/1.7 var(--body);
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
 }
@@ -34,14 +34,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 .wrap { max-width: 1180px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
-.eyebrow { font: 400 12px/1 var(--body); letter-spacing: .28em; text-transform: uppercase; color: var(--beige); }
+.eyebrow { font: 400 14px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 
 /* header */
 header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); }
 header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
 .mark { font: 400 26px/1 var(--display); letter-spacing: .32em; text-transform: uppercase; text-decoration: none; padding-left: .32em; }
 nav { display: flex; gap: clamp(14px, 3vw, 36px); }
-nav a { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding-block: 4px; border-bottom: 1px solid transparent; }
+nav a { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding-block: 4px; border-bottom: 1px solid transparent; }
 nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 
 /* hero */
@@ -50,19 +50,19 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .hero h1 em { font-style: italic; color: var(--beige); }
 .hero p { max-width: 40ch; margin: 0 0 32px; font-size: 17px; }
 .quip { font: italic 400 20px/1.4 var(--display); color: var(--beige); margin: 0 0 34px; }
-.btn { display: inline-block; font: 400 12px/1 var(--body); letter-spacing: .26em; text-transform: uppercase; text-decoration: none; padding: 17px 30px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; transition: background .25s, color .25s; }
+.btn { display: inline-block; font: 400 14px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 17px 30px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; transition: background .25s, color .25s; }
 .btn:hover, .btn:focus-visible { background: transparent; color: var(--ink); outline: none; }
 .btn.ghost { background: transparent; color: var(--ink); }
 .btn.ghost:hover, .btn.ghost:focus-visible { background: var(--ink); color: var(--paper); }
 .hero figure { margin: 0; position: relative; }
-.hero figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-.hero figcaption { margin-top: 6px; text-align: center; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--beige); }
+.hero figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; max-height: min(78vh, 760px); object-fit: contain; }
+.hero figcaption { margin-top: 6px; text-align: center; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--beige); }
 
 /* bag */
-.bag-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; padding: 6px 0; }
+.bag-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; }
 .bag-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .bag-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.3; }
-.count { min-width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; background: var(--beige); color: var(--paper); font-size: 11px; letter-spacing: 0; padding: 0 6px; font-variant-numeric: tabular-nums; }
+.count { min-width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; background: var(--beige); color: var(--paper); font-size: 13px; letter-spacing: 0; padding: 0 6px; font-variant-numeric: tabular-nums; }
 .count.bump { animation: bump .4s ease; }
 @keyframes bump { 50% { transform: scale(1.3); } }
 .scrim { position: fixed; inset: 0; background: color-mix(in srgb, var(--ink) 45%, transparent); z-index: 20; opacity: 0; transition: opacity .3s; }
@@ -71,37 +71,50 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .drawer.open { transform: none; }
 .drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 24px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); }
 .drawer-head h2 { font: 400 28px/1 var(--display); margin: 0; }
-.x { all: unset; cursor: pointer; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--beige); }
+.x { all: unset; cursor: pointer; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 .x:hover, .x:focus-visible { color: var(--ink); }
 .lines { flex: 1; overflow-y: auto; padding: 8px 24px; }
 .line { display: grid; grid-template-columns: 76px 1fr auto; gap: 16px; padding-block: 18px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 25%, transparent); align-items: start; }
 .line img { width: 76px; aspect-ratio: 4/5; object-fit: cover; }
 .line b { font: 400 20px/1.1 var(--display); display: block; }
-.line small { display: block; color: var(--beige); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.line small { display: block; color: var(--beige); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
 .qty { display: inline-flex; align-items: center; margin-top: 12px; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
 .qty button { all: unset; cursor: pointer; width: 30px; height: 30px; display: grid; place-items: center; }
 .qty button:focus-visible { outline: 2px solid var(--ink); }
-.qty span { min-width: 24px; text-align: center; font-size: 14px; font-variant-numeric: tabular-nums; }
+.qty span { min-width: 24px; text-align: center; font-size: 16px; font-variant-numeric: tabular-nums; }
 .line .amt { text-align: right; font-variant-numeric: tabular-nums; }
-.line .rm { all: unset; cursor: pointer; display: block; margin-top: 30px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); text-decoration: underline; text-underline-offset: 3px; }
+.line .rm { all: unset; cursor: pointer; display: block; margin-top: 30px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--beige); text-decoration: underline; text-underline-offset: 3px; }
 .line .rm:focus-visible { outline: 2px solid var(--ink); }
 .empty { text-align: center; padding: 64px 10px; }
 .empty p { font: italic 400 22px/1.3 var(--display); color: var(--beige); margin: 0 0 22px; }
 .drawer-foot { padding: 22px 24px 26px; border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); display: grid; gap: 14px; }
-.sum { display: flex; justify-content: space-between; font-size: 15px; font-variant-numeric: tabular-nums; }
+.sum { display: flex; justify-content: space-between; font-size: 16px; font-variant-numeric: tabular-nums; }
 .sum.total { font: 400 22px/1 var(--display); }
 .drawer-foot .btn { text-align: center; }
-.drawer-foot .fine { font-size: 12px; color: var(--beige); margin: 0; }
+.drawer-foot .fine { font-size: 14px; color: var(--beige); margin: 0; }
+
+/* quick pick */
+.picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); margin-bottom: clamp(56px, 8vw, 96px); }
+.pick { text-decoration: none; display: grid; gap: 10px; }
+.pick span.ph { display: block; aspect-ratio: 4/5; overflow: hidden; max-width: 100%; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); }
+.pick img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.pick:hover img, .pick:focus-visible img { transform: scale(1.04); }
+.pick:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.pick b { font: 400 22px/1.1 var(--display); }
+.pick small { font-size: 16px; font-variant-numeric: tabular-nums; }
+.pick .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.product { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 84px); }
+@media (max-width: 860px) { .picks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* checkout */
 .view { flex: 1; overflow-y: auto; padding: 18px 24px 28px; display: grid; gap: 18px; align-content: start; }
-.back { all: unset; cursor: pointer; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--beige); justify-self: start; }
+.back { all: unset; cursor: pointer; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); justify-self: start; }
 .back:hover, .back:focus-visible { color: var(--ink); }
-.mini { display: grid; gap: 6px; padding: 14px 0; border-block: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); font-size: 14px; font-variant-numeric: tabular-nums; }
+.mini { display: grid; gap: 6px; padding: 14px 0; border-block: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); font-size: 16px; font-variant-numeric: tabular-nums; }
 .mini div { display: flex; justify-content: space-between; gap: 12px; }
 .mini .t { font-size: 18px; padding-top: 6px; }
 .field { display: grid; gap: 6px; }
-.field label, .pay legend { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--beige); }
+.field label, .pay legend { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 .field input, .field textarea { font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 70%, transparent); padding: 8px 0; border-radius: 0; width: 100%; }
 .field textarea { resize: vertical; min-height: 64px; }
 .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--ink); }
@@ -109,13 +122,13 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .two > * { min-width: 0; }
 .pay { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
-.pay label { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid var(--ink); cursor: pointer; font-size: 15px; }
-.pay label small { display: block; color: var(--beige); font-size: 13px; margin-top: 2px; }
+.pay label { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid var(--ink); cursor: pointer; font-size: 16px; }
+.pay label small { display: block; color: var(--beige); font-size: 15px; margin-top: 2px; }
 .pay input { accent-color: var(--ink); margin-top: 4px; }
-.err { font-size: 13px; color: var(--ink); margin: 0; min-height: 1.2em; font-style: italic; }
+.err { font-size: 15px; color: var(--ink); margin: 0; min-height: 1.2em; font-style: italic; }
 .done h3 { font: 400 30px/1.1 var(--display); margin: 0; }
 .done p { margin: 0; }
-.oid { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--beige); }
+.oid { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 .upi { border: 1px solid var(--beige); padding: 18px; display: grid; gap: 10px; }
 .upi b { font-size: 18px; font-weight: 500; user-select: all; overflow-wrap: anywhere; }
 .view .btn { text-align: center; }
@@ -126,13 +139,13 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .contact p { margin: 0; max-width: 40ch; }
 .card { border: 1px solid var(--beige); padding: clamp(24px, 4vw, 40px); display: grid; gap: 22px; min-width: 0; }
 .card .who { font: 400 30px/1.1 var(--display); }
-.card .who small { display: block; font: 400 11px/1 var(--body); letter-spacing: .22em; text-transform: uppercase; color: var(--beige); margin-top: 10px; }
+.card .who small { display: block; font: 400 13px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin-top: 10px; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); }
 .row div { min-width: 0; }
-.row dt { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--beige); margin-bottom: 4px; }
+.row dt { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin-bottom: 4px; }
 .row dd { margin: 0; font-size: 18px; user-select: all; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 .row dd a { text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
-.copy { all: unset; cursor: pointer; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; padding: 9px 14px; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
+.copy { all: unset; cursor: pointer; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 9px 14px; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
 .copy:hover, .copy:focus-visible { border-color: var(--ink); }
 footer .contact-line { font-variant-numeric: tabular-nums; }
 
@@ -141,7 +154,7 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .test .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding-block: 44px; }
 .test div { min-width: 0; }
 .test b { display: block; font: 400 22px/1.2 var(--display); margin-bottom: 6px; }
-.test span { font-size: 14px; }
+.test span { font-size: 17px; }
 
 /* collection */
 .collection .wrap { padding-block: clamp(56px, 8vw, 110px); }
@@ -155,12 +168,12 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .gallery { display: grid; gap: 10px; min-width: 0; }
 .stage { position: relative; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); aspect-ratio: 4/5; overflow: hidden; max-width: 100%; }
 .stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
-.stage .tag { position: absolute; left: 14px; bottom: 14px; background: var(--paper); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; padding: 8px 12px; }
+.stage .tag { position: absolute; left: 14px; bottom: 14px; background: var(--paper); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 12px; }
 .thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 .thumbs button { all: unset; cursor: pointer; display: grid; gap: 6px; min-width: 0; }
 .thumbs .t { aspect-ratio: 4/5; overflow: hidden; outline: 1px solid transparent; outline-offset: 2px; transition: outline-color .2s; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); }
 .thumbs img { width: 100%; height: 100%; object-fit: cover; }
-.thumbs small { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; text-align: center; color: var(--beige); line-height: 1.3; }
+.thumbs small { font-size: 13px; letter-spacing: .02em; text-align: center; color: var(--beige); line-height: 1.3; }
 .thumbs button[aria-pressed="true"] .t, .thumbs button:hover .t { outline-color: var(--ink); }
 .thumbs button:focus-visible .t { outline: 2px solid var(--ink); }
 .thumbs button[aria-pressed="true"] small { color: var(--ink); }
@@ -173,27 +186,49 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .info .meaning { font-style: italic; font-family: var(--display); color: var(--beige); margin: 0 0 24px; }
 .price { font: 400 22px/1 var(--body); letter-spacing: .04em; margin: 0 0 24px; font-variant-numeric: tabular-nums; }
 .info p.desc { margin: 0 0 26px; max-width: 46ch; }
-.specs { display: grid; grid-template-columns: auto 1fr; gap: 10px 22px; margin: 0 0 30px; padding: 22px 0; border-block: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); font-size: 14px; }
-.specs dt { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--beige); padding-top: 3px; }
+.specs { display: grid; grid-template-columns: auto 1fr; gap: 10px 22px; margin: 0 0 30px; padding: 22px 0; border-block: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); font-size: 16px; }
+.specs dt { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); padding-top: 3px; }
 .specs dd { margin: 0; }
 .sizes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-.sizes button { all: unset; cursor: pointer; min-width: 44px; height: 40px; display: grid; place-items: center; font-size: 13px; letter-spacing: .08em; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); transition: border-color .2s, background .2s, color .2s; }
+.sizes button { all: unset; cursor: pointer; min-width: 44px; height: 40px; display: grid; place-items: center; font-size: 15px; letter-spacing: .08em; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); transition: border-color .2s, background .2s, color .2s; }
 .sizes button:hover { border-color: var(--ink); }
 .sizes button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .sizes button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.note { font-size: 13px; color: var(--beige); min-height: 1.4em; margin: 14px 0 0; }
+.size-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.size-head span { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
+.chart-link { all: unset; cursor: pointer; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--beige); }
+.chart-link:hover { text-decoration-color: var(--ink); }
+.chart-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.chart { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--ink) 45%, transparent); }
+.chart-box { background: var(--paper); width: min(640px, 100%); max-height: 100%; overflow-y: auto; padding: clamp(18px, 4vw, 36px); display: grid; gap: 18px; }
+.chart-top { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+.chart-top h2 { font: 400 30px/1.05 var(--display); margin: 6px 0 0; }
+.units { display: inline-flex; justify-self: start; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
+.units button { all: unset; cursor: pointer; padding: 7px 14px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.units button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.units button:focus-visible { outline: 2px solid var(--ink); }
+.table-wrap { overflow-x: auto; }
+.chart table { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
+.chart th, .chart td { text-align: center; padding: 11px 3px; white-space: nowrap; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
+.chart thead th { white-space: normal; vertical-align: bottom; font-size: 13px; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; color: var(--beige); border-bottom-color: var(--beige); }
+.chart tbody th { font-weight: 500; text-align: left; }
+.chart tr.sel td, .chart tr.sel th { background: color-mix(in srgb, var(--beige) 22%, var(--paper)); }
+.chart .how { font-size: 15px; display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chart .how b { font-weight: 500; }
+.chart .fit { font-size: 15px; color: var(--beige); margin: 0; }
+.note { font-size: 15px; color: var(--beige); min-height: 1.4em; margin: 14px 0 0; }
 
 /* promise + footer */
 .promise { background: var(--ink); color: var(--paper); }
 .promise .wrap { padding-block: clamp(56px, 8vw, 100px); text-align: center; }
 .promise p { font: italic 400 clamp(26px, 3.6vw, 44px)/1.25 var(--display); max-width: 24ch; margin: 18px auto 0; text-wrap: balance; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding-block: 34px; font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding-block: 34px; font-size: 15px; }
 footer .mark { font-size: 18px; }
 
 @media (max-width: 860px) {
   .hero .wrap, .product { grid-template-columns: 1fr; }
-  .hero figure { order: -1; max-width: 520px; }
+  .hero figure { display: none; }
   .product:nth-child(even) .gallery { order: 0; }
   .info { position: static; }
   .test .wrap { grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -202,10 +237,12 @@ footer .mark { font-size: 18px; }
 }
 @media (max-width: 480px) {
   .thumbs { gap: 6px; }
-  .thumbs small { font-size: 8.5px; letter-spacing: .08em; }
+  .thumbs small { font-size: 12px; letter-spacing: 0; }
   .test .wrap { grid-template-columns: 1fr; gap: 18px; }
   .mark { font-size: 21px; }
 }
+@media (max-width: 480px) { .chart th, .chart td { padding-inline: 1px; } .chart-box { padding: 16px; } }
+@media (max-width: 400px) { .bag-btn > span:not(.count) { display: none; } nav { gap: 16px; } .chart table { font-size: 14px; } .chart thead th { font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
@@ -255,8 +292,9 @@ footer .mark { font-size: 18px; }
     <div class="wrap">
       <div class="collection-head">
         <div><span class="eyebrow">The first edit</span><h2>Four kurtas. No filler.</h2></div>
-        <p>Tap any view under the photo to see the kurta from the front, back and up close.</p>
+        <p>Tap a kurta to jump to it. Under each photo, tap a view to see it from the back and up close.</p>
       </div>
+      <div class="picks" id="picks" role="navigation" aria-label="Jump to a kurta"></div>
       <div class="products" id="products"></div>
     </div>
   </section>
@@ -294,6 +332,29 @@ footer .mark { font-size: 18px; }
   </div>
 </footer>
 
+<div class="chart" id="chart" role="dialog" aria-modal="true" aria-labelledby="chart-title" hidden>
+  <div class="chart-box">
+    <div class="chart-top">
+      <div><span class="eyebrow">Size chart</span><h2 id="chart-title">Kurta</h2></div>
+      <button type="button" class="x" id="chart-close">Close</button>
+    </div>
+    <div class="units" role="group" aria-label="Units"><button type="button" id="u-in" data-u="in" aria-pressed="true">Inches</button><button type="button" id="u-cm" data-u="cm" aria-pressed="false">Cm</button></div>
+    <div class="table-wrap">
+      <table>
+        <caption class="fit" style="caption-side:bottom;text-align:left;padding-top:10px">All measurements in <span id="chart-unit">inches</span>.</caption>
+        <thead><tr><th scope="col">Size</th><th scope="col">Fits bust</th><th scope="col">Chest</th><th scope="col">Waist</th><th scope="col">Hip</th><th scope="col">Shoulder</th><th scope="col">Length</th></tr></thead>
+        <tbody id="chart-body"></tbody>
+      </table>
+    </div>
+    <p class="fit" id="chart-fit"></p>
+    <ul class="how">
+      <li><b>Bust:</b> around the fullest part of your chest.</li>
+      <li><b>Length:</b> from the highest point of the shoulder down to the hem.</li>
+      <li>Between two sizes? Take the larger one for a relaxed fit.</li>
+    </ul>
+  </div>
+</div>
+
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true" inert>
   <div class="drawer-head"><h2>Your bag</h2><button type="button" class="x" id="bag-close">Close</button></div>
@@ -317,7 +378,7 @@ footer .mark { font-size: 18px; }
     </fieldset>
     <p class="err" id="o-err" aria-live="polite"></p>
     <button type="submit" class="btn" id="o-send">Send order on WhatsApp</button>
-    <p class="fine" style="font-size:12px;color:var(--beige);margin:0">Your order opens in WhatsApp as a message to Parkhi. Tap send there to place it.</p>
+    <p class="fine" style="font-size:14px;color:var(--beige);margin:0">Your order opens in WhatsApp as a message to Parkhi. Tap send there to place it.</p>
   </form>
 
   <div class="view done" id="done-view" hidden>
@@ -346,22 +407,22 @@ const VIEWS = [
   ['sleeve', 'Sleeve'],
 ];
 const PRODUCTS = [
-  { id: 'aqua', name: 'Gulnaar', meaning: 'a pomegranate blossom', price: '₹4,850',
+  { id: 'aqua', name: 'Gulnaar', meaning: 'a pomegranate blossom', price: '₹1,799',
     colour: 'Aqua with rose and leaf-green florals',
     desc: 'A straight-cut kurta in an all-over floral print, finished with soft pink pom-poms along the V neckline, the back neck and both sleeve hems.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'V neck, pom-pom trim'], ['Sleeve', 'Three-quarter, pom-pom hem'], ['Fit', 'Straight, side slits']],
     have: ['front', 'back', 'front-zoom', 'back-zoom', 'sleeve'] },
-  { id: 'indigo', name: 'Neel Kamal', meaning: 'the blue lotus', price: '₹4,250',
+  { id: 'indigo', name: 'Neel Kamal', meaning: 'the blue lotus', price: '₹1,499',
     colour: 'Deep indigo with coral lotus buttas',
     desc: 'Coral lotus buttas set in neat rows on deep indigo. A notched mandarin neck closes with a short placket of pearl buttons.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Notched collar, button placket'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
     have: ['front', 'front-zoom', 'sleeve'] },
-  { id: 'ivory', name: 'Haveli', meaning: 'the old courtyard house', price: '₹5,400',
+  { id: 'ivory', name: 'Haveli', meaning: 'the old courtyard house', price: '₹1,499',
     colour: 'Ivory with madder red, sage and slate borders',
     desc: 'Border prints run in bands from collar to hem, like friezes on a haveli wall. A full placket of fabric-covered buttons in three alternating shades.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar'], ['Placket', 'Full length, covered buttons'], ['Fit', 'A-line']],
     have: ['front', 'front-zoom', 'sleeve'] },
-  { id: 'mustard', name: 'Sarson', meaning: 'the mustard field', price: '₹4,650',
+  { id: 'mustard', name: 'Sarson', meaning: 'the mustard field', price: '₹1,499',
     colour: 'Mustard with slate-blue and ivory medallions',
     desc: 'Tall paisley medallions in slate and ivory on a mustard ground, placed in panels so the motif sits centred down the front.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Round neck'], ['Sleeve', 'Elbow length'], ['Fit', 'Straight, side slits']],
@@ -373,9 +434,11 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&
 function viewMarkup(p, v, label, big) {
   return p.have.includes(v)
     ? `<img src="${p.id}-${v}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()} view" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`
-    : `<div class="awaiting">${label} view<br>photo to come</div>`;
+    : big ? `<div class="awaiting">${label} view<br>photo to come</div>` : `<div class="awaiting">Photo<br>soon</div>`;
 }
 
+document.getElementById('picks').innerHTML = PRODUCTS.map(p =>
+  `<a class="pick" href="#${p.id}"><span class="ph"><img src="${p.id === 'aqua' ? 'aqua-hero' : p.id + '-front'}.jpg" alt="" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span></a>`).join('');
 const host = document.getElementById('products');
 PRODUCTS.forEach((p, i) => {
   const el = document.createElement('article');
@@ -395,8 +458,9 @@ PRODUCTS.forEach((p, i) => {
       <p class="price">${p.price}</p>
       <p class="desc">${esc(p.desc)}</p>
       <dl class="specs"><dt>Colour</dt><dd>${esc(p.colour)}</dd>${p.details.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+      <div class="size-head"><span>Size</span><button type="button" class="chart-link" id="${p.id}-chart">Size chart</button></div>
       <div class="sizes" role="group" aria-label="Size">${SIZES.map(s => `<button type="button" id="${p.id}-s-${s}" aria-pressed="false">${s}</button>`).join('')}</div>
-      <div class="actions"><button type="button" class="btn" id="${p.id}-add">Add to bag</button></div>
+      <div class="actions"><button type="button" class="btn ghost" id="${p.id}-add">Add to bag</button><button type="button" class="btn" id="${p.id}-buy">Buy now</button></div>
       <p class="note" aria-live="polite"></p>
     </div>`;
   host.appendChild(el);
@@ -419,7 +483,53 @@ PRODUCTS.forEach((p, i) => {
     addToBag(p.id, size);
     note.textContent = `${p.name} in ${size} is in your bag.`;
   });
+  el.querySelector(`#${p.id}-buy`).addEventListener('click', () => {
+    if (!size) { note.textContent = 'Choose a size first.'; return; }
+    note.textContent = '';
+    buyNow(p.id, size);
+  });
+  el.querySelector(`#${p.id}-chart`).addEventListener('click', e => openChart(p, size, e.currentTarget));
 });
+
+/* ---------- size chart (garment measurements, inches) ---------- */
+const CHART = [
+  //  size  bust  chest  waist  hip  shoulder
+  ['XS', 32, 34, 30, 38, 13.5],
+  ['S',  34, 36, 32, 40, 14],
+  ['M',  36, 38, 34, 42, 14.5],
+  ['L',  38, 40, 36, 44, 15],
+  ['XL', 40, 42, 38, 46, 15.5],
+  ['XXL', 42, 44, 40, 48, 16],
+];
+const SLEEVE = { aqua: 17, indigo: 17, ivory: 17, mustard: 11 };
+const lengthOf = p => p.id === 'ivory' ? 42 : 44;
+let unit = 'in';
+try { unit = localStorage.getItem('parkhi-unit') === 'cm' ? 'cm' : 'in'; } catch (e) {}
+const chartEl = document.getElementById('chart');
+let chartReturn = null, chartFor = null, chartSize = null;
+const fmt = v => unit === 'in' ? String(v) : String(Math.round(v * 2.54));
+function renderChart() {
+  const p = chartFor, L = lengthOf(p), sl = SLEEVE[p.id];
+  document.getElementById('chart-title').textContent = p.name;
+  document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === unit));
+  document.getElementById('chart-unit').textContent = unit === 'in' ? 'inches' : 'cm';
+  document.getElementById('chart-body').innerHTML = CHART.map(([s, bust, ch, w, h, sh]) =>
+    `<tr class="${s === chartSize ? 'sel' : ''}"><th scope="row">${s}</th><td>${fmt(bust)}</td><td>${fmt(ch)}</td><td>${fmt(w)}</td><td>${fmt(h)}</td><td>${fmt(sh)}</td><td>${fmt(L)}</td></tr>`).join('');
+  document.getElementById('chart-fit').textContent = `${p.name} is ${fmt(L)} ${unit === 'in' ? 'in' : 'cm'} long with ${fmt(sl)} ${unit === 'in' ? 'in' : 'cm'} sleeves in every size. Chest, waist and hip are garment measurements with about 2 in of ease, so pick the size whose "Fits bust" matches you.`;
+}
+function openChart(p, size, from) {
+  chartFor = p; chartSize = size; chartReturn = from;
+  renderChart(); chartEl.hidden = false;
+  document.getElementById('chart-close').focus();
+}
+function closeChart() { chartEl.hidden = true; if (chartReturn) chartReturn.focus(); }
+document.getElementById('chart-close').onclick = closeChart;
+chartEl.addEventListener('click', e => { if (e.target === chartEl) closeChart(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !chartEl.hidden) closeChart(); });
+document.querySelectorAll('.units button').forEach(b => b.addEventListener('click', () => {
+  unit = b.dataset.u; try { localStorage.setItem('parkhi-unit', unit); } catch (e) {}
+  renderChart();
+}));
 
 /* ---------- bag ---------- */
 const rupees = n => '₹' + n.toLocaleString('en-IN');
@@ -501,20 +611,25 @@ function show(v) {
   if (v === 'bag') document.getElementById('foot').hidden = !bag.length;
   document.querySelector('.drawer-head h2').textContent = v === 'checkout' ? 'Checkout' : v === 'done' ? 'Order ready' : 'Your bag';
 }
-const bagTotal = () => bag.reduce((s, l) => s + priceOf(PRODUCTS.find(x => x.id === l.id)) * l.qty, 0);
+let buyItems = null;  // set by Buy now: checkout just this item, leave the bag alone
+const items = () => buyItems || bag;
+const bagTotal = () => items().reduce((s, l) => s + priceOf(PRODUCTS.find(x => x.id === l.id)) * l.qty, 0);
 const lineText = l => { const p = PRODUCTS.find(x => x.id === l.id); return [p, `${p.name}, size ${l.size} × ${l.qty}`, priceOf(p) * l.qty]; };
 
 const form = document.getElementById('checkout-view');
 try { const d = JSON.parse(localStorage.getItem('parkhi-addr') || '{}'); Object.entries(d).forEach(([k, v]) => { if (form.elements[k]) form.elements[k].value = v; }); } catch (e) {}
 
-document.getElementById('checkout').onclick = () => {
-  document.getElementById('mini').innerHTML = bag.map(l => { const [, t, a] = lineText(l); return `<div><span>${esc(t)}</span><span>${rupees(a)}</span></div>`; }).join('')
+document.getElementById('checkout').onclick = () => { buyItems = null; startCheckout(); };
+function startCheckout() {
+  document.getElementById('to-bag').textContent = buyItems ? '← Back to shopping' : '← Back to bag';
+  document.getElementById('mini').innerHTML = items().map(l => { const [, t, a] = lineText(l); return `<div><span>${esc(t)}</span><span>${rupees(a)}</span></div>`; }).join('')
     + `<div><span>Shipping</span><span>Free</span></div><div class="t"><span>Total</span><span>${rupees(bagTotal())}</span></div>`;
   document.getElementById('o-err').textContent = '';
   show('checkout');
   document.getElementById('o-name').focus();
 };
-document.getElementById('to-bag').onclick = () => show('bag');
+document.getElementById('to-bag').onclick = () => { if (buyItems) { buyItems = null; closeBag(); } else show('bag'); };
+function buyNow(id, size) { buyItems = [{ id, size, qty: 1 }]; openBag(); startCheckout(); }
 
 const MSG = { name: 'Please enter your full name.', phone: 'Please enter a 10-digit Indian mobile number.', pin: 'Please enter a 6-digit pincode.',
   addr: 'Please enter your delivery address.', city: 'Please enter your city.', state: 'Please enter your state.' };
@@ -528,21 +643,21 @@ form.addEventListener('submit', e => {
     f[k].value = f[k].value.trim();
     if (!f[k].checkValidity()) { document.getElementById('o-err').textContent = MSG[k]; f[k].focus(); return; }
   }
-  if (!bag.length) { show('bag'); return; }
+  if (!items().length) { show('bag'); return; }
   const d = new Date(), pad = n => String(n).padStart(2, '0');
   const oid = `PK-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
   const total = bagTotal();
   const msg = [
     `Hello Parkhi, I'd like to place an order.`, ``,
     `*Order ${oid}*`,
-    ...bag.map((l, i) => { const [, t, a] = lineText(l); return `${i + 1}. ${t} = ${rupees(a)}`; }),
+    ...items().map((l, i) => { const [, t, a] = lineText(l); return `${i + 1}. ${t} = ${rupees(a)}`; }),
     `Shipping: Free`, `*Total: ${rupees(total)}*`, `Payment: UPI`, ``,
     `*Deliver to*`, f.name.value, `+91 ${f.phone.value}`, f.addr.value, `${f.city.value}, ${f.state.value} - ${f.pin.value}`,
   ].join('\n');
   if (SHOP.orderSheetUrl) {
     const rec = { orderId: oid, name: f.name.value, phone: f.phone.value, address: f.addr.value, city: f.city.value,
       state: f.state.value, pin: f.pin.value, total, payment: 'UPI',
-      items: bag.map(l => { const p = PRODUCTS.find(x => x.id === l.id); return { name: p.name, size: l.size, qty: l.qty, price: priceOf(p) }; }) };
+      items: items().map(l => { const p = PRODUCTS.find(x => x.id === l.id); return { name: p.name, size: l.size, qty: l.qty, price: priceOf(p) }; }) };
     try { fetch(SHOP.orderSheetUrl, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(rec) }).catch(() => {}); } catch (e) {}
   }
   const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(msg)}`;
@@ -561,7 +676,7 @@ form.addEventListener('submit', e => {
   const w = window.open(wa, '_blank');
   if (w) w.opener = null; else location.href = wa;
 });
-document.getElementById('d-new').onclick = () => { bag = []; saveBag(); renderBag(); show('bag'); closeBag(); };
+document.getElementById('d-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; show('bag'); closeBag(); };
 renderBag();
 
 /* ---------- copy contact ---------- */
