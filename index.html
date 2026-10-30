@@ -8,14 +8,15 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&family=Yatra+One&display=swap">
 <style>
 /* Layout: quiet gallery. One wordmark, one hero, then a single column of product "sheets", each a large view plus five labelled views. Three colours only. */
 :root {
-  --paper: #F4EEE5;   /* ivory ground */
+  --paper: #F8F4ED;   /* rice paper ground */
   --beige: #86684F;   /* brownish beige, the brand colour (deep enough to read as text) */
   --ink:   #3B2E25;   /* espresso, for text */
-  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --display: "Questrial", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --hindi: "Yatra One", "Kohinoor Devanagari", "Mangal", serif;  /* पारखी logo only */
   --body: var(--display);  /* one typeface throughout; optical sizing keeps small text sturdy */
   --gutter: max(16px, env(safe-area-inset-left, 0px));
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
@@ -27,7 +28,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--paper); color: var(--ink);
   font: 400 17px/1.7 var(--body);
-  font-optical-sizing: auto;
+  
   -webkit-font-smoothing: antialiased;
 }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
@@ -47,16 +48,19 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 /* hero */
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 6vw, 88px); align-items: center; padding-block: clamp(40px, 7vw, 96px); }
 .hero h1 { font: 400 clamp(42px, 6vw, 82px)/1.02 var(--display); letter-spacing: -.01em; margin: 22px 0 26px; text-wrap: balance; }
-.hero h1 em { font-style: italic; color: var(--beige); }
+.hero h1 em { font-style: normal; color: var(--beige); }
 .hero p { max-width: 40ch; margin: 0 0 32px; font-size: 17px; }
-.quip { font: italic 400 20px/1.4 var(--display); color: var(--beige); margin: 0 0 34px; }
+.quip { font: 400 20px/1.4 var(--display); color: var(--beige); margin: 0 0 34px; }
 .btn { display: inline-block; font: 400 14px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 17px 30px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; transition: background .25s, color .25s; }
 .btn:hover, .btn:focus-visible { background: transparent; color: var(--ink); outline: none; }
 .btn.ghost { background: transparent; color: var(--ink); }
 .btn.ghost:hover, .btn.ghost:focus-visible { background: var(--ink); color: var(--paper); }
-.hero figure { margin: 0; position: relative; }
-.hero figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; max-height: min(78vh, 760px); object-fit: contain; }
-.hero figcaption { margin-top: 6px; text-align: center; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--beige); }
+.hero-logo { display: grid; justify-items: center; gap: 28px; text-align: center; color: var(--ink); }
+.hero-logo svg { width: min(420px, 100%); height: auto; }
+.hero-logo svg text { font-family: var(--hindi); }
+.hero-logo .wm { font: 400 clamp(40px, 4.4vw, 60px)/1 var(--display); letter-spacing: .34em; padding-left: .34em; text-transform: uppercase; }
+.mobile-only { display: none; }
+@media (max-width: 860px) { .hero-logo { display: none !important; } .mobile-only { display: inline; } }
 
 /* bag */
 .bag-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; }
@@ -86,7 +90,7 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .line .rm { all: unset; cursor: pointer; display: block; margin-top: 30px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--beige); text-decoration: underline; text-underline-offset: 3px; }
 .line .rm:focus-visible { outline: 2px solid var(--ink); }
 .empty { text-align: center; padding: 64px 10px; }
-.empty p { font: italic 400 22px/1.3 var(--display); color: var(--beige); margin: 0 0 22px; }
+.empty p { font: 400 22px/1.3 var(--display); color: var(--beige); margin: 0 0 22px; }
 .drawer-foot { padding: 22px 24px 26px; border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); display: grid; gap: 14px; }
 .sum { display: flex; justify-content: space-between; font-size: 16px; font-variant-numeric: tabular-nums; }
 .sum.total { font: 400 22px/1 var(--display); }
@@ -125,13 +129,45 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .pay label { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid var(--ink); cursor: pointer; font-size: 16px; }
 .pay label small { display: block; color: var(--beige); font-size: 15px; margin-top: 2px; }
 .pay input { accent-color: var(--ink); margin-top: 4px; }
-.err { font-size: 15px; color: var(--ink); margin: 0; min-height: 1.2em; font-style: italic; }
+.err { font-size: 15px; color: var(--ink); margin: 0; min-height: 1.2em; font-style: normal; }
 .done h3 { font: 400 30px/1.1 var(--display); margin: 0; }
 .done p { margin: 0; }
 .oid { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 .upi { border: 1px solid var(--beige); padding: 18px; display: grid; gap: 10px; }
-.upi b { font-size: 18px; font-weight: 500; user-select: all; overflow-wrap: anywhere; }
+.upi b { font-size: 18px; font-weight: 400; user-select: all; overflow-wrap: anywhere; }
 .view .btn { text-align: center; }
+
+/* account */
+.acct-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; max-width: 16ch; }
+.acct-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.acct-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.3; flex: none; }
+.acct-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid color-mix(in srgb, var(--beige) 60%, transparent); }
+.tabs button { all: unset; cursor: pointer; text-align: center; padding: 12px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.tabs button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.hello { font: 400 28px/1.15 var(--display); margin: 0; }
+.muted { color: var(--beige); font-size: 15px; margin: 0; }
+.link { all: unset; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--beige); }
+.link:hover { text-decoration-color: var(--ink); }
+.link:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.section-label { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin: 10px 0 0; }
+.orders { display: grid; gap: 12px; }
+.ord { border: 1px solid color-mix(in srgb, var(--beige) 50%, transparent); padding: 14px; display: grid; gap: 4px; font-size: 15px; }
+.ord .top { display: flex; justify-content: space-between; gap: 10px; font-variant-numeric: tabular-nums; }
+.ord .top b { font-weight: 400; }
+.chip { display: inline-block; font-size: 13px; letter-spacing: .06em; padding: 3px 9px; border: 1px solid var(--beige); color: var(--ink); justify-self: start; margin-top: 4px; }
+.chip.paid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.check { display: flex; gap: 10px; align-items: center; font-size: 15px; cursor: pointer; }
+.check input { accent-color: var(--ink); width: 18px; height: 18px; }
+.preview { font-size: 14px; color: var(--beige); border: 1px dashed var(--beige); padding: 10px 12px; margin: 0; }
+.qr { justify-self: center; background: var(--paper); padding: 8px; border: 1px solid color-mix(in srgb, var(--beige) 50%, transparent); line-height: 0; }
+.qr img, .qr canvas { width: 200px; height: 200px; image-rendering: pixelated; }
+.upi-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.paid-form { display: grid; gap: 12px; border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); padding-top: 18px; }
+.ok-note { font-size: 16px; margin: 0; padding: 12px; border: 1px solid var(--ink); }
+.btn[disabled] { opacity: .55; cursor: progress; }
+@media (max-width: 400px) { .acct-btn > span { display: none; } }
 
 /* contact */
 .contact .wrap { padding-block: clamp(56px, 8vw, 100px); display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(28px, 6vw, 80px); align-items: start; }
@@ -177,13 +213,13 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .thumbs button[aria-pressed="true"] .t, .thumbs button:hover .t { outline-color: var(--ink); }
 .thumbs button:focus-visible .t { outline: 2px solid var(--ink); }
 .thumbs button[aria-pressed="true"] small { color: var(--ink); }
-.awaiting { width: 100%; height: 100%; display: grid; place-items: center; text-align: center; padding: 18%; font: italic 400 clamp(12px, 1.4vw, 18px)/1.3 var(--display); color: var(--beige); border: 1px dashed var(--beige); }
+.awaiting { width: 100%; height: 100%; display: grid; place-items: center; text-align: center; padding: 18%; font: 400 clamp(12px, 1.4vw, 18px)/1.3 var(--display); color: var(--beige); border: 1px dashed var(--beige); }
 .stage .awaiting { font-size: clamp(18px, 2.4vw, 26px); }
 
 .info { min-width: 0; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); }
-.info .no { font: italic 400 15px/1 var(--display); color: var(--beige); }
+.info .no { font: 400 15px/1 var(--display); color: var(--beige); }
 .info h3 { font: 400 clamp(38px, 4.4vw, 56px)/1 var(--display); margin: 14px 0 6px; }
-.info .meaning { font-style: italic; font-family: var(--display); color: var(--beige); margin: 0 0 24px; }
+.info .meaning { font-style: normal; font-family: var(--display); color: var(--beige); margin: 0 0 24px; }
 .price { font: 400 22px/1 var(--body); letter-spacing: .04em; margin: 0 0 24px; font-variant-numeric: tabular-nums; }
 .info p.desc { margin: 0 0 26px; max-width: 46ch; }
 .specs { display: grid; grid-template-columns: auto 1fr; gap: 10px 22px; margin: 0 0 30px; padding: 22px 0; border-block: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); font-size: 16px; }
@@ -212,23 +248,25 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .chart table { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
 .chart th, .chart td { text-align: center; padding: 11px 3px; white-space: nowrap; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
 .chart thead th { white-space: normal; vertical-align: bottom; font-size: 13px; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; color: var(--beige); border-bottom-color: var(--beige); }
-.chart tbody th { font-weight: 500; text-align: left; }
+.chart tbody th { font-weight: 400; text-align: left; }
 .chart tr.sel td, .chart tr.sel th { background: color-mix(in srgb, var(--beige) 22%, var(--paper)); }
 .chart .how { font-size: 15px; display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
-.chart .how b { font-weight: 500; }
+.chart .how b { font-weight: 400; }
 .chart .fit { font-size: 15px; color: var(--beige); margin: 0; }
 .note { font-size: 15px; color: var(--beige); min-height: 1.4em; margin: 14px 0 0; }
 
 /* promise + footer */
 .promise { background: var(--ink); color: var(--paper); }
-.promise .wrap { padding-block: clamp(56px, 8vw, 100px); text-align: center; }
-.promise p { font: italic 400 clamp(26px, 3.6vw, 44px)/1.25 var(--display); max-width: 24ch; margin: 18px auto 0; text-wrap: balance; }
+.promise .wrap { padding-block: clamp(26px, 3vw, 38px); text-align: center; display: grid; justify-items: center; gap: 10px; }
+.promise .eyebrow { color: color-mix(in srgb, var(--beige) 55%, var(--paper)); }
+.promise .eyebrow::after { content: ""; display: block; width: 28px; height: 1px; margin: 10px auto 0; background: currentColor; }
+.promise p { font: 400 clamp(19px, 2vw, 26px)/1.4 var(--display); letter-spacing: .01em; max-width: 40ch; margin: 0; }
+.promise p span { color: color-mix(in srgb, var(--beige) 45%, var(--paper)); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding-block: 34px; font-size: 15px; }
 footer .mark { font-size: 18px; }
 
 @media (max-width: 860px) {
   .hero .wrap, .product { grid-template-columns: 1fr; }
-  .hero figure { display: none; }
   .product:nth-child(even) .gallery { order: 0; }
   .info { position: static; }
   .test .wrap { grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -256,6 +294,10 @@ footer .mark { font-size: 18px; }
       <a href="#collection">Collection</a>
       <a class="opt" href="#test">The Parkhi Test</a>
       <a class="opt" href="#contact">Contact</a>
+      <button type="button" class="acct-btn" id="acct-open" aria-label="Your account">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.9-3.6 3.8-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg>
+        <span id="acct-label">Sign in</span>
+      </button>
       <button type="button" class="bag-btn" id="bag-open" aria-label="Open bag">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
         <span>Bag</span><span class="count" id="bag-count">0</span>
@@ -268,41 +310,45 @@ footer .mark { font-size: 18px; }
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="eyebrow">Parkhi · Skip the ordinary</span>
+        <span class="eyebrow mobile-only">Skip the ordinary</span>
         <h1>We're <em>picky,</em> so you don't have to be.</h1>
-        <p>Kurtas chosen the way a jeweller chooses stones: turned over, held to the light, and passed only when every print line, seam and button earns its place.</p>
         <a class="btn" href="#collection">View the collection</a>
       </div>
-      <figure>
-        <img src="aqua-hero.jpg" alt="Woman in the Gulnaar kurta, aqua cotton with pink florals and a pom-pom trimmed V neckline" width="800" height="1000">
-        <figcaption>Gulnaar · Aqua &amp; rose</figcaption>
-      </figure>
+      <div class="hero-logo" role="img" aria-label="Parkhi logo">
+        <svg viewBox="0 0 340 200" aria-hidden="true">
+          <rect x="6" y="6" width="328" height="188" rx="18" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect x="18" y="18" width="304" height="164" rx="10" fill="none" stroke="var(--beige)" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
+          <g fill="var(--beige)"><circle cx="44" cy="44" r="4"/><circle cx="296" cy="44" r="4"/><circle cx="44" cy="156" r="4"/><circle cx="296" cy="156" r="4"/></g>
+          <text x="170" y="128" text-anchor="middle" font-size="92" fill="currentColor">पारखी</text>
+        </svg>
+        <div class="wm">Parkhi</div>
+      </div>
     </div>
   </section>
 
   <section class="test" id="test" aria-label="The Parkhi test">
     <div class="wrap">
       <div><b>The print</b><span>Handblock printed using natural dyes.</span></div>
-      <div><b>The colour</b><span>Wash-tested before a single piece is listed.</span></div>
-      <div><b>The finish</b><span>Every button, tassel and hem inspected by hand.</span></div>
+      <div><b>The colour</b><span>Wash-tested for colour fastness.</span></div>
+      <div><b>The finish</b><span>Every button and hem checked by hand.</span></div>
     </div>
   </section>
 
   <section class="collection" id="collection">
     <div class="wrap">
       <div class="collection-head">
-        <div><span class="eyebrow">The first edit</span><h2>Four kurtas. No filler.</h2></div>
-        <p>Tap a kurta to jump to it. Under each photo, tap a view to see it from the back and up close.</p>
+        <h2>The collection</h2>
       </div>
       <div class="picks" id="picks" role="navigation" aria-label="Jump to a kurta"></div>
       <div class="products" id="products"></div>
     </div>
   </section>
 
+
   <section class="promise" id="promise">
     <div class="wrap">
       <span class="eyebrow">Our promise</span>
-      <p>If it would not pass our eye, it will never reach your wardrobe.</p>
+      <p>If it would not pass our eye,<br><span>it will never reach your wardrobe.</span></p>
     </div>
   </section>
 
@@ -311,7 +357,7 @@ footer .mark { font-size: 18px; }
       <div>
         <span class="eyebrow">Queries &amp; complaints</span>
         <h2>Something not quite right? Tell us.</h2>
-        <p>For questions about an order, sizing, returns or a complaint, reach the founder directly. We reply within one working day.</p>
+        <p>Questions about an order, sizing or returns? We reply within one working day.</p>
       </div>
       <div class="card">
         <div class="who">Yashika Singhal<small>Founder, Parkhi</small></div>
@@ -342,7 +388,7 @@ footer .mark { font-size: 18px; }
     <div class="table-wrap">
       <table>
         <caption class="fit" style="caption-side:bottom;text-align:left;padding-top:10px">All measurements in <span id="chart-unit">inches</span>.</caption>
-        <thead><tr><th scope="col">Size</th><th scope="col">Fits bust</th><th scope="col">Chest</th><th scope="col">Waist</th><th scope="col">Hip</th><th scope="col">Shoulder</th><th scope="col">Length</th></tr></thead>
+        <thead><tr><th scope="col">Size</th><th scope="col">Bust</th><th scope="col">Shoulder</th><th scope="col">Waist</th><th scope="col">Hips</th><th scope="col">Length</th></tr></thead>
         <tbody id="chart-body"></tbody>
       </table>
     </div>
@@ -356,6 +402,50 @@ footer .mark { font-size: 18px; }
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="acct" aria-label="Your account" aria-hidden="true" inert>
+  <div class="drawer-head"><h2 id="acct-title">Your account</h2><button type="button" class="x" id="acct-close">Close</button></div>
+  <div class="view" id="acct-guest">
+    <p class="preview" id="acct-preview" hidden>Preview mode: accounts are saved on this device only until the order sheet is connected.</p>
+    <div class="tabs" role="tablist" aria-label="Sign in or create an account">
+      <button type="button" role="tab" id="tab-in" aria-selected="true" aria-controls="f-in">Sign in</button>
+      <button type="button" role="tab" id="tab-up" aria-selected="false" aria-controls="f-up">Create account</button>
+    </div>
+    <form id="f-in" class="view" style="padding:0" novalidate>
+      <div class="field"><label for="i-mobile">Mobile</label><input id="i-mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10 digits" required></div>
+      <div class="field"><label for="i-pass">Password</label><input id="i-pass" type="password" autocomplete="current-password" required></div>
+      <p class="err" id="i-err" aria-live="polite"></p>
+      <button type="submit" class="btn" id="i-send">Sign in</button>
+      <p class="muted">Forgot your password? Message us on WhatsApp on +91-9887375777 and we'll reset it.</p>
+    </form>
+    <form id="f-up" class="view" style="padding:0" novalidate hidden>
+      <div class="field"><label for="u-name">Full name</label><input id="u-name" autocomplete="name" required></div>
+      <div class="field"><label for="u-mobile">Mobile</label><input id="u-mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10 digits" required></div>
+      <div class="field"><label for="u-email">Email (optional)</label><input id="u-email" type="email" autocomplete="email"></div>
+      <div class="field"><label for="u-pass">Password</label><input id="u-pass" type="password" autocomplete="new-password" minlength="6" placeholder="At least 6 characters" required></div>
+      <p class="err" id="u-err" aria-live="polite"></p>
+      <button type="submit" class="btn" id="u-send">Create account</button>
+      <p class="muted">Your account saves your address and shows all your orders.</p>
+    </form>
+  </div>
+  <div class="view" id="acct-user" hidden>
+    <p class="hello" id="a-hello"></p>
+    <p class="muted" id="a-meta"></p>
+    <p class="section-label">Delivery address</p>
+    <form id="f-addr" class="view" style="padding:0;gap:14px" novalidate>
+      <div class="field"><label for="a-addr">Address</label><textarea id="a-addr" autocomplete="street-address" required></textarea></div>
+      <div class="two">
+        <div class="field"><label for="a-city">City</label><input id="a-city" autocomplete="address-level2" required></div>
+        <div class="field"><label for="a-state">State</label><input id="a-state" autocomplete="address-level1" required></div>
+      </div>
+      <div class="field"><label for="a-pin">Pincode</label><input id="a-pin" inputmode="numeric" autocomplete="postal-code" maxlength="6" required></div>
+      <p class="err" id="a-err" aria-live="polite"></p>
+      <button type="submit" class="btn ghost" id="a-send">Save address</button>
+    </form>
+    <p class="section-label">My orders</p>
+    <div class="orders" id="a-orders"><p class="muted">Loading your orders…</p></div>
+    <button type="button" class="link" id="a-out" style="justify-self:start">Sign out</button>
+  </div>
+</aside>
 <aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true" inert>
   <div class="drawer-head"><h2>Your bag</h2><button type="button" class="x" id="bag-close">Close</button></div>
   <div class="lines" id="lines"></div>
@@ -363,6 +453,7 @@ footer .mark { font-size: 18px; }
   <form class="view" id="checkout-view" novalidate hidden>
     <button type="button" class="back" id="to-bag">← Back to bag</button>
     <div class="mini" id="mini"></div>
+    <p class="muted" id="co-hint"></p>
     <div class="field"><label for="o-name">Full name</label><input id="o-name" name="name" autocomplete="name" required></div>
     <div class="two">
       <div class="field"><label for="o-phone">Mobile</label><input id="o-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" placeholder="10 digits" required></div>
@@ -373,21 +464,33 @@ footer .mark { font-size: 18px; }
       <div class="field"><label for="o-city">City</label><input id="o-city" name="city" autocomplete="address-level2" required></div>
       <div class="field"><label for="o-state">State</label><input id="o-state" name="state" autocomplete="address-level1" required></div>
     </div>
+    <label class="check" id="o-save-wrap" hidden><input type="checkbox" id="o-save" checked> Save this address to my account</label>
     <fieldset class="pay"><legend>Payment</legend>
-      <label for="o-upi"><input type="radio" id="o-upi" name="pay" value="UPI" checked><span>UPI<small>Pay with any UPI app after you send the order</small></span></label>
+      <label for="o-upi"><input type="radio" id="o-upi" name="pay" value="UPI" checked><span>UPI<small>Scan the QR or open any UPI app on the next screen</small></span></label>
     </fieldset>
     <p class="err" id="o-err" aria-live="polite"></p>
-    <button type="submit" class="btn" id="o-send">Send order on WhatsApp</button>
-    <p class="fine" style="font-size:14px;color:var(--beige);margin:0">Your order opens in WhatsApp as a message to Parkhi. Tap send there to place it.</p>
+    <button type="submit" class="btn" id="o-send">Place order</button>
   </form>
 
   <div class="view done" id="done-view" hidden>
     <span class="oid" id="d-id"></span>
-    <h3>One last tap.</h3>
-    <p>WhatsApp has opened with your order. Press <b>send</b> in WhatsApp to place it. We confirm every order personally.</p>
-    <div class="upi" id="d-upi"></div>
-    <a class="btn ghost" id="d-wa" href="#" target="_blank" rel="noopener">Open WhatsApp again</a>
-    <button type="button" class="btn" id="d-new">Done, start a new order</button>
+    <h3 id="d-title">Order placed. Now pay by UPI.</h3>
+    <p id="d-text">We have your order. Pay the amount below and we'll confirm on WhatsApp.</p>
+    <div class="upi">
+      <div class="qr" id="d-qr" role="img" aria-label="UPI QR code for this order"></div>
+      <p class="muted" style="text-align:center">Scan with GPay, PhonePe, Paytm or any UPI app</p>
+      <div class="upi-row"><span>UPI ID <b id="d-upiid"></b></span><button type="button" class="copy" id="d-copy" data-copy="">Copy</button></div>
+      <div class="upi-row"><span>Amount</span><b id="d-amt"></b></div>
+      <a class="btn" id="d-pay" href="#">Pay with a UPI app</a>
+    </div>
+    <form class="paid-form" id="paid-form" novalidate>
+      <div class="field"><label for="p-utr">UPI reference number (optional)</label><input id="p-utr" inputmode="numeric" placeholder="12-digit number from your UPI app" maxlength="22"></div>
+      <button type="submit" class="btn ghost" id="p-send">I've paid</button>
+    </form>
+    <p class="ok-note" id="p-ok" hidden>Thank you. We'll check the payment and confirm on WhatsApp.</p>
+    <p class="err" id="p-err" aria-live="polite"></p>
+    <a class="link" id="d-wa" href="#" target="_blank" rel="noopener">Questions? Message us on WhatsApp</a>
+    <button type="button" class="btn" id="d-new">Done</button>
   </div>
 
   <div class="drawer-foot" id="foot">
@@ -398,47 +501,42 @@ footer .mark { font-size: 18px; }
   </div>
 </aside>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const VIEWS = [
-  ['front', 'Front'],
-  ['back', 'Back'],
-  ['front-zoom', 'Front detail'],
-  ['back-zoom', 'Back detail'],
-  ['sleeve', 'Sleeve'],
-];
+// Each kurta has exactly five photos: [image file, label].
 const PRODUCTS = [
-  { id: 'aqua', name: 'Gulnaar', meaning: 'a pomegranate blossom', price: '₹1,799',
-    colour: 'Aqua with rose and leaf-green florals',
-    desc: 'A straight-cut kurta in an all-over floral print, finished with soft pink pom-poms along the V neckline, the back neck and both sleeve hems.',
-    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'V neck, pom-pom trim'], ['Sleeve', 'Three-quarter, pom-pom hem'], ['Fit', 'Straight, side slits']],
-    have: ['front', 'back', 'front-zoom', 'back-zoom', 'sleeve'] },
-  { id: 'indigo', name: 'Neel Kamal', meaning: 'the blue lotus', price: '₹1,499',
-    colour: 'Deep indigo with coral lotus buttas',
-    desc: 'Coral lotus buttas set in neat rows on deep indigo. A notched mandarin neck closes with a short placket of pearl buttons.',
-    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Notched collar, button placket'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
-    have: ['front', 'front-zoom', 'sleeve'] },
-  { id: 'ivory', name: 'Haveli', meaning: 'the old courtyard house', price: '₹1,499',
-    colour: 'Ivory with madder red, sage and slate borders',
-    desc: 'Border prints run in bands from collar to hem, like friezes on a haveli wall. A full placket of fabric-covered buttons in three alternating shades.',
-    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar'], ['Placket', 'Full length, covered buttons'], ['Fit', 'A-line']],
-    have: ['front', 'front-zoom', 'sleeve'] },
-  { id: 'mustard', name: 'Sarson', meaning: 'the mustard field', price: '₹1,499',
-    colour: 'Mustard with slate-blue and ivory medallions',
-    desc: 'Tall paisley medallions in slate and ivory on a mustard ground, placed in panels so the motif sits centred down the front.',
-    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Round neck'], ['Sleeve', 'Elbow length'], ['Fit', 'Straight, side slits']],
-    have: ['front', 'front-zoom', 'sleeve'] },
+  { id: 'aqua', name: 'Gulnaar', price: '₹1,799',
+    colour: 'Sky turquoise with rose-pink and green florals',
+    desc: 'Floral block print on sky turquoise, with coral pom-poms on the V neckline and sleeve hems.',
+    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'V neck, coral pom-pom trim'], ['Sleeve', 'Three-quarter, pom-pom hem'], ['Fit', 'Straight, side slits']],
+    views: [['aqua-front', 'Front'], ['aqua-back', 'Back'], ['aqua-front-zoom', 'Neckline'], ['aqua-back-zoom', 'Back detail'], ['aqua-sleeve', 'Sleeve']] },
+  { id: 'indigo', name: 'Neel Kamal', price: '₹1,499',
+    colour: 'Steel blue with coral lotus buttas',
+    desc: 'Coral lotus buttas on steel blue, with a mandarin collar and fabric-covered buttons.',
+    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar, short button placket'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
+    views: [['indigo-front', 'Front'], ['indigo-front-zoom', 'Collar'], ['indigo-sleeve', 'Sleeve'], ['indigo-print', 'Print'], ['indigo-hem', 'Hem']] },
+  { id: 'ivory', name: 'Haveli', price: '₹1,499',
+    colour: 'Peach-cream with madder red, olive and slate stripes',
+    desc: 'Vertical floral stripes, with a mandarin collar and a fabric-button placket.',
+    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar'], ['Placket', 'Fabric-covered buttons'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight']],
+    views: [['ivory-front', 'Front'], ['ivory-front-zoom', 'Collar'], ['ivory-sleeve', 'Sleeve'], ['ivory-print', 'Print'], ['ivory-hem', 'Hem']] },
+  { id: 'mustard', name: 'Sarson', price: '₹1,499',
+    colour: 'Mustard with slate-blue and ivory paisley',
+    desc: 'Paisley medallions in slate and ivory on mustard, with a stand collar that opens into a V.',
+    details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Stand collar with V neckline'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
+    views: [['mustard-front', 'Front'], ['mustard-front-zoom', 'Neckline'], ['mustard-sleeve', 'Sleeve'], ['mustard-print', 'Print'], ['mustard-hem', 'Hem']] },
 ];
+const thumbOf = p => p.views[0][0];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-function viewMarkup(p, v, label, big) {
-  return p.have.includes(v)
-    ? `<img src="${p.id}-${v}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()} view" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`
-    : big ? `<div class="awaiting">${label} view<br>photo to come</div>` : `<div class="awaiting">Photo<br>soon</div>`;
+function viewMarkup(p, k, big) {
+  const [file, label] = p.views[k];
+  return `<img src="${file}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()}" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`;
 }
 
 document.getElementById('picks').innerHTML = PRODUCTS.map(p =>
-  `<a class="pick" href="#${p.id}"><span class="ph"><img src="${p.id === 'aqua' ? 'aqua-hero' : p.id + '-front'}.jpg" alt="" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span></a>`).join('');
+  `<a class="pick" href="#${p.id}"><span class="ph"><img src="${thumbOf(p)}.jpg" alt="" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span></a>`).join('');
 const host = document.getElementById('products');
 PRODUCTS.forEach((p, i) => {
   const el = document.createElement('article');
@@ -446,15 +544,13 @@ PRODUCTS.forEach((p, i) => {
   el.id = p.id;
   el.innerHTML = `
     <div class="gallery">
-      <div class="stage">${viewMarkup(p, 'front', 'Front', i === 0)}<span class="tag">Front</span></div>
+      <div class="stage">${viewMarkup(p, 0, i === 0)}<span class="tag">${p.views[0][1]}</span></div>
       <div class="thumbs" role="group" aria-label="${esc(p.name)} views">
-        ${VIEWS.map(([v, l], k) => `<button type="button" id="${p.id}-v-${v}" data-v="${v}" aria-pressed="${k === 0}"><span class="t">${viewMarkup(p, v, l, false)}</span><small>${l}</small></button>`).join('')}
+        ${p.views.map(([, l], k) => `<button type="button" id="${p.id}-v-${k}" data-k="${k}" aria-pressed="${k === 0}"><span class="t">${viewMarkup(p, k, false)}</span><small>${l}</small></button>`).join('')}
       </div>
     </div>
     <div class="info">
-      <span class="no">No. ${String(i + 1).padStart(2, '0')} of ${String(PRODUCTS.length).padStart(2, '0')}</span>
       <h3>${esc(p.name)}</h3>
-      <p class="meaning">${esc(p.meaning)}</p>
       <p class="price">${p.price}</p>
       <p class="desc">${esc(p.desc)}</p>
       <dl class="specs"><dt>Colour</dt><dd>${esc(p.colour)}</dd>${p.details.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
@@ -468,8 +564,8 @@ PRODUCTS.forEach((p, i) => {
   const stage = el.querySelector('.stage');
   el.querySelectorAll('.thumbs button').forEach(b => b.addEventListener('click', () => {
     el.querySelectorAll('.thumbs button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    const [v, l] = VIEWS.find(x => x[0] === b.dataset.v);
-    stage.innerHTML = viewMarkup(p, v, l, true) + `<span class="tag">${l}</span>`;
+    const k = +b.dataset.k;
+    stage.innerHTML = viewMarkup(p, k, true) + `<span class="tag">${p.views[k][1]}</span>`;
   }));
   let size = null;
   const note = el.querySelector('.note');
@@ -493,15 +589,15 @@ PRODUCTS.forEach((p, i) => {
 
 /* ---------- size chart (garment measurements, inches) ---------- */
 const CHART = [
-  //  size  bust  chest  waist  hip  shoulder
-  ['XS', 32, 34, 30, 38, 13.5],
-  ['S',  34, 36, 32, 40, 14],
-  ['M',  36, 38, 34, 42, 14.5],
-  ['L',  38, 40, 36, 44, 15],
-  ['XL', 40, 42, 38, 46, 15.5],
-  ['XXL', 42, 44, 40, 48, 16],
+  //  size  bust  shoulder  waist  hips   (M to XXL from our pattern chart; XS and S stepped down 2 in / 0.5 in)
+  ['XS', 34, 13.5, 30, 37],
+  ['S',  36, 14,   32, 39],
+  ['M',  38, 14.5, 34, 41],
+  ['L',  40, 15,   36, 43],
+  ['XL', 42, 15.5, 38, 45],
+  ['XXL', 44, 16,  40, 47],
 ];
-const SLEEVE = { aqua: 17, indigo: 17, ivory: 17, mustard: 11 };
+const SLEEVE = { aqua: 17, indigo: 17, ivory: 17, mustard: 17 };
 const lengthOf = p => p.id === 'ivory' ? 42 : 44;
 let unit = 'in';
 try { unit = localStorage.getItem('parkhi-unit') === 'cm' ? 'cm' : 'in'; } catch (e) {}
@@ -513,9 +609,9 @@ function renderChart() {
   document.getElementById('chart-title').textContent = p.name;
   document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === unit));
   document.getElementById('chart-unit').textContent = unit === 'in' ? 'inches' : 'cm';
-  document.getElementById('chart-body').innerHTML = CHART.map(([s, bust, ch, w, h, sh]) =>
-    `<tr class="${s === chartSize ? 'sel' : ''}"><th scope="row">${s}</th><td>${fmt(bust)}</td><td>${fmt(ch)}</td><td>${fmt(w)}</td><td>${fmt(h)}</td><td>${fmt(sh)}</td><td>${fmt(L)}</td></tr>`).join('');
-  document.getElementById('chart-fit').textContent = `${p.name} is ${fmt(L)} ${unit === 'in' ? 'in' : 'cm'} long with ${fmt(sl)} ${unit === 'in' ? 'in' : 'cm'} sleeves in every size. Chest, waist and hip are garment measurements with about 2 in of ease, so pick the size whose "Fits bust" matches you.`;
+  document.getElementById('chart-body').innerHTML = CHART.map(([s, bust, sh, w, h]) =>
+    `<tr class="${s === chartSize ? 'sel' : ''}"><th scope="row">${s}</th><td>${fmt(bust)}</td><td>${fmt(sh)}</td><td>${fmt(w)}</td><td>${fmt(h)}</td><td>${fmt(L)}</td></tr>`).join('');
+  document.getElementById('chart-fit').textContent = `${p.name} is ${fmt(L)} ${unit === 'in' ? 'in' : 'cm'} long with ${fmt(sl)} ${unit === 'in' ? 'in' : 'cm'} sleeves in every size.`;
 }
 function openChart(p, size, from) {
   chartFor = p; chartSize = size; chartReturn = from;
@@ -562,7 +658,7 @@ function renderBag() {
   lines.innerHTML = bag.map((l, i) => {
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="line">
-      <img src="${p.id}-front.jpg" alt="" width="76" height="95">
+      <img src="${thumbOf(p)}.jpg" alt="" width="76" height="95">
       <div><b>${esc(p.name)}</b><small>Size ${l.size}</small>
         <div class="qty"><button type="button" id="q-dec-${i}" data-i="${i}" data-d="-1" aria-label="One less">−</button><span>${l.qty}</span><button type="button" id="q-inc-${i}" data-i="${i}" data-d="1" aria-label="One more">+</button></div>
       </div>
@@ -583,6 +679,7 @@ document.getElementById('lines').addEventListener('click', e => {
 });
 
 function openBag() {
+  closeAcct();
   show('bag');
   scrim.hidden = false; drawer.inert = false; drawer.setAttribute('aria-hidden', 'false');
   requestAnimationFrame(() => { scrim.classList.add('open'); drawer.classList.add('open'); });
@@ -597,90 +694,304 @@ document.getElementById('bag-open').onclick = openBag;
 document.getElementById('bag-close').onclick = closeBag;
 scrim.onclick = closeBag;
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeBag(); });
-/* ---------- checkout: order goes to WhatsApp, payment by UPI ---------- */
+/* ---------- shop settings ---------- */
 const SHOP = {
-  whatsapp: '919887375777',   // WhatsApp number that receives orders
-  upiId: 'yashika.singhal@ybl', // UPI ID shown at checkout
+  whatsapp: '919887375777',      // WhatsApp number for customer questions
+  upiId: 'yashika.singhal@ybl',  // UPI ID that receives payments
   upiName: 'Parkhi',
-  orderSheetUrl: '',          // Google Apps Script web app URL (ends in /exec); every order is logged there
+  backendUrl: '',                // Google Apps Script web app URL (ends in /exec). Empty = preview mode on this device.
 };
-const views = { bag: [document.getElementById('lines'), document.getElementById('foot')],
-  checkout: [document.getElementById('checkout-view')], done: [document.getElementById('done-view')] };
+const LIVE = !!SHOP.backendUrl;
+const $ = id => document.getElementById(id);
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+};
+
+/* ---------- backend calls (Google Sheet when live, this device in preview) ---------- */
+async function api(action, data = {}) {
+  if (!LIVE) return previewApi(action, data);
+  try {
+    const r = await fetch(SHOP.backendUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...data }) });
+    return await r.json();
+  } catch (e) {
+    return { ok: false, error: 'We could not reach Parkhi. Check your internet connection and try again.' };
+  }
+}
+
+// Same answers as the real backend, kept in this browser so the page works before the sheet is connected.
+async function previewApi(action, d) {
+  const db = store.get('parkhi-preview-db', { users: [], orders: [], sessions: {} });
+  const save = () => store.set('parkhi-preview-db', db);
+  const mob = v => { let x = String(v || '').replace(/\D/g, ''); if (x.length > 10 && /^(91|0)/.test(x)) x = x.slice(-10); return /^[6-9]\d{9}$/.test(x) ? x : ''; };
+  const me = () => db.users.find(u => u.id === db.sessions[d.token]);
+  const pub = u => ({ id: u.id, name: u.name, mobile: u.mobile, email: u.email, address: u.address });
+  const tok = id => { const t = Math.random().toString(36).slice(2) + Date.now().toString(36); db.sessions[t] = id; return t; };
+  const addrErr = a => !String(a.addr || '').trim() ? 'Please enter your delivery address.' : !String(a.city || '').trim() ? 'Please enter your city.'
+    : !String(a.state || '').trim() ? 'Please enter your state.' : !/^[1-9]\d{5}$/.test(String(a.pin || '')) ? 'Please enter a 6-digit pincode.' : '';
+  if (action === 'register') {
+    const m = mob(d.mobile);
+    if (!String(d.name || '').trim()) return { ok: false, error: 'Please enter your name.' };
+    if (!m) return { ok: false, error: 'Please enter a 10-digit Indian mobile number.' };
+    if (String(d.password || '').length < 6) return { ok: false, error: 'Choose a password of at least 6 characters.' };
+    if (db.users.some(u => u.mobile === m)) return { ok: false, error: 'An account with this mobile number already exists. Please sign in.' };
+    const u = { id: 'C' + Date.now().toString(36).toUpperCase(), name: d.name.trim(), mobile: m, email: d.email || '', pass: d.password, address: { addr: '', city: '', state: '', pin: '' } };
+    db.users.push(u); const t = tok(u.id); save(); return { ok: true, token: t, user: pub(u) };
+  }
+  if (action === 'login') {
+    const u = db.users.find(x => x.mobile === mob(d.mobile) && x.pass === d.password);
+    if (!u) return { ok: false, error: 'Mobile number or password is not right.' };
+    const t = tok(u.id); save(); return { ok: true, token: t, user: pub(u) };
+  }
+  if (action === 'logout') { delete db.sessions[d.token]; save(); return { ok: true }; }
+  if (action === 'me') { const u = me(); return u ? { ok: true, user: pub(u) } : { ok: false, code: 'signin', error: 'Please sign in again.' }; }
+  if (action === 'saveAddress') {
+    const u = me(); if (!u) return { ok: false, code: 'signin', error: 'Please sign in again.' };
+    const e = addrErr(d.address); if (e) return { ok: false, error: e };
+    u.address = { ...d.address }; save(); return { ok: true, user: pub(u) };
+  }
+  if (action === 'placeOrder') {
+    const c = d.customer, u = me();
+    const e = !String(c.name || '').trim() ? 'Please enter your full name.' : !mob(c.phone) ? 'Please enter a 10-digit Indian mobile number.' : addrErr(c);
+    if (e) return { ok: false, error: e };
+    const total = d.items.reduce((s, l) => s + priceOf(PRODUCTS.find(p => p.id === l.id)) * l.qty, 0);
+    const dt = new Date(), pad = n => String(n).padStart(2, '0');
+    const orderId = `PK-${String(dt.getFullYear()).slice(2)}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+    db.orders.push({ orderId, uid: u ? u.id : null, phone: mob(c.phone), date: dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: 'Awaiting payment', status: 'New' });
+    if (u && d.saveAddress) u.address = { addr: c.addr, city: c.city, state: c.state, pin: c.pin };
+    save();
+    return { ok: true, orderId, total, upiId: SHOP.upiId,
+      upiLink: `upi://pay?pa=${encodeURIComponent(SHOP.upiId)}&pn=${encodeURIComponent(SHOP.upiName)}&am=${total}.00&cu=INR&tn=${encodeURIComponent(orderId)}` };
+  }
+  if (action === 'markPaid') {
+    const o = db.orders.find(x => x.orderId === d.orderId && x.phone === mob(d.phone));
+    if (!o) return { ok: false, error: 'We could not find that order.' };
+    o.payment = 'Customer says paid'; save(); return { ok: true };
+  }
+  if (action === 'myOrders') {
+    const u = me(); if (!u) return { ok: false, code: 'signin', error: 'Please sign in again.' };
+    return { ok: true, orders: db.orders.filter(o => o.uid === u.id).reverse() };
+  }
+  return { ok: false, error: 'Unknown action.' };
+}
+
+/* ---------- session ---------- */
+let session = store.get('parkhi-session', null);   // { token, user }
+function setSession(s) { session = s; store.set('parkhi-session', s); renderAcctButton(); }
+function renderAcctButton() {
+  const first = session ? String(session.user.name || '').split(' ')[0] : '';
+  $('acct-label').textContent = session ? first || 'Account' : 'Sign in';
+  $('acct-open').setAttribute('aria-label', session ? `Your account, signed in as ${session.user.name}` : 'Sign in or create an account');
+}
+async function busy(btn, label, fn) {
+  const old = btn.textContent; btn.disabled = true; btn.textContent = label;
+  try { return await fn(); } finally { btn.disabled = false; btn.textContent = old; }
+}
+const digits10 = v => { let x = String(v || '').replace(/\D/g, ''); if (x.length > 10 && /^(91|0)/.test(x)) x = x.slice(-10); return x; };
+
+/* ---------- account panel ---------- */
+const acct = $('acct');
+function openAcct(tab) {
+  closeBag();
+  renderAcct(tab);
+  scrim.hidden = false; acct.inert = false; acct.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(() => { scrim.classList.add('open'); acct.classList.add('open'); });
+  $('acct-close').focus();
+}
+function closeAcct() {
+  if (!acct.classList.contains('open')) return;
+  acct.classList.remove('open'); acct.inert = true; acct.setAttribute('aria-hidden', 'true');
+  if (!drawer.classList.contains('open')) { scrim.classList.remove('open'); setTimeout(() => { if (!drawer.classList.contains('open')) scrim.hidden = true; }, 300); }
+}
+function setTab(t) {
+  $('tab-in').setAttribute('aria-selected', t === 'in'); $('tab-up').setAttribute('aria-selected', t === 'up');
+  $('f-in').hidden = t !== 'in'; $('f-up').hidden = t !== 'up';
+}
+let afterSignIn = null;   // e.g. go back to checkout after signing in from there
+function renderAcct(tab) {
+  $('acct-preview').hidden = LIVE;
+  $('acct-guest').hidden = !!session; $('acct-user').hidden = !session;
+  $('acct-title').textContent = session ? 'Your account' : 'Sign in';
+  if (!session) { setTab(tab || 'in'); return; }
+  const u = session.user;
+  $('a-hello').textContent = `Hello, ${u.name}`;
+  $('a-meta').textContent = `+91 ${u.mobile}${u.email ? ' · ' + u.email : ''}`;
+  $('a-addr').value = u.address.addr || ''; $('a-city').value = u.address.city || '';
+  $('a-state').value = u.address.state || ''; $('a-pin').value = u.address.pin || '';
+  $('a-err').textContent = '';
+  loadOrders();
+}
+async function loadOrders() {
+  const box = $('a-orders');
+  box.innerHTML = '<p class="muted">Loading your orders…</p>';
+  const r = await api('myOrders', { token: session.token });
+  if (!r.ok) { if (r.code === 'signin') { setSession(null); renderAcct(); } else box.innerHTML = `<p class="err">${esc(r.error)}</p>`; return; }
+  box.innerHTML = r.orders.length ? r.orders.map(o => `<div class="ord">
+      <div class="top"><b>${esc(o.orderId)}</b><span>${rupees(o.total)}</span></div>
+      <span class="muted">${esc(o.date)}</span><span>${esc(o.items)}</span>
+      <span class="chip ${/paid/i.test(o.payment) && !/awaiting/i.test(o.payment) ? 'paid' : ''}">${esc(o.payment)}${o.status && o.status !== 'New' ? ' · ' + esc(o.status) : ''}</span>
+    </div>`).join('') : '<p class="muted">No orders yet. Your orders will show here.</p>';
+}
+$('acct-open').onclick = () => openAcct();
+$('acct-close').onclick = closeAcct;
+$('tab-in').onclick = () => setTab('in'); $('tab-up').onclick = () => setTab('up');
+scrim.onclick = () => { closeBag(); closeAcct(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAcct(); });
+
+function signedIn(r) {
+  setSession({ token: r.token, user: r.user });
+  if (afterSignIn) { const go = afterSignIn; afterSignIn = null; closeAcct(); go(); } else renderAcct();
+}
+$('f-in').addEventListener('submit', e => {
+  e.preventDefault();
+  const m = digits10($('i-mobile').value), p = $('i-pass').value;
+  if (!/^[6-9]\d{9}$/.test(m)) { $('i-err').textContent = 'Please enter a 10-digit Indian mobile number.'; return; }
+  if (!p) { $('i-err').textContent = 'Please enter your password.'; return; }
+  busy($('i-send'), 'Signing in…', async () => {
+    const r = await api('login', { mobile: m, password: p });
+    if (!r.ok) { $('i-err').textContent = r.error; return; }
+    $('i-err').textContent = ''; $('i-pass').value = ''; signedIn(r);
+  });
+});
+$('f-up').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('u-name').value.trim(), m = digits10($('u-mobile').value), email = $('u-email').value.trim(), p = $('u-pass').value;
+  const err = !name ? 'Please enter your name.' : !/^[6-9]\d{9}$/.test(m) ? 'Please enter a 10-digit Indian mobile number.'
+    : email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Please check your email address.' : p.length < 6 ? 'Choose a password of at least 6 characters.' : '';
+  if (err) { $('u-err').textContent = err; return; }
+  busy($('u-send'), 'Creating account…', async () => {
+    const r = await api('register', { name, mobile: m, email, password: p });
+    if (!r.ok) { $('u-err').textContent = r.error; return; }
+    $('u-err').textContent = ''; $('u-pass').value = ''; signedIn(r);
+  });
+});
+$('f-addr').addEventListener('submit', e => {
+  e.preventDefault();
+  const address = { addr: $('a-addr').value.trim(), city: $('a-city').value.trim(), state: $('a-state').value.trim(), pin: $('a-pin').value.replace(/\D/g, '') };
+  busy($('a-send'), 'Saving…', async () => {
+    const r = await api('saveAddress', { token: session.token, address });
+    if (!r.ok) { $('a-err').textContent = r.error; if (r.code === 'signin') { setSession(null); renderAcct(); } return; }
+    setSession({ ...session, user: r.user }); $('a-err').textContent = 'Address saved.';
+  });
+});
+$('a-out').onclick = async () => { const t = session && session.token; setSession(null); renderAcct(); if (t) api('logout', { token: t }); };
+
+/* ---------- bag views ---------- */
+const views = { bag: [$('lines'), $('foot')], checkout: [$('checkout-view')], done: [$('done-view')] };
 function show(v) {
   Object.entries(views).forEach(([k, els]) => els.forEach(el => el.hidden = k !== v));
-  if (v === 'bag') document.getElementById('foot').hidden = !bag.length;
-  document.querySelector('.drawer-head h2').textContent = v === 'checkout' ? 'Checkout' : v === 'done' ? 'Order ready' : 'Your bag';
+  if (v === 'bag') $('foot').hidden = !bag.length;
+  document.querySelector('#drawer .drawer-head h2').textContent = v === 'checkout' ? 'Checkout' : v === 'done' ? 'Payment' : 'Your bag';
 }
 let buyItems = null;  // set by Buy now: checkout just this item, leave the bag alone
 const items = () => buyItems || bag;
 const bagTotal = () => items().reduce((s, l) => s + priceOf(PRODUCTS.find(x => x.id === l.id)) * l.qty, 0);
 const lineText = l => { const p = PRODUCTS.find(x => x.id === l.id); return [p, `${p.name}, size ${l.size} × ${l.qty}`, priceOf(p) * l.qty]; };
 
-const form = document.getElementById('checkout-view');
-try { const d = JSON.parse(localStorage.getItem('parkhi-addr') || '{}'); Object.entries(d).forEach(([k, v]) => { if (form.elements[k]) form.elements[k].value = v; }); } catch (e) {}
-
-document.getElementById('checkout').onclick = () => { buyItems = null; startCheckout(); };
+/* ---------- checkout ---------- */
+const form = $('checkout-view');
+function fillCheckout() {
+  const f = form.elements, saved = store.get('parkhi-addr', {});
+  const u = session && session.user, a = (u && u.address) || {};
+  const val = (k, v) => { if (f[k] && !f[k].value && v) f[k].value = v; };
+  val('name', (u && u.name) || saved.name); val('phone', (u && u.mobile) || saved.phone);
+  val('addr', a.addr || saved.addr); val('city', a.city || saved.city); val('state', a.state || saved.state); val('pin', a.pin || saved.pin);
+  $('o-save-wrap').hidden = !session;
+  const hint = $('co-hint');
+  if (session) hint.innerHTML = `Signed in as <b>${esc(u.name)}</b>. This order will show in your account.`;
+  else { hint.innerHTML = `Have an account? <button type="button" class="link" id="co-signin">Sign in</button> to use your saved address. Or just continue as a guest.`;
+    $('co-signin').onclick = () => { const keep = buyItems; afterSignIn = () => { buyItems = keep; openBag(); startCheckout(); }; openAcct('in'); }; }
+}
+$('checkout').onclick = () => { buyItems = null; startCheckout(); };
 function startCheckout() {
-  document.getElementById('to-bag').textContent = buyItems ? '← Back to shopping' : '← Back to bag';
-  document.getElementById('mini').innerHTML = items().map(l => { const [, t, a] = lineText(l); return `<div><span>${esc(t)}</span><span>${rupees(a)}</span></div>`; }).join('')
+  $('to-bag').textContent = buyItems ? '← Back to shopping' : '← Back to bag';
+  $('mini').innerHTML = items().map(l => { const [, t, a] = lineText(l); return `<div><span>${esc(t)}</span><span>${rupees(a)}</span></div>`; }).join('')
     + `<div><span>Shipping</span><span>Free</span></div><div class="t"><span>Total</span><span>${rupees(bagTotal())}</span></div>`;
-  document.getElementById('o-err').textContent = '';
+  $('o-err').textContent = '';
+  fillCheckout();
   show('checkout');
-  document.getElementById('o-name').focus();
-};
-document.getElementById('to-bag').onclick = () => { if (buyItems) { buyItems = null; closeBag(); } else show('bag'); };
+  $('o-name').focus();
+}
+$('to-bag').onclick = () => { if (buyItems) { buyItems = null; closeBag(); } else show('bag'); };
 function buyNow(id, size) { buyItems = [{ id, size, qty: 1 }]; openBag(); startCheckout(); }
 
 const MSG = { name: 'Please enter your full name.', phone: 'Please enter a 10-digit Indian mobile number.', pin: 'Please enter a 6-digit pincode.',
   addr: 'Please enter your delivery address.', city: 'Please enter your city.', state: 'Please enter your state.' };
+let lastOrder = null;
 form.addEventListener('submit', e => {
   e.preventDefault();
   const f = form.elements;
-  let digits = f.phone.value.replace(/\D/g, '');
-  if (digits.length > 10 && /^(91|0)/.test(digits)) digits = digits.slice(-10);
-  f.phone.value = digits;
+  f.phone.value = digits10(f.phone.value);
   for (const k of ['name', 'phone', 'pin', 'addr', 'city', 'state']) {
     f[k].value = f[k].value.trim();
-    if (!f[k].checkValidity()) { document.getElementById('o-err').textContent = MSG[k]; f[k].focus(); return; }
+    if (!f[k].checkValidity()) { $('o-err').textContent = MSG[k]; f[k].focus(); return; }
   }
   if (!items().length) { show('bag'); return; }
-  const d = new Date(), pad = n => String(n).padStart(2, '0');
-  const oid = `PK-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
-  const total = bagTotal();
-  const msg = [
-    `Hello Parkhi, I'd like to place an order.`, ``,
-    `*Order ${oid}*`,
-    ...items().map((l, i) => { const [, t, a] = lineText(l); return `${i + 1}. ${t} = ${rupees(a)}`; }),
-    `Shipping: Free`, `*Total: ${rupees(total)}*`, `Payment: UPI`, ``,
-    `*Deliver to*`, f.name.value, `+91 ${f.phone.value}`, f.addr.value, `${f.city.value}, ${f.state.value} - ${f.pin.value}`,
-  ].join('\n');
-  if (SHOP.orderSheetUrl) {
-    const rec = { orderId: oid, name: f.name.value, phone: f.phone.value, address: f.addr.value, city: f.city.value,
-      state: f.state.value, pin: f.pin.value, total, payment: 'UPI',
-      items: items().map(l => { const p = PRODUCTS.find(x => x.id === l.id); return { name: p.name, size: l.size, qty: l.qty, price: priceOf(p) }; }) };
-    try { fetch(SHOP.orderSheetUrl, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(rec) }).catch(() => {}); } catch (e) {}
-  }
-  const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(msg)}`;
-  try { localStorage.setItem('parkhi-addr', JSON.stringify({ name: f.name.value, phone: f.phone.value, pin: f.pin.value, addr: f.addr.value, city: f.city.value, state: f.state.value })); } catch (e) {}
+  const customer = { name: f.name.value, phone: f.phone.value, addr: f.addr.value, city: f.city.value, state: f.state.value, pin: f.pin.value };
+  const lines = items().map(l => ({ id: l.id, size: l.size, qty: l.qty }));
+  busy($('o-send'), 'Placing order…', async () => {
+    const r = await api('placeOrder', { token: session && session.token, customer, items: lines, saveAddress: !!(session && $('o-save').checked) });
+    if (!r.ok) { $('o-err').textContent = r.error; return; }
+    store.set('parkhi-addr', customer);
+    if (session && $('o-save').checked) setSession({ ...session, user: { ...session.user, address: { addr: customer.addr, city: customer.city, state: customer.state, pin: customer.pin } } });
+    lastOrder = { ...r, phone: customer.phone, customer, lines: items().map(l => lineText(l)) };
+    showPayment();
+  });
+});
 
-  document.getElementById('d-id').textContent = `Order ${oid} · ${rupees(total)}`;
-  document.getElementById('d-wa').href = wa;
-  const upi = document.getElementById('d-upi');
-  if (SHOP.upiId) {
-    const link = `upi://pay?pa=${encodeURIComponent(SHOP.upiId)}&pn=${encodeURIComponent(SHOP.upiName)}&am=${total}.00&cu=INR&tn=${encodeURIComponent(oid)}`;
-    upi.innerHTML = `<span class="oid">Pay by UPI</span><b>${esc(SHOP.upiId)}</b><span>Amount ${rupees(total)} · Note ${oid}</span><a class="btn" href="${link}">Pay with a UPI app</a><small>On a computer, pay to the UPI ID above from your phone.</small>`;
+function showPayment() {
+  const o = lastOrder;
+  $('d-id').textContent = `Order ${o.orderId} · ${rupees(o.total)}`;
+  $('d-upiid').textContent = o.upiId; $('d-copy').dataset.copy = o.upiId;
+  $('d-amt').textContent = rupees(o.total);
+  $('d-pay').href = o.upiLink;
+  const qr = $('d-qr'); qr.innerHTML = '';
+  if (window.QRCode) new QRCode(qr, { text: o.upiLink, width: 200, height: 200, colorDark: '#3B2E25', colorLight: '#F8F4ED', correctLevel: QRCode.CorrectLevel.M });
+  else qr.innerHTML = `<p class="muted" style="line-height:1.5;padding:12px">Pay ${rupees(o.total)} to ${esc(o.upiId)} from any UPI app.</p>`;
+  $('p-utr').value = ''; $('paid-form').hidden = false; $('p-ok').hidden = true; $('p-err').textContent = '';
+  const waText = [`Hello Parkhi, I placed order ${o.orderId} (${rupees(o.total)}).`, ...o.lines.map(([, t, a]) => `${t} = ${rupees(a)}`)].join('\n');
+  const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(waText)}`;
+  $('d-wa').href = wa;
+  if (LIVE) {
+    $('d-title').textContent = 'Order placed. Now pay by UPI.';
+    $('d-text').textContent = "We've received your order. Pay below and tap I've paid. We'll confirm on WhatsApp.";
   } else {
-    upi.innerHTML = `<span class="oid">Payment</span><span>We'll reply on WhatsApp with our UPI details for ${rupees(total)}. Your order is confirmed once payment is received.</span>`;
+    // preview mode: no sheet yet, so the order reaches Parkhi through the customer's WhatsApp
+    $('d-title').textContent = 'Send your order, then pay.';
+    $('d-text').textContent = 'WhatsApp has opened with your order. Tap send there, then pay below.';
+    $('d-wa').textContent = 'Open WhatsApp again';
+    const full = [`Hello Parkhi, I'd like to place an order.`, ``, `*Order ${o.orderId}*`, ...o.lines.map(([, t, a], i) => `${i + 1}. ${t} = ${rupees(a)}`),
+      `*Total: ${rupees(o.total)}*`, `Payment: UPI`, ``, `*Deliver to*`, o.customer.name, `+91 ${o.customer.phone}`, o.customer.addr, `${o.customer.city}, ${o.customer.state} - ${o.customer.pin}`].join('\n');
+    const link = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(full)}`;
+    $('d-wa').href = link;
+    const w = window.open(link, '_blank'); if (w) w.opener = null;
   }
   show('done');
-  const w = window.open(wa, '_blank');
-  if (w) w.opener = null; else location.href = wa;
+  $('done-view').scrollTop = 0;
+}
+$('d-copy').addEventListener('click', () => {
+  const b = $('d-copy'), done = t => { b.textContent = t; setTimeout(() => b.textContent = 'Copy', 1600); };
+  try { navigator.clipboard.writeText(b.dataset.copy).then(() => done('Copied'), () => done('Select it above')); } catch (e) { done('Select it above'); }
 });
-document.getElementById('d-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; show('bag'); closeBag(); };
+$('paid-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const utr = $('p-utr').value.replace(/\D/g, '');
+  busy($('p-send'), 'Sending…', async () => {
+    const r = await api('markPaid', { orderId: lastOrder.orderId, phone: lastOrder.phone, utr });
+    if (!r.ok) { $('p-err').textContent = r.error; return; }
+    $('paid-form').hidden = true; $('p-ok').hidden = false; $('p-err').textContent = '';
+  });
+});
+$('d-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; show('bag'); closeBag(); };
+
+renderAcctButton();
 renderBag();
+// refresh the signed-in customer's details (and drop an expired sign-in) in the background
+if (session) api('me', { token: session.token }).then(r => { if (r.ok) setSession({ ...session, user: r.user }); else if (r.code === 'signin') setSession(null); });
 
 /* ---------- copy contact ---------- */
-document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
+document.querySelectorAll('.row .copy').forEach(b => b.addEventListener('click', () => {
   const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1600); };
   const fallback = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling.querySelector('dd')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected'; setTimeout(() => b.textContent = 'Copy', 1600); };
   try { navigator.clipboard.writeText(b.dataset.copy).then(done, fallback); } catch (e) { fallback(); }
