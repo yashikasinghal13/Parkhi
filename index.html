@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Parkhi: handblock printed kurtas in natural dyes. Skip the ordinary.">
+<meta name="description" content="Parkhi: handblock printed kurtas in natural dyes. Make every day yours.">
 <title>Parkhi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,8 +59,15 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .hero-logo svg { width: min(420px, 100%); height: auto; }
 .hero-logo svg text { font-family: var(--hindi); }
 .hero-logo .wm { font: 400 clamp(40px, 4.4vw, 60px)/1 var(--display); letter-spacing: .34em; padding-left: .34em; text-transform: uppercase; }
+.hero-logo .tl { font-size: clamp(16px, 1.5vw, 20px); letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin-top: -12px; }
 .mobile-only { display: none; }
-@media (max-width: 860px) { .hero-logo { display: none !important; } .mobile-only { display: inline; } }
+@media (max-width: 860px) {
+  .hero-logo { order: -1; gap: 12px; justify-self: center; }
+  .hero-logo svg { width: min(230px, 70vw); }
+  .hero-logo .wm { font-size: 24px; }
+  .hero-logo .tl { font-size: 14px; margin-top: -4px; }
+  .mobile-only { display: inline; }
+}
 
 /* bag */
 .bag-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 0; }
@@ -163,6 +170,10 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .preview { font-size: 14px; color: var(--beige); border: 1px dashed var(--beige); padding: 10px 12px; margin: 0; }
 .qr { justify-self: center; background: var(--paper); padding: 8px; border: 1px solid color-mix(in srgb, var(--beige) 50%, transparent); line-height: 0; }
 .qr img, .qr canvas { width: 200px; height: 200px; image-rendering: pixelated; }
+.amount-big { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); }
+.amount-big b { font: 400 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+.steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 15px; }
+.steps b { font-weight: 400; color: var(--ink); background: color-mix(in srgb, var(--beige) 20%, transparent); padding: 0 4px; }
 .upi-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .paid-form { display: grid; gap: 12px; border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); padding-top: 18px; }
 .ok-note { font-size: 16px; margin: 0; padding: 12px; border: 1px solid var(--ink); }
@@ -205,7 +216,7 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .stage { position: relative; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); aspect-ratio: 4/5; overflow: hidden; max-width: 100%; }
 .stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
 .stage .tag { position: absolute; left: 14px; bottom: 14px; background: var(--paper); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 8px 12px; }
-.thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .thumbs button { all: unset; cursor: pointer; display: grid; gap: 6px; min-width: 0; }
 .thumbs .t { aspect-ratio: 4/5; overflow: hidden; outline: 1px solid transparent; outline-offset: 2px; transition: outline-color .2s; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); }
 .thumbs img { width: 100%; height: 100%; object-fit: cover; }
@@ -232,6 +243,8 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .sizes button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .size-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.avail { font-size: 15px; margin: -14px 0 22px; color: var(--beige); }
+.avail b { font-weight: 400; color: var(--ink); }
 .size-head span { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
 .chart-link { all: unset; cursor: pointer; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--beige); }
 .chart-link:hover { text-decoration-color: var(--ink); }
@@ -292,9 +305,7 @@ footer .mark { font-size: 18px; }
     <a class="mark" href="#top">Parkhi</a>
     <nav aria-label="Main">
       <a href="#collection">Collection</a>
-      <a class="opt" href="#test">The Parkhi Test</a>
-      <a class="opt" href="#contact">Contact</a>
-      <button type="button" class="acct-btn" id="acct-open" aria-label="Your account">
+      <button type="button" class="acct-btn" id="acct-open" aria-label="Your account" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.9-3.6 3.8-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg>
         <span id="acct-label">Sign in</span>
       </button>
@@ -310,7 +321,7 @@ footer .mark { font-size: 18px; }
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="eyebrow mobile-only">Skip the ordinary</span>
+        <span class="eyebrow">Make every day yours</span>
         <h1>We're <em>picky,</em> so you don't have to be.</h1>
         <a class="btn" href="#collection">View the collection</a>
       </div>
@@ -326,13 +337,6 @@ footer .mark { font-size: 18px; }
     </div>
   </section>
 
-  <section class="test" id="test" aria-label="The Parkhi test">
-    <div class="wrap">
-      <div><b>The print</b><span>Handblock printed using natural dyes.</span></div>
-      <div><b>The colour</b><span>Wash-tested for colour fastness.</span></div>
-      <div><b>The finish</b><span>Every button and hem checked by hand.</span></div>
-    </div>
-  </section>
 
   <section class="collection" id="collection">
     <div class="wrap">
@@ -465,32 +469,41 @@ footer .mark { font-size: 18px; }
       <div class="field"><label for="o-state">State</label><input id="o-state" name="state" autocomplete="address-level1" required></div>
     </div>
     <label class="check" id="o-save-wrap" hidden><input type="checkbox" id="o-save" checked> Save this address to my account</label>
-    <fieldset class="pay"><legend>Payment</legend>
-      <label for="o-upi"><input type="radio" id="o-upi" name="pay" value="UPI" checked><span>UPI<small>Scan the QR or open any UPI app on the next screen</small></span></label>
-    </fieldset>
     <p class="err" id="o-err" aria-live="polite"></p>
-    <button type="submit" class="btn" id="o-send">Place order</button>
+    <button type="submit" class="btn" id="o-send">Continue to payment</button>
+    <p class="muted">Next: pay by UPI. Your order is placed once the payment is done.</p>
   </form>
 
   <div class="view done" id="done-view" hidden>
+    <button type="button" class="back" id="to-details">← Edit details</button>
     <span class="oid" id="d-id"></span>
-    <h3 id="d-title">Order placed. Now pay by UPI.</h3>
-    <p id="d-text">We have your order. Pay the amount below and we'll confirm on WhatsApp.</p>
+    <h3>Pay to place your order</h3>
     <div class="upi">
-      <div class="qr" id="d-qr" role="img" aria-label="UPI QR code for this order"></div>
-      <p class="muted" style="text-align:center">Scan with GPay, PhonePe, Paytm or any UPI app</p>
+      <div class="amount-big"><span>Pay exactly</span><b id="d-amt"></b></div>
+      <ol class="steps">
+        <li>Scan this QR with GPay, PhonePe or Paytm (or pay to the UPI ID below).</li>
+        <li>Type the amount <b id="d-amt2"></b> in your UPI app.</li>
+        <li>Optional: add <b id="d-note"></b> in the payment note.</li>
+      </ol>
+      <div class="qr" id="d-qr" role="img" aria-label="Parkhi UPI QR code"></div>
       <div class="upi-row"><span>UPI ID <b id="d-upiid"></b></span><button type="button" class="copy" id="d-copy" data-copy="">Copy</button></div>
-      <div class="upi-row"><span>Amount</span><b id="d-amt"></b></div>
-      <a class="btn" id="d-pay" href="#">Pay with a UPI app</a>
+      <p class="muted" style="text-align:center">On a phone: take a screenshot of the QR, then open your UPI app's scanner and pick it from your gallery.</p>
     </div>
     <form class="paid-form" id="paid-form" novalidate>
-      <div class="field"><label for="p-utr">UPI reference number (optional)</label><input id="p-utr" inputmode="numeric" placeholder="12-digit number from your UPI app" maxlength="22"></div>
-      <button type="submit" class="btn ghost" id="p-send">I've paid</button>
+      <div class="field"><label for="p-utr">UPI reference number</label><input id="p-utr" inputmode="numeric" autocomplete="off" placeholder="12 digits, from your UPI app" maxlength="16" required></div>
+      <p class="muted">After paying, open the payment in your UPI app and copy the 12-digit UPI reference (UTR) number. Payments of a different amount can't be accepted.</p>
+      <p class="err" id="p-err" aria-live="polite"></p>
+      <button type="submit" class="btn" id="p-send">Confirm order</button>
     </form>
-    <p class="ok-note" id="p-ok" hidden>Thank you. We'll check the payment and confirm on WhatsApp.</p>
-    <p class="err" id="p-err" aria-live="polite"></p>
-    <a class="link" id="d-wa" href="#" target="_blank" rel="noopener">Questions? Message us on WhatsApp</a>
-    <button type="button" class="btn" id="d-new">Done</button>
+  </div>
+
+  <div class="view done" id="ok-view" hidden>
+    <span class="oid" id="k-id"></span>
+    <h3>Order confirmed.</h3>
+    <p id="k-text"></p>
+    <p id="k-ship"></p>
+    <a class="link" id="k-wa" href="#" target="_blank" rel="noopener">Questions? Message us on WhatsApp</a>
+    <button type="button" class="btn" id="k-new">Continue shopping</button>
   </div>
 
   <div class="drawer-foot" id="foot">
@@ -505,29 +518,31 @@ footer .mark { font-size: 18px; }
 <script>
 // Each kurta has exactly five photos: [image file, label].
 const PRODUCTS = [
-  { id: 'aqua', name: 'Gulnaar', price: '₹1,099',
+  { id: 'aqua', name: 'Gulnaar', price: '₹999',
     colour: 'Sky turquoise with rose-pink and green florals',
     desc: 'Floral block print on sky turquoise, with coral pom-poms on the V neckline and sleeve hems.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'V neck, coral pom-pom trim'], ['Sleeve', 'Three-quarter, pom-pom hem'], ['Fit', 'Straight, side slits']],
-    views: [['aqua-front', 'Front'], ['aqua-back', 'Back'], ['aqua-front-zoom', 'Neckline'], ['aqua-back-zoom', 'Back detail'], ['aqua-sleeve', 'Sleeve']] },
+    views: [['aqua-front', 'Front'], ['aqua-closeup', 'Close-up'], ['aqua-back', 'Back'], ['aqua-real', 'Real photo']] },
   { id: 'indigo', name: 'Neel Kamal', price: '₹999',
     colour: 'Steel blue with coral lotus buttas',
     desc: 'Coral lotus buttas on steel blue, with a mandarin collar and fabric-covered buttons.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar, short button placket'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
-    views: [['indigo-front', 'Front'], ['indigo-front-zoom', 'Collar'], ['indigo-sleeve', 'Sleeve'], ['indigo-print', 'Print'], ['indigo-hem', 'Hem']] },
+    views: [['indigo-front', 'Front'], ['indigo-closeup', 'Close-up'], ['indigo-back', 'Back'], ['indigo-real', 'Real photo']] },
   { id: 'ivory', name: 'Haveli', price: '₹999',
     colour: 'Peach-cream with madder red, olive and slate stripes',
     desc: 'Vertical floral stripes, with a mandarin collar and a fabric-button placket.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Mandarin collar'], ['Placket', 'Fabric-covered buttons'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight']],
-    views: [['ivory-front', 'Front'], ['ivory-front-zoom', 'Collar'], ['ivory-sleeve', 'Sleeve'], ['ivory-print', 'Print'], ['ivory-hem', 'Hem']] },
+    views: [['ivory-front', 'Front'], ['ivory-closeup', 'Close-up'], ['ivory-back', 'Back'], ['ivory-real', 'Real photo']] },
   { id: 'mustard', name: 'Sarson', price: '₹999',
     colour: 'Mustard with slate-blue and ivory paisley',
     desc: 'Paisley medallions in slate and ivory on mustard, with a stand collar that opens into a V.',
     details: [['Fabric', 'Cotton, handblock printed with natural dyes'], ['Neck', 'Stand collar with V neckline'], ['Sleeve', 'Three-quarter'], ['Fit', 'Straight, side slits']],
-    views: [['mustard-front', 'Front'], ['mustard-front-zoom', 'Neckline'], ['mustard-sleeve', 'Sleeve'], ['mustard-print', 'Print'], ['mustard-hem', 'Hem']] },
+    views: [['mustard-front', 'Front'], ['mustard-closeup', 'Close-up'], ['mustard-back', 'Back'], ['mustard-real', 'Real photo']] },
 ];
 const thumbOf = p => p.views[0][0];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const IN_STOCK = ['M', 'L', 'XL'];   // other sizes are made to order
+const shipNote = size => IN_STOCK.includes(size) ? 'In stock, ships right away' : 'Made to order, delivered in 1 week';
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function viewMarkup(p, k, big) {
@@ -556,6 +571,7 @@ PRODUCTS.forEach((p, i) => {
       <dl class="specs"><dt>Colour</dt><dd>${esc(p.colour)}</dd>${p.details.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
       <div class="size-head"><span>Size</span><button type="button" class="chart-link" id="${p.id}-chart">Size chart</button></div>
       <div class="sizes" role="group" aria-label="Size">${SIZES.map(s => `<button type="button" id="${p.id}-s-${s}" aria-pressed="false">${s}</button>`).join('')}</div>
+      <p class="avail" id="${p.id}-avail" aria-live="polite">M, L, XL in stock · XS, S, XXL delivered in 1 week</p>
       <div class="actions"><button type="button" class="btn ghost" id="${p.id}-add">Add to bag</button><button type="button" class="btn" id="${p.id}-buy">Buy now</button></div>
       <p class="note" aria-live="polite"></p>
     </div>`;
@@ -572,6 +588,7 @@ PRODUCTS.forEach((p, i) => {
   el.querySelectorAll('.sizes button').forEach(b => b.addEventListener('click', () => {
     size = b.textContent;
     el.querySelectorAll('.sizes button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    el.querySelector('.avail').innerHTML = `Size ${size}: <b>${shipNote(size)}</b>`;
     note.textContent = '';
   }));
   el.querySelector(`#${p.id}-add`).addEventListener('click', () => {
@@ -659,7 +676,7 @@ function renderBag() {
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="line">
       <img src="${thumbOf(p)}.jpg" alt="" width="76" height="95">
-      <div><b>${esc(p.name)}</b><small>Size ${l.size}</small>
+      <div><b>${esc(p.name)}</b><small>Size ${l.size}</small><small style="text-transform:none;letter-spacing:0">${shipNote(l.size)}</small>
         <div class="qty"><button type="button" id="q-dec-${i}" data-i="${i}" data-d="-1" aria-label="One less">−</button><span>${l.qty}</span><button type="button" id="q-inc-${i}" data-i="${i}" data-d="1" aria-label="One more">+</button></div>
       </div>
       <div class="amt">${rupees(priceOf(p) * l.qty)}<button type="button" class="rm" id="rm-${i}" data-rm="${i}">Remove</button></div>
@@ -702,6 +719,9 @@ const SHOP = {
   backendUrl: '',                // Google Apps Script web app URL (ends in /exec). Empty = preview mode on this device.
 };
 const LIVE = !!SHOP.backendUrl;
+const ACCOUNTS = false;
+// plain UPI QR: payee only, no amount or note (UPI apps block pre-filled requests to personal UPI IDs)
+const STATIC_QR = `upi://pay?pa=${encodeURIComponent(SHOP.upiId)}&pn=${encodeURIComponent(SHOP.upiName)}&cu=INR`;   // sign-in is switched off for now
 const $ = id => document.getElementById(id);
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -755,10 +775,11 @@ async function previewApi(action, d) {
     const e = !String(c.name || '').trim() ? 'Please enter your full name.' : !mob(c.phone) ? 'Please enter a 10-digit Indian mobile number.' : addrErr(c);
     if (e) return { ok: false, error: e };
     const total = d.items.reduce((s, l) => s + priceOf(PRODUCTS.find(p => p.id === l.id)) * l.qty, 0);
-    const dt = new Date(), pad = n => String(n).padStart(2, '0');
-    const orderId = `PK-${String(dt.getFullYear()).slice(2)}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+    const dt = new Date();
+    if (!/^\d{12}$/.test(String(d.utr || ''))) return { ok: false, error: 'Please enter the 12-digit UPI reference number from your payment.' };
+    const orderId = d.orderId;
     db.orders.push({ orderId, uid: u ? u.id : null, phone: mob(c.phone), date: dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: 'Awaiting payment', status: 'New' });
+      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: 'Paid, UPI ref ' + d.utr, status: 'New' });
     if (u && d.saveAddress) u.address = { addr: c.addr, city: c.city, state: c.state, pin: c.pin };
     save();
     return { ok: true, orderId, total, upiId: SHOP.upiId,
@@ -878,11 +899,11 @@ $('f-addr').addEventListener('submit', e => {
 $('a-out').onclick = async () => { const t = session && session.token; setSession(null); renderAcct(); if (t) api('logout', { token: t }); };
 
 /* ---------- bag views ---------- */
-const views = { bag: [$('lines'), $('foot')], checkout: [$('checkout-view')], done: [$('done-view')] };
+const views = { bag: [$('lines'), $('foot')], checkout: [$('checkout-view')], done: [$('done-view')], ok: [$('ok-view')] };
 function show(v) {
   Object.entries(views).forEach(([k, els]) => els.forEach(el => el.hidden = k !== v));
   if (v === 'bag') $('foot').hidden = !bag.length;
-  document.querySelector('#drawer .drawer-head h2').textContent = v === 'checkout' ? 'Checkout' : v === 'done' ? 'Payment' : 'Your bag';
+  document.querySelector('#drawer .drawer-head h2').textContent = v === 'checkout' ? 'Checkout' : v === 'done' ? 'Payment' : v === 'ok' ? 'Thank you' : 'Your bag';
 }
 let buyItems = null;  // set by Buy now: checkout just this item, leave the bag alone
 const items = () => buyItems || bag;
@@ -899,6 +920,7 @@ function fillCheckout() {
   val('addr', a.addr || saved.addr); val('city', a.city || saved.city); val('state', a.state || saved.state); val('pin', a.pin || saved.pin);
   $('o-save-wrap').hidden = !session;
   const hint = $('co-hint');
+  if (!ACCOUNTS) { hint.hidden = true; return; }
   if (session) hint.innerHTML = `Signed in as <b>${esc(u.name)}</b>. This order will show in your account.`;
   else { hint.innerHTML = `Have an account? <button type="button" class="link" id="co-signin">Sign in</button> to use your saved address. Or just continue as a guest.`;
     $('co-signin').onclick = () => { const keep = buyItems; afterSignIn = () => { buyItems = keep; openBag(); startCheckout(); }; openAcct('in'); }; }
@@ -919,6 +941,11 @@ function buyNow(id, size) { buyItems = [{ id, size, qty: 1 }]; openBag(); startC
 const MSG = { name: 'Please enter your full name.', phone: 'Please enter a 10-digit Indian mobile number.', pin: 'Please enter a 6-digit pincode.',
   addr: 'Please enter your delivery address.', city: 'Please enter your city.', state: 'Please enter your state.' };
 let lastOrder = null;
+const newOrderId = () => {
+  const d = new Date(), pad = n => String(n).padStart(2, '0');
+  const rand = Array.from({ length: 4 }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 32)]).join('');
+  return `PK-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${rand}`;
+};
 form.addEventListener('submit', e => {
   e.preventDefault();
   const f = form.elements;
@@ -929,61 +956,69 @@ form.addEventListener('submit', e => {
   }
   if (!items().length) { show('bag'); return; }
   const customer = { name: f.name.value, phone: f.phone.value, addr: f.addr.value, city: f.city.value, state: f.state.value, pin: f.pin.value };
-  const lines = items().map(l => ({ id: l.id, size: l.size, qty: l.qty }));
-  busy($('o-send'), 'Placing order…', async () => {
-    const r = await api('placeOrder', { token: session && session.token, customer, items: lines, saveAddress: !!(session && $('o-save').checked) });
-    if (!r.ok) { $('o-err').textContent = r.error; return; }
-    store.set('parkhi-addr', customer);
-    if (session && $('o-save').checked) setSession({ ...session, user: { ...session.user, address: { addr: customer.addr, city: customer.city, state: customer.state, pin: customer.pin } } });
-    lastOrder = { ...r, phone: customer.phone, customer, lines: items().map(l => lineText(l)) };
-    showPayment();
-  });
+  store.set('parkhi-addr', customer);
+  const total = bagTotal();
+  const orderId = lastOrder && lastOrder.pending && lastOrder.total === total ? lastOrder.orderId : newOrderId();
+  lastOrder = { pending: true, orderId, total, customer, items: items().map(l => ({ id: l.id, size: l.size, qty: l.qty })),
+    lines: items().map(l => { const [, t, a] = lineText(l); return [t, a, l.size]; }),
+  };
+  showPayment();
 });
 
 function showPayment() {
   const o = lastOrder;
   $('d-id').textContent = `Order ${o.orderId} · ${rupees(o.total)}`;
-  $('d-upiid').textContent = o.upiId; $('d-copy').dataset.copy = o.upiId;
-  $('d-amt').textContent = rupees(o.total);
-  $('d-pay').href = o.upiLink;
+  $('d-upiid').textContent = SHOP.upiId; $('d-copy').dataset.copy = SHOP.upiId;
+  $('d-amt').textContent = rupees(o.total); $('d-amt2').textContent = rupees(o.total); $('d-note').textContent = o.orderId;
   const qr = $('d-qr'); qr.innerHTML = '';
-  if (window.QRCode) new QRCode(qr, { text: o.upiLink, width: 200, height: 200, colorDark: '#3B2E25', colorLight: '#F8F4ED', correctLevel: QRCode.CorrectLevel.M });
-  else qr.innerHTML = `<p class="muted" style="line-height:1.5;padding:12px">Pay ${rupees(o.total)} to ${esc(o.upiId)} from any UPI app.</p>`;
-  $('p-utr').value = ''; $('paid-form').hidden = false; $('p-ok').hidden = true; $('p-err').textContent = '';
-  const waText = [`Hello Parkhi, I placed order ${o.orderId} (${rupees(o.total)}).`, ...o.lines.map(([, t, a]) => `${t} = ${rupees(a)}`)].join('\n');
-  const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(waText)}`;
-  $('d-wa').href = wa;
-  if (LIVE) {
-    $('d-title').textContent = 'Order placed. Now pay by UPI.';
-    $('d-text').textContent = "We've received your order. Pay below and tap I've paid. We'll confirm on WhatsApp.";
-  } else {
-    // preview mode: no sheet yet, so the order reaches Parkhi through the customer's WhatsApp
-    $('d-title').textContent = 'Send your order, then pay.';
-    $('d-text').textContent = 'WhatsApp has opened with your order. Tap send there, then pay below.';
-    $('d-wa').textContent = 'Open WhatsApp again';
-    const full = [`Hello Parkhi, I'd like to place an order.`, ``, `*Order ${o.orderId}*`, ...o.lines.map(([, t, a], i) => `${i + 1}. ${t} = ${rupees(a)}`),
-      `*Total: ${rupees(o.total)}*`, `Payment: UPI`, ``, `*Deliver to*`, o.customer.name, `+91 ${o.customer.phone}`, o.customer.addr, `${o.customer.city}, ${o.customer.state} - ${o.customer.pin}`].join('\n');
-    const link = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(full)}`;
-    $('d-wa').href = link;
-    const w = window.open(link, '_blank'); if (w) w.opener = null;
-  }
+  if (window.QRCode) new QRCode(qr, { text: STATIC_QR, width: 200, height: 200, colorDark: '#3B2E25', colorLight: '#F8F4ED', correctLevel: QRCode.CorrectLevel.M });
+  else qr.innerHTML = `<p class="muted" style="line-height:1.5;padding:12px">Pay ${rupees(o.total)} to ${esc(SHOP.upiId)} from any UPI app.</p>`;
+  $('p-err').textContent = '';
   show('done');
   $('done-view').scrollTop = 0;
 }
+$('to-details').onclick = () => show('checkout');
 $('d-copy').addEventListener('click', () => {
   const b = $('d-copy'), done = t => { b.textContent = t; setTimeout(() => b.textContent = 'Copy', 1600); };
   try { navigator.clipboard.writeText(b.dataset.copy).then(() => done('Copied'), () => done('Select it above')); } catch (e) { done('Select it above'); }
 });
+const shipSummary = lines => {
+  const later = lines.filter(([, , size]) => !IN_STOCK.includes(size));
+  return later.length === 0 ? 'Everything is in stock and ships right away.'
+    : later.length === lines.length ? 'Your size is made to order and will be delivered in 1 week.'
+    : 'In-stock sizes ship right away; sizes XS, S and XXL are made to order and delivered in 1 week.';
+};
 $('paid-form').addEventListener('submit', e => {
   e.preventDefault();
   const utr = $('p-utr').value.replace(/\D/g, '');
-  busy($('p-send'), 'Sending…', async () => {
-    const r = await api('markPaid', { orderId: lastOrder.orderId, phone: lastOrder.phone, utr });
+  if (!/^\d{12}$/.test(utr)) { $('p-err').textContent = 'Please enter the 12-digit UPI reference number from your payment.'; $('p-utr').focus(); return; }
+  const o = lastOrder;
+  busy($('p-send'), 'Confirming…', async () => {
+    const r = await api('placeOrder', { token: session && session.token, customer: o.customer, items: o.items, orderId: o.orderId, utr,
+      saveAddress: !!(session && $('o-save').checked) });
     if (!r.ok) { $('p-err').textContent = r.error; return; }
-    $('paid-form').hidden = true; $('p-ok').hidden = false; $('p-err').textContent = '';
+    o.pending = false; o.utr = utr;
+    const msg = [`Hello Parkhi, I've placed and paid for an order.`, ``, `*Order ${o.orderId}*`,
+      ...o.lines.map(([t, a, size], i) => `${i + 1}. ${t} = ${rupees(a)} (${shipNote(size).toLowerCase()})`),
+      `*Paid: ${rupees(o.total)} by UPI*`, `UPI ref: ${utr}`, ``, `*Deliver to*`, o.customer.name, `+91 ${o.customer.phone}`, o.customer.addr,
+      `${o.customer.city}, ${o.customer.state} - ${o.customer.pin}`].join('\n');
+    const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(LIVE ? `Hello Parkhi, about my order ${o.orderId}:` : msg)}`;
+    $('k-id').textContent = `Order ${o.orderId} · Paid ${rupees(o.total)}`;
+    $('k-ship').textContent = shipSummary(o.lines);
+    $('k-wa').href = wa;
+    if (LIVE) {
+      $('k-text').textContent = `We've received your order and payment (UPI ref ${utr}). We'll confirm on WhatsApp once we've checked the payment.`;
+      $('k-wa').textContent = 'Questions? Message us on WhatsApp';
+    } else {
+      $('k-text').textContent = 'WhatsApp has opened with your order and payment details. Tap send there so we receive it.';
+      $('k-wa').textContent = 'Open WhatsApp again';
+      const w = window.open(wa, '_blank'); if (w) w.opener = null; else location.href = wa;
+    }
+    $('p-utr').value = '';
+    show('ok');
   });
 });
-$('d-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; show('bag'); closeBag(); };
+$('k-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; lastOrder = null; show('bag'); closeBag(); };
 
 renderAcctButton();
 renderBag();
