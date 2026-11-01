@@ -169,6 +169,8 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .check input { accent-color: var(--ink); width: 18px; height: 18px; }
 .preview { font-size: 14px; color: var(--beige); border: 1px dashed var(--beige); padding: 10px 12px; margin: 0; }
 .qr { justify-self: center; background: var(--paper); padding: 8px; border: 1px solid color-mix(in srgb, var(--beige) 50%, transparent); line-height: 0; }
+.qr-img { background: #000; padding: 0; border-radius: 12px; overflow: hidden; }
+.qr-img img { width: 220px !important; height: auto !important; image-rendering: auto !important; display: block; }
 .qr img, .qr canvas { width: 200px; height: 200px; image-rendering: pixelated; }
 .amount-big { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); }
 .amount-big b { font: 400 30px/1 var(--display); font-variant-numeric: tabular-nums; }
@@ -483,23 +485,24 @@ footer .mark { font-size: 18px; }
       <ol class="steps">
         <li>Scan this QR with GPay, PhonePe or Paytm (or pay to the UPI ID below).</li>
         <li>Type the amount <b id="d-amt2"></b> in your UPI app.</li>
-        <li>Optional: add <b id="d-note"></b> in the payment note.</li>
+        <li>Optional: add your name in the payment note.</li>
       </ol>
-      <div class="qr" id="d-qr" role="img" aria-label="Parkhi UPI QR code"></div>
+      <div class="qr qr-img"><img src="upi-qr.png" alt="UPI QR code for Yashika Singhal (Parkhi)" width="670" height="675"></div>
+      <p class="muted" style="text-align:center">Payee name shows as <b style="font-weight:400;color:var(--ink)">Yashika Singhal</b>, Parkhi's founder.</p>
       <div class="upi-row"><span>UPI ID <b id="d-upiid"></b></span><button type="button" class="copy" id="d-copy" data-copy="">Copy</button></div>
       <p class="muted" style="text-align:center">On a phone: take a screenshot of the QR, then open your UPI app's scanner and pick it from your gallery.</p>
     </div>
-    <form class="paid-form" id="paid-form" novalidate>
-      <div class="field"><label for="p-utr">UPI reference number</label><input id="p-utr" inputmode="numeric" autocomplete="off" placeholder="12 digits, from your UPI app" maxlength="16" required></div>
-      <p class="muted">After paying, open the payment in your UPI app and copy the 12-digit UPI reference (UTR) number. Payments of a different amount can't be accepted.</p>
+    <div class="paid-form" id="paid-form">
       <p class="err" id="p-err" aria-live="polite"></p>
-      <button type="submit" class="btn" id="p-send">Confirm order</button>
-    </form>
+      <button type="button" class="btn" id="p-paid">I have paid</button>
+      <button type="button" class="btn ghost" id="p-later">I will pay later</button>
+      <p class="muted">Choosing "pay later" still places your order. We'll ship once the payment reaches us.</p>
+    </div>
   </div>
 
   <div class="view done" id="ok-view" hidden>
     <span class="oid" id="k-id"></span>
-    <h3>Order confirmed.</h3>
+    <h3 id="k-title">Order confirmed.</h3>
     <p id="k-text"></p>
     <p id="k-ship"></p>
     <a class="link" id="k-wa" href="#" target="_blank" rel="noopener">Questions? Message us on WhatsApp</a>
@@ -514,7 +517,6 @@ footer .mark { font-size: 18px; }
   </div>
 </aside>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 // Each kurta has exactly five photos: [image file, label].
 const PRODUCTS = [
@@ -719,9 +721,7 @@ const SHOP = {
   backendUrl: '',                // Google Apps Script web app URL (ends in /exec). Empty = preview mode on this device.
 };
 const LIVE = !!SHOP.backendUrl;
-const ACCOUNTS = false;
-// plain UPI QR: payee only, no amount or note (UPI apps block pre-filled requests to personal UPI IDs)
-const STATIC_QR = `upi://pay?pa=${encodeURIComponent(SHOP.upiId)}&pn=${encodeURIComponent(SHOP.upiName)}&cu=INR`;   // sign-in is switched off for now
+const ACCOUNTS = false;   // sign-in is switched off for now
 const $ = id => document.getElementById(id);
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -776,10 +776,9 @@ async function previewApi(action, d) {
     if (e) return { ok: false, error: e };
     const total = d.items.reduce((s, l) => s + priceOf(PRODUCTS.find(p => p.id === l.id)) * l.qty, 0);
     const dt = new Date();
-    if (!/^\d{12}$/.test(String(d.utr || ''))) return { ok: false, error: 'Please enter the 12-digit UPI reference number from your payment.' };
     const orderId = d.orderId;
     db.orders.push({ orderId, uid: u ? u.id : null, phone: mob(c.phone), date: dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: 'Paid, UPI ref ' + d.utr, status: 'New' });
+      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: d.paid ? 'Customer says paid' : 'Pay later', status: 'New' });
     if (u && d.saveAddress) u.address = { addr: c.addr, city: c.city, state: c.state, pin: c.pin };
     save();
     return { ok: true, orderId, total, upiId: SHOP.upiId,
@@ -969,10 +968,7 @@ function showPayment() {
   const o = lastOrder;
   $('d-id').textContent = `Order ${o.orderId} · ${rupees(o.total)}`;
   $('d-upiid').textContent = SHOP.upiId; $('d-copy').dataset.copy = SHOP.upiId;
-  $('d-amt').textContent = rupees(o.total); $('d-amt2').textContent = rupees(o.total); $('d-note').textContent = o.orderId;
-  const qr = $('d-qr'); qr.innerHTML = '';
-  if (window.QRCode) new QRCode(qr, { text: STATIC_QR, width: 200, height: 200, colorDark: '#3B2E25', colorLight: '#F8F4ED', correctLevel: QRCode.CorrectLevel.M });
-  else qr.innerHTML = `<p class="muted" style="line-height:1.5;padding:12px">Pay ${rupees(o.total)} to ${esc(SHOP.upiId)} from any UPI app.</p>`;
+  $('d-amt').textContent = rupees(o.total); $('d-amt2').textContent = rupees(o.total);
   $('p-err').textContent = '';
   show('done');
   $('done-view').scrollTop = 0;
@@ -988,36 +984,35 @@ const shipSummary = lines => {
     : later.length === lines.length ? 'Your size is made to order and will be delivered in 1 week.'
     : 'In-stock sizes ship right away; sizes XS, S and XXL are made to order and delivered in 1 week.';
 };
-$('paid-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const utr = $('p-utr').value.replace(/\D/g, '');
-  if (!/^\d{12}$/.test(utr)) { $('p-err').textContent = 'Please enter the 12-digit UPI reference number from your payment.'; $('p-utr').focus(); return; }
+function confirmOrder(paid, btn) {
   const o = lastOrder;
-  busy($('p-send'), 'Confirming…', async () => {
-    const r = await api('placeOrder', { token: session && session.token, customer: o.customer, items: o.items, orderId: o.orderId, utr,
+  busy(btn, 'Placing order…', async () => {
+    const r = await api('placeOrder', { token: session && session.token, customer: o.customer, items: o.items, orderId: o.orderId, paid,
       saveAddress: !!(session && $('o-save').checked) });
     if (!r.ok) { $('p-err').textContent = r.error; return; }
-    o.pending = false; o.utr = utr;
-    const msg = [`Hello Parkhi, I've placed and paid for an order.`, ``, `*Order ${o.orderId}*`,
+    o.pending = false; o.paid = paid;
+    const msg = [`Hello Parkhi, I've placed an order.`, ``, `*Order ${o.orderId}*`,
       ...o.lines.map(([t, a, size], i) => `${i + 1}. ${t} = ${rupees(a)} (${shipNote(size).toLowerCase()})`),
-      `*Paid: ${rupees(o.total)} by UPI*`, `UPI ref: ${utr}`, ``, `*Deliver to*`, o.customer.name, `+91 ${o.customer.phone}`, o.customer.addr,
-      `${o.customer.city}, ${o.customer.state} - ${o.customer.pin}`].join('\n');
+      `*Total: ${rupees(o.total)}*`, paid ? `Payment: paid by UPI` : `Payment: will pay later by UPI`, ``,
+      `*Deliver to*`, o.customer.name, `+91 ${o.customer.phone}`, o.customer.addr, `${o.customer.city}, ${o.customer.state} - ${o.customer.pin}`].join('\n');
     const wa = `https://wa.me/${SHOP.whatsapp}?text=${encodeURIComponent(LIVE ? `Hello Parkhi, about my order ${o.orderId}:` : msg)}`;
-    $('k-id').textContent = `Order ${o.orderId} · Paid ${rupees(o.total)}`;
-    $('k-ship').textContent = shipSummary(o.lines);
+    $('k-id').textContent = `Order ${o.orderId} · ${paid ? 'Paid' : 'To pay'} ${rupees(o.total)}`;
+    $('k-title').textContent = paid ? 'Order confirmed.' : 'Order placed.';
+    $('k-ship').textContent = paid ? shipSummary(o.lines) : `Please pay ${rupees(o.total)} to ${SHOP.upiId} when you can. We'll ship once the payment reaches us.`;
     $('k-wa').href = wa;
     if (LIVE) {
-      $('k-text').textContent = `We've received your order and payment (UPI ref ${utr}). We'll confirm on WhatsApp once we've checked the payment.`;
+      $('k-text').textContent = paid ? "We've received your order. We'll confirm on WhatsApp once we've checked the payment." : "We've received your order and will message you on WhatsApp.";
       $('k-wa').textContent = 'Questions? Message us on WhatsApp';
     } else {
-      $('k-text').textContent = 'WhatsApp has opened with your order and payment details. Tap send there so we receive it.';
+      $('k-text').textContent = 'WhatsApp has opened with your order. Tap send there so we receive it.';
       $('k-wa').textContent = 'Open WhatsApp again';
       const w = window.open(wa, '_blank'); if (w) w.opener = null; else location.href = wa;
     }
-    $('p-utr').value = '';
     show('ok');
   });
-});
+}
+$('p-paid').onclick = () => confirmOrder(true, $('p-paid'));
+$('p-later').onclick = () => confirmOrder(false, $('p-later'));
 $('k-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); } buyItems = null; lastOrder = null; show('bag'); closeBag(); };
 
 renderAcctButton();
