@@ -1,9 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Parkhi: handblock printed kurtas in natural dyes. Make every day yours.">
+<!doctype html><html><head><meta charset=utf8><title>Parkhi | Handblock printed kurtas</title>
+<meta name="description" content="Handblock printed cotton kurtas in natural dyes. Picked one by one, in sizes XS to XXL with four fits each.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Parkhi">
+<meta property="og:title" content="Parkhi | Handblock printed kurtas">
+<meta property="og:description" content="Handblock printed cotton kurtas in natural dyes. We're picky, so you don't have to be.">
+<meta property="og:url" content="https://yashikasinghal13.github.io/Parkhi/">
+<meta property="og:image" content="https://yashikasinghal13.github.io/Parkhi/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Four Parkhi handblock printed kurtas">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yashikasinghal13.github.io/Parkhi/img/share.jpg">
+<link rel="canonical" href="https://yashikasinghal13.github.io/Parkhi/">
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Parkhi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,8 +113,8 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .drawer-foot .btn { text-align: center; }
 .drawer-foot .fine { font-size: 14px; color: var(--beige); margin: 0; }
 
-/* quick pick */
-.picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); margin-bottom: clamp(56px, 8vw, 96px); }
+/* product list (PLP) */
+.picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
 .pick { text-decoration: none; display: grid; gap: 10px; }
 .pick span.ph { display: block; aspect-ratio: 4/5; overflow: hidden; max-width: 100%; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); }
 .pick img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
@@ -114,6 +123,86 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .pick b { font: 400 22px/1.1 var(--display); }
 .pick small { font-size: 16px; font-variant-numeric: tabular-nums; }
 .pick .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.pick .sub { font-size: 14px; color: var(--beige); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.stars { color: var(--ink); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.stars i { font-style: normal; color: color-mix(in srgb, var(--beige) 45%, transparent); }
+.pick-cta { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--beige); }
+
+/* product page (PDP) */
+.pdp .wrap { padding-block: clamp(20px, 4vw, 40px) clamp(56px, 8vw, 100px); display: grid; gap: clamp(28px, 4vw, 44px); }
+.pdp .wrap > * { min-width: 0; }
+.crumbs .step a { white-space: nowrap; }
+.crumbs { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.crumbs a { text-decoration: none; border-bottom: 1px solid transparent; padding-block: 4px; }
+.crumbs a:hover, .crumbs a:focus-visible { border-color: var(--beige); outline: none; }
+.crumbs .step { display: flex; gap: 18px; color: var(--beige); }
+.info h1 { font: 400 clamp(36px, 4.2vw, 54px)/1 var(--display); margin: 0 0 10px; }
+.rate-link { all: unset; cursor: pointer; display: inline-flex; gap: 10px; align-items: baseline; font-size: 15px; margin: 0 0 18px; }
+.rate-link u { text-decoration-color: var(--beige); text-underline-offset: 4px; color: var(--beige); }
+.rate-link:hover u { text-decoration-color: var(--ink); color: var(--ink); }
+.rate-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.colour-line { font-size: 15px; color: var(--beige); margin: -14px 0 24px; }
+.ptabs { display: flex; flex-wrap: wrap; gap: 0 6px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 45%, transparent); }
+.reviews-sec { margin-top: clamp(36px, 6vw, 64px); padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid color-mix(in srgb, var(--beige) 45%, transparent); }
+@media (max-width: 480px) { .ptabs button { padding: 12px 10px 10px; font-size: 13px; letter-spacing: .08em; } }
+.ptabs button { all: unset; cursor: pointer; flex: none; padding: 14px 16px 12px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--beige); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ptabs button:hover { color: var(--ink); }
+.ptabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.ptabs button:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.panel { max-width: 760px; scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 140px); }
+.panel h2 { font: 400 26px/1.15 var(--display); margin: 0 0 14px; }
+.panel p { margin: 0 0 14px; }
+.panel .specs { margin-bottom: 0; }
+.mini-chart { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; margin: 4px 0 16px; }
+.mini-chart th, .mini-chart td { text-align: center; padding: 10px 4px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); white-space: nowrap; }
+.mini-chart thead th { font-size: 13px; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; color: var(--beige); }
+.mini-chart tbody th { font-weight: 400; text-align: left; }
+.mini-chart tr.sel td, .mini-chart tr.sel th { background: color-mix(in srgb, var(--beige) 22%, var(--paper)); }
+.facts { display: grid; gap: 0; margin: 0; }
+.facts div { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
+.facts dt { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); padding-top: 3px; }
+.facts dd { margin: 0; }
+
+/* reviews */
+.rev-top { display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 48px); align-items: center; padding-bottom: 22px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); margin-bottom: 8px; }
+.rev-avg b { display: block; font: 400 52px/1 var(--display); font-variant-numeric: tabular-nums; }
+.rev-avg small { color: var(--beige); font-size: 14px; }
+.bars { display: grid; gap: 6px; font-size: 14px; font-variant-numeric: tabular-nums; max-width: 340px; }
+.bars div { display: grid; grid-template-columns: 26px 1fr 28px; gap: 10px; align-items: center; color: var(--beige); }
+.bars span.track { height: 6px; background: color-mix(in srgb, var(--beige) 22%, transparent); position: relative; }
+.bars span.fill { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
+.rev-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.rev { padding: 20px 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 28%, transparent); display: grid; gap: 6px; }
+.rev .who { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 15px; }
+.rev .who small { color: var(--beige); font-size: 14px; }
+.rev p { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+.rev-empty { padding: 26px 0; color: var(--beige); }
+.rev-form { display: grid; gap: 16px; margin-top: 28px; padding: clamp(18px, 3vw, 28px); border: 1px solid color-mix(in srgb, var(--beige) 55%, transparent); }
+.rev-form h3 { font: 400 22px/1.2 var(--display); margin: 0; }
+.star-pick { display: flex; gap: 4px; border: 0; padding: 0; margin: 0; }
+.star-pick legend { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin-bottom: 8px; padding: 0; }
+.star-pick label { cursor: pointer; font-size: 30px; line-height: 1; color: color-mix(in srgb, var(--beige) 45%, transparent); padding: 2px; }
+.star-pick label.on { color: var(--ink); }
+.star-pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.star-pick input:focus-visible + label { outline: 2px solid var(--ink); outline-offset: 2px; }
+.field select { font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 70%, transparent); padding: 8px 0; border-radius: 0; width: 100%; }
+.rev-mode { font-size: 14px; color: var(--beige); margin: 0; }
+.rev-photos { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.rev-photos button { all: unset; cursor: zoom-in; position: relative; }
+.rev-photos img { width: 84px; height: 105px; object-fit: cover; display: block; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); }
+.rev-photos button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.rev-gallery { margin: 0 0 6px; padding-bottom: 18px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); }
+.rev-gallery p { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin: 0 0 10px; }
+.photo-pick { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.photo-pick .add { all: unset; cursor: pointer; width: 84px; height: 105px; display: grid; place-items: center; text-align: center; font-size: 13px; line-height: 1.3; color: var(--beige); border: 1px dashed var(--beige); }
+.photo-pick .add:hover, .photo-pick .add:focus-visible { color: var(--ink); border-color: var(--ink); outline: none; }
+.photo-pick .pv { position: relative; }
+.photo-pick .pv img { width: 84px; height: 105px; object-fit: cover; display: block; }
+.photo-pick .pv button { all: unset; cursor: pointer; position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; display: grid; place-items: center; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1; }
+.photo-pick .pv button:focus-visible { outline: 2px solid var(--ink); }
+.lightbox { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--ink) 80%, transparent); }
+.lightbox img { max-width: min(900px, 100%); max-height: 82vh; object-fit: contain; }
+.lightbox .x { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 16px); right: calc(env(safe-area-inset-right, 0px) + 16px); color: var(--paper); }
 .product { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 84px); }
 @media (max-width: 860px) { .picks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -213,7 +302,6 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .products { display: grid; gap: clamp(64px, 9vw, 120px); }
 
 .product { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
-.product:nth-child(even) .gallery { order: 2; }
 .gallery { display: grid; gap: 10px; min-width: 0; }
 .stage { position: relative; background: color-mix(in srgb, var(--beige) 18%, var(--paper)); aspect-ratio: 4/5; overflow: hidden; max-width: 100%; }
 .stage img { width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
@@ -244,6 +332,13 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .sizes button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .sizes button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.fit-wrap { overflow: hidden; display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .3s ease, opacity .3s ease; }
+.fit-wrap.open { grid-template-rows: 1fr; opacity: 1; }
+.fit-wrap > div { min-height: 0; }
+.fit-head { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin: 0 0 10px; }
+.fits button { min-width: 64px; height: auto; padding: 8px 10px; grid-template-rows: auto auto; gap: 2px; }
+.fits button small { font-size: 12px; letter-spacing: 0; opacity: .8; }
+.chart tr.grp-start th, .chart tr.grp-start td { border-top: 1px solid var(--beige); }
 .size-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
 .avail { font-size: 15px; margin: -14px 0 22px; color: var(--beige); }
 .avail b { font-weight: 400; color: var(--ink); }
@@ -282,7 +377,8 @@ footer .mark { font-size: 18px; }
 
 @media (max-width: 860px) {
   .hero .wrap, .product { grid-template-columns: 1fr; }
-  .product:nth-child(even) .gallery { order: 0; }
+  .rev-top { grid-template-columns: 1fr; }
+  .facts div { grid-template-columns: 1fr; gap: 4px; }
   .info { position: static; }
   .test .wrap { grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .contact .wrap { grid-template-columns: 1fr; }
@@ -298,15 +394,13 @@ footer .mark { font-size: 18px; }
 @media (max-width: 400px) { .bag-btn > span:not(.count) { display: none; } nav { gap: 16px; } .chart table { font-size: 14px; } .chart thead th { font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
-</head>
-<body>
-
 
 <header>
   <div class="wrap">
     <a class="mark" href="#top">Parkhi</a>
     <nav aria-label="Main">
       <a href="#collection">Collection</a>
+      <a href="#contact" class="opt">Contact</a>
       <button type="button" class="acct-btn" id="acct-open" aria-label="Your account" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.9-3.6 3.8-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg>
         <span id="acct-label">Sign in</span>
@@ -345,8 +439,48 @@ footer .mark { font-size: 18px; }
       <div class="collection-head">
         <h2>The collection</h2>
       </div>
-      <div class="picks" id="picks" role="navigation" aria-label="Jump to a kurta"></div>
-      <div class="products" id="products"></div>
+      <div class="picks" id="picks"></div>
+    </div>
+  </section>
+
+  <section class="pdp" id="pdp" hidden>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Product navigation">
+        <a href="#collection">← All kurtas</a>
+        <span class="step"><a id="pdp-prev" href="#collection">‹ Previous</a><a id="pdp-next" href="#collection">Next ›</a></span>
+      </nav>
+      <article class="product" id="pdp-body"></article>
+      <div>
+        <div class="ptabs" role="tablist" aria-label="Product information">
+          <button type="button" role="tab" id="tab-details" aria-controls="panel-details" aria-selected="true">Details</button>
+          <button type="button" role="tab" id="tab-size" aria-controls="panel-size" aria-selected="false">Size &amp; fit</button>
+          <button type="button" role="tab" id="tab-delivery" aria-controls="panel-delivery" aria-selected="false">Delivery &amp; payment</button>
+        </div>
+        <div class="panel" role="tabpanel" id="panel-details" aria-labelledby="tab-details"></div>
+        <div class="panel" role="tabpanel" id="panel-size" aria-labelledby="tab-size" hidden></div>
+        <div class="panel" role="tabpanel" id="panel-delivery" aria-labelledby="tab-delivery" hidden></div>
+        </div>
+        <section class="panel reviews-sec" id="panel-reviews" aria-labelledby="rev-heading">
+          <div id="rev-summary"></div>
+          <ul class="rev-list" id="rev-list"></ul>
+          <form class="rev-form" id="rev-form" novalidate>
+            <h3>Write a review</h3>
+            <p class="rev-mode" style="margin-top:-6px">Add a rating, a few words, a photo, or all three. Everything is optional.</p>
+            <fieldset class="star-pick" id="rev-stars"><legend>Your rating</legend></fieldset>
+            <div class="two">
+              <div class="field"><label for="rev-name">Your name</label><input id="rev-name" maxlength="40" autocomplete="name"></div>
+              <div class="field"><label for="rev-size">Size you bought</label><select id="rev-size"><option value="">Choose</option></select></div>
+            </div>
+            <div class="field"><label for="rev-text">Your review</label><textarea id="rev-text" maxlength="800" placeholder="How did the fabric, fit and colour turn out?"></textarea></div>
+            <div class="field"><span class="fit-head" style="margin:0">Photos (up to 3)</span>
+              <div class="photo-pick" id="rev-preview"><button type="button" class="add" id="rev-add-photo">+ Add photo</button></div>
+              <input type="file" id="rev-photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple hidden>
+            </div>
+            <p class="err" id="rev-err" aria-live="polite"></p>
+            <button type="submit" class="btn" id="rev-send" style="justify-self:start">Post review</button>
+            <p class="rev-mode" id="rev-mode"></p>
+          </form>
+        </section>
     </div>
   </section>
 
@@ -402,11 +536,13 @@ footer .mark { font-size: 18px; }
     <ul class="how">
       <li><b>Bust:</b> around the fullest part of your chest.</li>
       <li><b>Length:</b> from the highest point of the shoulder down to the hem.</li>
-      <li>Between two sizes? Take the larger one for a relaxed fit.</li>
+      <li><b>Fit A to D:</b> pick your size by bust and shoulder, then the fit by waist and hips. A is our standard cut; B, C and D add room at the waist and hips.</li>
+      <li>Between two fits? Take the larger one for a relaxed fit.</li>
     </ul>
   </div>
 </div>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Customer photo" hidden><button type="button" class="x" id="lightbox-close">Close</button><img id="lightbox-img" alt=""></div>
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="acct" aria-label="Your account" aria-hidden="true" inert>
   <div class="drawer-head"><h2 id="acct-title">Your account</h2><button type="button" class="x" id="acct-close">Close</button></div>
@@ -487,7 +623,7 @@ footer .mark { font-size: 18px; }
         <li>Type the amount <b id="d-amt2"></b> in your UPI app.</li>
         <li>Optional: add your name in the payment note.</li>
       </ol>
-      <div class="qr qr-img"><img src="upi-qr.png" alt="UPI QR code for Yashika Singhal (Parkhi)" width="670" height="675"></div>
+      <div class="qr qr-img"><img loading="lazy" src="img/upi-qr.png" alt="UPI QR code for Yashika Singhal (Parkhi)" width="670" height="675"></div>
       <p class="muted" style="text-align:center">Payee name shows as <b style="font-weight:400;color:var(--ink)">Yashika Singhal</b>, Parkhi's founder.</p>
       <div class="upi-row"><span>UPI ID <b id="d-upiid"></b></span><button type="button" class="copy" id="d-copy" data-copy="">Copy</button></div>
       <p class="muted" style="text-align:center">On a phone: take a screenshot of the QR, then open your UPI app's scanner and pick it from your gallery.</p>
@@ -543,41 +679,133 @@ const PRODUCTS = [
 ];
 const thumbOf = p => p.views[0][0];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-const IN_STOCK = ['M', 'L', 'XL'];   // other sizes are made to order
-const shipNote = size => IN_STOCK.includes(size) ? 'In stock, ships right away' : 'Made to order, delivered in 1 week';
+const FITS = ['A', 'B', 'C', 'D'];   // A = standard; B, C, D add room at waist and hips
+const FIT_STEP = { XS: 1.5, S: 1.5, M: 2, L: 2, XL: 2.5, XXL: 2.5 };   // inches added per fit step
+const IN_STOCK = ['M', 'L', 'XL'];   // other sizes are made to order (all fits of a size share its stock status)
+const baseOf = size => String(size).split('-')[0];
+const inStock = size => IN_STOCK.includes(baseOf(size));
+const shipNote = size => inStock(size) ? 'In stock, ships right away' : 'Made to order, delivered in 1 week';
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function viewMarkup(p, k, big) {
   const [file, label] = p.views[k];
-  return `<img src="${file}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()}" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`;
+  return `<img src="img/${file}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()}" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`;
 }
 
-document.getElementById('picks').innerHTML = PRODUCTS.map(p =>
-  `<a class="pick" href="#${p.id}"><span class="ph"><img src="${thumbOf(p)}.jpg" alt="" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span></a>`).join('');
-const host = document.getElementById('products');
-PRODUCTS.forEach((p, i) => {
-  const el = document.createElement('article');
-  el.className = 'product';
-  el.id = p.id;
+/* ---------- reviews (Google Sheet when live, shared on claude.ai, else this device) ---------- */
+const REV = { list: [], mode: 'local', db: null, assets: null, loaded: false };
+const safeImg = u => typeof u === 'string' && /^(data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$|https:\/\/|\/_blob\/)/.test(u) ? u : '';
+// shrink a photo before saving: longest side `max` px, JPEG
+function shrinkPhoto(file, max) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file), im = new Image();
+    im.onload = () => {
+      const k = Math.min(1, max / Math.max(im.naturalWidth, im.naturalHeight));
+      const c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth * k); c.height = Math.round(im.naturalHeight * k);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      c.toBlob(b => b ? res({ blob: b, dataUrl: c.toDataURL('image/jpeg', .72) }) : rej(new Error('photo')), 'image/jpeg', .82);
+    };
+    im.onerror = () => { URL.revokeObjectURL(url); rej(new Error('photo')); };
+    im.src = url;
+  });
+}
+const revFor = id => REV.list.filter(r => r.product === id).sort((x, y) => String(y.createdAt).localeCompare(String(x.createdAt)));
+const revStats = id => { const l = revFor(id), rated = l.filter(r => +r.rating >= 1), k = rated.length;
+  return { n: l.length, k, avg: k ? rated.reduce((t, r) => t + +r.rating, 0) / k : 0 }; };
+const starText = v => { const k = Math.round(v); return '★'.repeat(k) + `<i>${'★'.repeat(5 - k)}</i>`; };
+function reviewsChanged() { REV.loaded = true; renderPLP(); if (current) renderReviews(); }
+async function initReviews() {
+  if (LIVE) {
+    const r = await api('listReviews');
+    if (r && r.ok) { REV.mode = 'sheet'; REV.list = r.reviews || []; }
+    reviewsChanged(); return;
+  }
+  REV.list = store.get('parkhi-reviews', []); reviewsChanged();
+  try {
+    const db = window.claude && window.claude.use ? await window.claude.use('db') : null;
+    if (!db) return;
+    REV.db = db; REV.mode = 'shared';
+    window.claude.use('assets').then(a => { REV.assets = a; }).catch(() => {});
+    db.collection('reviews').onSnapshot(snap => { REV.list = snap.docs.map(d => ({ id: d.id, ...d.data() })); reviewsChanged(); },
+      () => { REV.db = null; REV.mode = 'local'; REV.list = store.get('parkhi-reviews', []); reviewsChanged(); });
+  } catch (e) {}
+}
+async function addReview(r, photos = []) {
+  // photos: [{ blob, dataUrl }]; stored as r.photos = [url, ...]
+  if (photos.length && REV.mode === 'shared' && REV.assets) {
+    try { r.photos = []; for (const ph of photos) { const a = await REV.assets.upload(ph.blob); r.photos.push(a.url); } }
+    catch (e) { return { ok: false, error: 'Your photo did not upload. Try a smaller photo, or post without it.' }; }
+  } else if (photos.length) r.photos = photos.map(ph => ph.dataUrl);
+  if (REV.mode === 'sheet') {
+    const res = await api('addReview', r);
+    if (!res.ok) return res;
+    REV.list.push(res.review || r); reviewsChanged(); return { ok: true };
+  }
+  if (REV.mode === 'shared' && REV.db) {
+    try { await REV.db.collection('reviews').add(r); return { ok: true }; }
+    catch (e) { return { ok: false, error: e && e.code === 'not_granted' ? 'You can read reviews here but not post one. Ask Parkhi for edit access.' : 'Your review did not save. Please try again.' }; }
+  }
+  const l = store.get('parkhi-reviews', []); l.push(r);
+  try { localStorage.setItem('parkhi-reviews', JSON.stringify(l)); } catch (e) { return { ok: false, error: 'This device is out of space for photos. Post with fewer photos.' }; }
+  REV.list = l; reviewsChanged(); return { ok: true };
+}
+
+/* ---------- product list (PLP) ---------- */
+function renderPLP() {
+  document.getElementById('picks').innerHTML = PRODUCTS.map(p => {
+    const { n, k, avg } = revStats(p.id);
+    const rate = !n ? '<span>No reviews yet</span>' : k ? `<span class="stars" aria-label="${avg.toFixed(1)} out of 5">${starText(avg)}</span> <span>${avg.toFixed(1)} · ${n} review${n === 1 ? '' : 's'}</span>` : `<span>${n} review${n === 1 ? '' : 's'}</span>`;
+    return `<a class="pick" href="#kurta-${p.id}"><span class="ph"><img src="img/${thumbOf(p)}.jpg" alt="${esc(p.name)} kurta" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span><span class="sub">${rate}</span><span class="pick-cta">View details</span></a>`;
+  }).join('');
+}
+
+/* ---------- product page (PDP) ---------- */
+let current = null;
+const HOME = ['hero', 'collection', 'promise'].map(c => document.querySelector(`.${c}`));
+const pdpEl = document.getElementById('pdp');
+function showTab(name, scroll) {
+  ['details', 'size', 'delivery'].forEach(t => {
+    document.getElementById(`tab-${t}`).setAttribute('aria-selected', t === name);
+    document.getElementById(`panel-${t}`).hidden = t !== name;
+  });
+  if (scroll) document.getElementById(`panel-${name}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+const toReviews = () => document.getElementById('panel-reviews').scrollIntoView({ behavior: 'smooth', block: 'start' });
+['details', 'size', 'delivery'].forEach((t, i, all) => {
+  const b = document.getElementById(`tab-${t}`);
+  b.addEventListener('click', () => showTab(t));
+  b.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+    const n = all[(i + d + all.length) % all.length]; showTab(n); document.getElementById(`tab-${n}`).focus();
+  });
+});
+
+function renderPDP(p) {
+  current = p;
+  const i = PRODUCTS.indexOf(p), prev = PRODUCTS[(i - 1 + PRODUCTS.length) % PRODUCTS.length], next = PRODUCTS[(i + 1) % PRODUCTS.length];
+  const pv = document.getElementById('pdp-prev'), nx = document.getElementById('pdp-next');
+  pv.href = `#kurta-${prev.id}`; pv.textContent = `‹ ${prev.name}`; nx.href = `#kurta-${next.id}`; nx.textContent = `${next.name} ›`;
+  const el = document.getElementById('pdp-body');
   el.innerHTML = `
     <div class="gallery">
-      <div class="stage">${viewMarkup(p, 0, i === 0)}<span class="tag">${p.views[0][1]}</span></div>
-      <div class="thumbs" role="group" aria-label="${esc(p.name)} views">
+      <div class="stage">${viewMarkup(p, 0, true)}<span class="tag">${p.views[0][1]}</span></div>
+      <div class="thumbs" role="group" aria-label="${esc(p.name)} photos">
         ${p.views.map(([, l], k) => `<button type="button" id="${p.id}-v-${k}" data-k="${k}" aria-pressed="${k === 0}"><span class="t">${viewMarkup(p, k, false)}</span><small>${l}</small></button>`).join('')}
       </div>
     </div>
     <div class="info">
-      <h3>${esc(p.name)}</h3>
+      <h1>${esc(p.name)}</h1>
+      <button type="button" class="rate-link" id="pdp-rate"></button>
       <p class="price">${p.price}</p>
+      <p class="colour-line">${esc(p.colour)}</p>
       <p class="desc">${esc(p.desc)}</p>
-      <dl class="specs"><dt>Colour</dt><dd>${esc(p.colour)}</dd>${p.details.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
       <div class="size-head"><span>Size</span><button type="button" class="chart-link" id="${p.id}-chart">Size chart</button></div>
       <div class="sizes" role="group" aria-label="Size">${SIZES.map(s => `<button type="button" id="${p.id}-s-${s}" aria-pressed="false">${s}</button>`).join('')}</div>
-      <p class="avail" id="${p.id}-avail" aria-live="polite">M, L, XL in stock · XS, S, XXL delivered in 1 week</p>
+      <div class="fit-wrap"><div><p class="fit-head" id="${p.id}-fithead">Fit</p><div class="sizes fits" role="group" aria-labelledby="${p.id}-fithead"></div></div></div>
+      <p class="avail" aria-live="polite">M, L, XL in stock · XS, S, XXL delivered in 1 week</p>
       <div class="actions"><button type="button" class="btn ghost" id="${p.id}-add">Add to bag</button><button type="button" class="btn" id="${p.id}-buy">Buy now</button></div>
       <p class="note" aria-live="polite"></p>
     </div>`;
-  host.appendChild(el);
 
   const stage = el.querySelector('.stage');
   el.querySelectorAll('.thumbs button').forEach(b => b.addEventListener('click', () => {
@@ -585,26 +813,178 @@ PRODUCTS.forEach((p, i) => {
     const k = +b.dataset.k;
     stage.innerHTML = viewMarkup(p, k, true) + `<span class="tag">${p.views[k][1]}</span>`;
   }));
-  let size = null;
+  el.querySelector('#pdp-rate').addEventListener('click', () => toReviews());
+
+  let base = null, fit = null;
+  const full = () => base && fit ? `${base}-${fit}` : null;
   const note = el.querySelector('.note');
-  el.querySelectorAll('.sizes button').forEach(b => b.addEventListener('click', () => {
-    size = b.textContent;
-    el.querySelectorAll('.sizes button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    el.querySelector('.avail').innerHTML = `Size ${size}: <b>${shipNote(size)}</b>`;
-    note.textContent = '';
+  const fitWrap = el.querySelector('.fit-wrap'), fitRow = el.querySelector('.fits');
+  const availEl = el.querySelector('.avail');
+  const showAvail = () => {
+    if (!base) return;
+    if (!fit) { availEl.innerHTML = `Size ${base}: <b>${shipNote(base)}</b>. Now pick a fit.`; return; }
+    const [, , , w, h] = rowOf(base, fit);
+    availEl.innerHTML = `${base}-${fit} · waist ${w} in, hips ${h} in: <b>${shipNote(base)}</b>`;
+  };
+  el.querySelectorAll('.sizes:not(.fits) button').forEach(b => b.addEventListener('click', () => {
+    if (base !== b.textContent) fit = null;
+    base = b.textContent;
+    el.querySelectorAll('.sizes:not(.fits) button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    el.querySelector('.fit-head').textContent = `Fit for ${base}`;
+    fitRow.innerHTML = FITS.map(f => {
+      const [, , , w, h] = rowOf(base, f);
+      return `<button type="button" data-f="${f}" aria-pressed="${f === fit}" aria-label="${base}-${f}, waist ${w} inches, hips ${h} inches">${base}-${f}<small>W ${w} · H ${h}</small></button>`;
+    }).join('');
+    fitRow.querySelectorAll('button').forEach(fb => fb.addEventListener('click', () => {
+      fit = fb.dataset.f;
+      fitRow.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === fb));
+      showAvail(); note.textContent = ''; renderSizePanel(base, fit);
+    }));
+    fitWrap.classList.add('open');
+    showAvail(); note.textContent = ''; renderSizePanel(base, fit);
   }));
+  const ready = () => {
+    if (!base) { note.textContent = 'Choose a size first.'; return false; }
+    if (!fit) { note.textContent = `Choose a fit for ${base} (A to D).`; return false; }
+    return true;
+  };
   el.querySelector(`#${p.id}-add`).addEventListener('click', () => {
-    if (!size) { note.textContent = 'Choose a size first.'; return; }
-    addToBag(p.id, size);
-    note.textContent = `${p.name} in ${size} is in your bag.`;
+    if (!ready()) return;
+    addToBag(p.id, full());
+    note.textContent = `${p.name} in ${full()} is in your bag.`;
   });
   el.querySelector(`#${p.id}-buy`).addEventListener('click', () => {
-    if (!size) { note.textContent = 'Choose a size first.'; return; }
+    if (!ready()) return;
     note.textContent = '';
-    buyNow(p.id, size);
+    buyNow(p.id, full());
   });
-  el.querySelector(`#${p.id}-chart`).addEventListener('click', e => openChart(p, size, e.currentTarget));
+  el.querySelector(`#${p.id}-chart`).addEventListener('click', e => openChart(p, full() || base, e.currentTarget));
+
+  // panels
+  document.getElementById('panel-details').innerHTML = `<h2>Details</h2><p>${esc(p.desc)}</p>
+    <dl class="facts"><div><dt>Colour</dt><dd>${esc(p.colour)}</dd></div>${p.details.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}
+    <div><dt>Length</dt><dd>${lengthOf(p)} in</dd></div><div><dt>Sleeve length</dt><dd>${SLEEVE[p.id]} in</dd></div></dl>`;
+  renderSizePanel(null, null);
+  document.getElementById('panel-delivery').innerHTML = `<h2>Delivery &amp; payment</h2>
+    <dl class="facts">
+      <div><dt>In stock</dt><dd>Sizes M, L and XL in every fit ship right away.</dd></div>
+      <div><dt>Made to order</dt><dd>Sizes XS, S and XXL are delivered in 1 week.</dd></div>
+      <div><dt>Shipping</dt><dd>Free.</dd></div>
+      <div><dt>Payment</dt><dd>UPI (GPay, PhonePe, Paytm or any UPI app).</dd></div>
+      <div><dt>Returns &amp; questions</dt><dd>Message us on WhatsApp or email before sending anything back. We reply within one working day. <a href="#contact">Contact details</a></dd></div>
+    </dl>`;
+  document.getElementById('rev-size').innerHTML = '<option value="">Choose</option>' + SIZES.flatMap(s => FITS.map(f => `<option>${s}-${f}</option>`)).join('');
+  renderReviews();
+}
+
+function renderSizePanel(base, fit) {
+  const p = current, panel = document.getElementById('panel-size');
+  const rows = base ? FITS.map(f => rowOf(base, f)) : CHART.map(([s]) => rowOf(s, 'A'));
+  panel.innerHTML = `<h2>Size &amp; fit</h2>
+    <p>Pick your size by bust and shoulder, then your fit by waist and hips. Fit A is our standard cut; B, C and D add room at the waist and hips.</p>
+    <p>${base ? `The four fits of size ${base}:` : 'Fit A for every size (pick a size above to see all four of its fits):'}</p>
+    <div class="table-wrap"><table class="mini-chart"><thead><tr><th scope="col">Size</th><th scope="col">Bust</th><th scope="col">Shoulder</th><th scope="col">Waist</th><th scope="col">Hips</th></tr></thead>
+    <tbody>${rows.map(([s, b, sh, w, h]) => `<tr class="${base && fit && s === `${base}-${fit}` ? 'sel' : ''}"><th scope="row">${s}</th><td>${b}</td><td>${sh}</td><td>${w}</td><td>${h}</td></tr>`).join('')}</tbody></table></div>
+    <p>Garment measurements in inches. ${esc(p.name)} is ${lengthOf(p)} in long with ${SLEEVE[p.id]} in sleeves in every size.</p>
+    <button type="button" class="chart-link" id="panel-chart">Full size chart in inches or cm</button>`;
+  document.getElementById('panel-chart').addEventListener('click', e => openChart(p, base && fit ? `${base}-${fit}` : base, e.currentTarget));
+}
+
+function renderReviews() {
+  const p = current; if (!p) return;
+  const list = revFor(p.id), { n, k, avg } = revStats(p.id);
+  document.getElementById('pdp-rate').innerHTML = n
+    ? (k ? `<span class="stars" aria-hidden="true">${starText(avg)}</span><span>${avg.toFixed(1)} out of 5</span>` : '') + `<u>Read ${n} review${n === 1 ? '' : 's'}</u>`
+    : `<u>No reviews yet. Be the first to write one</u>`;
+  const allPhotos = list.flatMap(r => (Array.isArray(r.photos) ? r.photos : []).map(safeImg).filter(Boolean).map(u => [u, r.name]));
+  const counts = [5, 4, 3, 2, 1].map(s => [s, list.filter(r => Math.round(+r.rating) === s).length]);
+  document.getElementById('rev-summary').innerHTML = `<h2 id="rev-heading">Customer reviews${n ? ` (${n})` : ''}</h2>` + (k ? `<div class="rev-top">
+      <div class="rev-avg"><b>${avg.toFixed(1)}</b><span class="stars" aria-label="${avg.toFixed(1)} out of 5">${starText(avg)}</span><br><small>${k} rating${k === 1 ? '' : 's'} · ${n} review${n === 1 ? '' : 's'}</small></div>
+      <div class="bars">${counts.map(([s, c]) => `<div><span>${s} ★</span><span class="track"><span class="fill" style="width:${c / k * 100}%"></span></span><span>${c}</span></div>`).join('')}</div>
+    </div>` : '') + (allPhotos.length ? `<div class="rev-gallery"><p>Customer photos (${allPhotos.length})</p><div class="rev-photos">${allPhotos.map(([u, nm]) => `<button type="button" data-src="${esc(u)}" aria-label="Open photo from ${esc(String(nm || 'a customer'))}"><img src="${esc(u)}" alt="" loading="lazy"></button>`).join('')}</div></div>` : '');
+  document.getElementById('rev-list').innerHTML = n ? list.map(r => {
+    const d = new Date(r.createdAt), when = isNaN(d) ? '' : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    return `<li class="rev"><div class="who"><span>${+r.rating >= 1 ? `<span class="stars" aria-label="${+r.rating} out of 5">${starText(+r.rating)}</span> ` : ''}${esc(String(r.name || 'Parkhi customer'))}</span><small>${[r.size ? `Size ${esc(String(r.size))}` : '', when].filter(Boolean).join(' · ')}</small></div>${r.text ? `<p>${esc(String(r.text))}</p>` : ''}${photoRow(r)}</li>`;
+  }).join('') : `<li class="rev-empty">${REV.loaded ? `No one has reviewed ${esc(p.name)} yet. Bought it? Tell others how it fits below.` : 'Loading reviews…'}</li>`;
+  document.getElementById('rev-mode').textContent = REV.mode === 'local' ? 'Preview: until the order sheet is connected, reviews are saved on this device only.' : '';
+}
+
+function photoRow(r) {
+  const ph = (Array.isArray(r.photos) ? r.photos : []).map(safeImg).filter(Boolean);
+  return ph.length ? `<div class="rev-photos">${ph.map((u, i) => `<button type="button" data-src="${esc(u)}" aria-label="Open photo ${i + 1} from ${esc(String(r.name || 'a customer'))}"><img src="${esc(u)}" alt="" loading="lazy"></button>`).join('')}</div>` : '';
+}
+// photo lightbox
+const lb = document.getElementById('lightbox');
+let lbReturn = null;
+document.getElementById('panel-reviews').addEventListener('click', e => {
+  const b = e.target.closest('.rev-photos button'); if (!b) return;
+  lbReturn = b; document.getElementById('lightbox-img').src = b.dataset.src; lb.hidden = false; document.getElementById('lightbox-close').focus();
 });
+const closeLb = () => { lb.hidden = true; document.getElementById('lightbox-img').removeAttribute('src'); if (lbReturn) lbReturn.focus(); };
+document.getElementById('lightbox-close').onclick = closeLb;
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+
+// photo picker for the review form
+let revPhotos = [];
+const photoInput = document.getElementById('rev-photo'), photoBox = document.getElementById('rev-preview'), addPhotoBtn = document.getElementById('rev-add-photo');
+function paintPhotoPick() {
+  photoBox.querySelectorAll('.pv').forEach(n => n.remove());
+  revPhotos.forEach((ph, i) => addPhotoBtn.insertAdjacentHTML('beforebegin', `<span class="pv"><img src="${ph.dataUrl}" alt="Your photo ${i + 1}"><button type="button" data-i="${i}" aria-label="Remove photo ${i + 1}">×</button></span>`));
+  addPhotoBtn.hidden = revPhotos.length >= 3;
+}
+addPhotoBtn.onclick = () => photoInput.click();
+photoBox.addEventListener('click', e => { const b = e.target.closest('.pv button'); if (!b) return; revPhotos.splice(+b.dataset.i, 1); paintPhotoPick(); addPhotoBtn.focus(); });
+photoInput.addEventListener('change', async () => {
+  const err = document.getElementById('rev-err'); err.textContent = '';
+  for (const f of [...photoInput.files]) {
+    if (revPhotos.length >= 3) { err.textContent = 'You can add up to 3 photos.'; break; }
+    if (!/^image\//.test(f.type) || f.size > 15 * 1024 * 1024) { err.textContent = 'Please choose a photo (JPEG, PNG or WebP) under 15 MB.'; continue; }
+    try { revPhotos.push(await shrinkPhoto(f, REV.assets ? 1400 : LIVE ? 1100 : 700)); }
+    catch (e) { err.textContent = 'That photo could not be opened. Try a JPEG or PNG.'; }
+  }
+  photoInput.value = ''; paintPhotoPick();
+});
+
+// star picker
+let revRating = 0;
+const starBox = document.getElementById('rev-stars');
+starBox.insertAdjacentHTML('beforeend', [1, 2, 3, 4, 5].map(k => `<input type="radio" name="rev-rating" id="rev-r${k}" value="${k}"><label for="rev-r${k}" aria-label="${k} star${k > 1 ? 's' : ''}">★</label>`).join(''));
+const paintStars = v => starBox.querySelectorAll('label').forEach((l, i) => l.classList.toggle('on', i < v));
+starBox.querySelectorAll('input').forEach(inp => inp.addEventListener('change', () => { revRating = +inp.value; paintStars(revRating); }));
+starBox.querySelectorAll('label').forEach((l, i) => l.addEventListener('click', e => {
+  if (revRating === i + 1) { e.preventDefault(); starBox.querySelector(`#rev-r${i + 1}`).checked = false; revRating = 0; paintStars(0); }
+}));
+starBox.querySelectorAll('label').forEach((l, i) => { l.addEventListener('mouseenter', () => paintStars(i + 1)); l.addEventListener('mouseleave', () => paintStars(revRating)); });
+document.getElementById('rev-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const err = document.getElementById('rev-err'), btn = document.getElementById('rev-send');
+  const name = document.getElementById('rev-name').value.trim(), text = document.getElementById('rev-text').value.trim();
+  err.textContent = '';
+  if (!revRating && !text && !revPhotos.length) { err.textContent = 'Add a rating, a few words or a photo to post.'; return; }
+  btn.disabled = true; btn.textContent = 'Posting…';
+  const res = await addReview({ product: current.id, name: name.slice(0, 40), rating: revRating, size: document.getElementById('rev-size').value, text: text.slice(0, 800), createdAt: new Date().toISOString() }, revPhotos);
+  btn.disabled = false; btn.textContent = 'Post review';
+  if (!res.ok) { err.textContent = res.error || 'Your review did not save. Please try again.'; return; }
+  e.target.reset(); revRating = 0; paintStars(0); revPhotos = []; paintPhotoPick();
+  err.textContent = 'Thank you. Your review is up.';
+});
+
+/* ---------- routing: #kurta-<id> opens a product, anything else shows the shop ---------- */
+function route() {
+  const m = /^#kurta-([a-z]+)(-reviews)?$/.exec(location.hash);
+  const p = m && PRODUCTS.find(x => x.id === m[1]);
+  if (p) {
+    HOME.forEach(s => s.hidden = true); pdpEl.hidden = false;
+    if (current !== p) { renderPDP(p); showTab('details'); }
+    if (m[2]) toReviews(); else window.scrollTo(0, 0);
+    document.title = `${p.name} · Parkhi`;
+  } else {
+    current = null; pdpEl.hidden = true; HOME.forEach(s => s.hidden = false); document.title = 'Parkhi';
+    const t = location.hash && document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView();
+  }
+}
+window.addEventListener('hashchange', route);
 
 /* ---------- size chart (garment measurements, inches) ---------- */
 const CHART = [
@@ -616,6 +996,12 @@ const CHART = [
   ['XL', 42, 15.5, 38, 45],
   ['XXL', 44, 16,  40, 47],
 ];
+// Fit A is the row above; B, C, D add FIT_STEP[size] inches to waist and hips each step
+function rowOf(size, f) {
+  const r = CHART.find(x => x[0] === size), k = FITS.indexOf(f) * FIT_STEP[size];
+  return [`${size}-${f}`, r[1], r[2], r[3] + k, r[4] + k];
+}
+const FULL_CHART = CHART.flatMap(([s]) => FITS.map(f => rowOf(s, f)));
 const SLEEVE = { aqua: 17, indigo: 17, ivory: 17, mustard: 17 };
 const lengthOf = p => p.id === 'ivory' ? 42 : 44;
 let unit = 'in';
@@ -623,13 +1009,14 @@ try { unit = localStorage.getItem('parkhi-unit') === 'cm' ? 'cm' : 'in'; } catch
 const chartEl = document.getElementById('chart');
 let chartReturn = null, chartFor = null, chartSize = null;
 const fmt = v => unit === 'in' ? String(v) : String(Math.round(v * 2.54));
+const isSel = s => chartSize && (s === chartSize || (!chartSize.includes('-') && baseOf(s) === chartSize));
 function renderChart() {
   const p = chartFor, L = lengthOf(p), sl = SLEEVE[p.id];
   document.getElementById('chart-title').textContent = p.name;
   document.querySelectorAll('.units button').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === unit));
   document.getElementById('chart-unit').textContent = unit === 'in' ? 'inches' : 'cm';
-  document.getElementById('chart-body').innerHTML = CHART.map(([s, bust, sh, w, h]) =>
-    `<tr class="${s === chartSize ? 'sel' : ''}"><th scope="row">${s}</th><td>${fmt(bust)}</td><td>${fmt(sh)}</td><td>${fmt(w)}</td><td>${fmt(h)}</td><td>${fmt(L)}</td></tr>`).join('');
+  document.getElementById('chart-body').innerHTML = FULL_CHART.map(([s, bust, sh, w, h]) =>
+    `<tr class="${[isSel(s) ? 'sel' : '', s.endsWith('-A') && s !== 'XS-A' ? 'grp-start' : ''].join(' ').trim()}"><th scope="row">${s}</th><td>${fmt(bust)}</td><td>${fmt(sh)}</td><td>${fmt(w)}</td><td>${fmt(h)}</td><td>${fmt(L)}</td></tr>`).join('');
   document.getElementById('chart-fit').textContent = `${p.name} is ${fmt(L)} ${unit === 'in' ? 'in' : 'cm'} long with ${fmt(sl)} ${unit === 'in' ? 'in' : 'cm'} sleeves in every size.`;
 }
 function openChart(p, size, from) {
@@ -677,7 +1064,7 @@ function renderBag() {
   lines.innerHTML = bag.map((l, i) => {
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="line">
-      <img src="${thumbOf(p)}.jpg" alt="" width="76" height="95">
+      <img src="img/${thumbOf(p)}.jpg" alt="" width="76" height="95">
       <div><b>${esc(p.name)}</b><small>Size ${l.size}</small><small style="text-transform:none;letter-spacing:0">${shipNote(l.size)}</small>
         <div class="qty"><button type="button" id="q-dec-${i}" data-i="${i}" data-d="-1" aria-label="One less">−</button><span>${l.qty}</span><button type="button" id="q-inc-${i}" data-i="${i}" data-d="1" aria-label="One more">+</button></div>
       </div>
@@ -718,9 +1105,10 @@ const SHOP = {
   whatsapp: '919887375777',      // WhatsApp number for customer questions
   upiId: 'yashika.singhal@ybl',  // UPI ID that receives payments
   upiName: 'Parkhi',
-  backendUrl: '',                // Google Apps Script web app URL (ends in /exec). Empty = preview mode on this device.
+  backendUrl: 'https://script.google.com/macros/s/AKfycbwf2TKOSNnnVaxCLU8ZnNRt_4F_WyYoeWRxb81bGW-8yMoau6fBasky_Zi9Vlxxm5amUQ/exec',  // Google Apps Script web app URL
 };
-const LIVE = !!SHOP.backendUrl;
+// Live on the real website. The claude.ai preview cannot reach Google, so it stays in preview mode there.
+const LIVE = !!SHOP.backendUrl && !(window.claude && window.claude.use);
 const ACCOUNTS = false;   // sign-in is switched off for now
 const $ = id => document.getElementById(id);
 const store = {
@@ -979,7 +1367,7 @@ $('d-copy').addEventListener('click', () => {
   try { navigator.clipboard.writeText(b.dataset.copy).then(() => done('Copied'), () => done('Select it above')); } catch (e) { done('Select it above'); }
 });
 const shipSummary = lines => {
-  const later = lines.filter(([, , size]) => !IN_STOCK.includes(size));
+  const later = lines.filter(([, , size]) => !inStock(size));
   return later.length === 0 ? 'Everything is in stock and ships right away.'
     : later.length === lines.length ? 'Your size is made to order and will be delivered in 1 week.'
     : 'In-stock sizes ship right away; sizes XS, S and XXL are made to order and delivered in 1 week.';
@@ -1017,6 +1405,9 @@ $('k-new').onclick = () => { if (!buyItems) { bag = []; saveBag(); renderBag(); 
 
 renderAcctButton();
 renderBag();
+renderPLP();
+route();
+initReviews();
 // refresh the signed-in customer's details (and drop an expired sign-in) in the background
 if (session) api('me', { token: session.token }).then(r => { if (r.ok) setSession({ ...session, user: r.user }); else if (r.code === 'signin') setSession(null); });
 
@@ -1028,5 +1419,4 @@ document.querySelectorAll('.row .copy').forEach(b => b.addEventListener('click',
 }));
 </script>
 
-</body>
-</html>
+</body></html>
