@@ -4,14 +4,14 @@
 <meta property="og:site_name" content="Parkhi">
 <meta property="og:title" content="Parkhi | Handblock printed kurtas">
 <meta property="og:description" content="Handblock printed cotton kurtas in natural dyes. We're picky, so you don't have to be.">
-<meta property="og:url" content="https://yashikasinghal13.github.io/Parkhi/">
-<meta property="og:image" content="https://yashikasinghal13.github.io/Parkhi/img/share.jpg">
+<meta property="og:url" content="https://byparkhi.com/">
+<meta property="og:image" content="https://byparkhi.com/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Four Parkhi handblock printed kurtas">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yashikasinghal13.github.io/Parkhi/img/share.jpg">
-<link rel="canonical" href="https://yashikasinghal13.github.io/Parkhi/">
+<meta name="twitter:image" content="https://byparkhi.com/share.jpg">
+<link rel="canonical" href="https://byparkhi.com/">
 <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Parkhi</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -623,7 +623,7 @@ footer .mark { font-size: 18px; }
         <li>Type the amount <b id="d-amt2"></b> in your UPI app.</li>
         <li>Optional: add your name in the payment note.</li>
       </ol>
-      <div class="qr qr-img"><img loading="lazy" src="img/upi-qr.png" alt="UPI QR code for Yashika Singhal (Parkhi)" width="670" height="675"></div>
+      <div class="qr qr-img"><img loading="lazy" src="upi-qr.png" alt="UPI QR code for Yashika Singhal (Parkhi)" width="670" height="675"></div>
       <p class="muted" style="text-align:center">Payee name shows as <b style="font-weight:400;color:var(--ink)">Yashika Singhal</b>, Parkhi's founder.</p>
       <div class="upi-row"><span>UPI ID <b id="d-upiid"></b></span><button type="button" class="copy" id="d-copy" data-copy="">Copy</button></div>
       <p class="muted" style="text-align:center">On a phone: take a screenshot of the QR, then open your UPI app's scanner and pick it from your gallery.</p>
@@ -689,7 +689,7 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&
 
 function viewMarkup(p, k, big) {
   const [file, label] = p.views[k];
-  return `<img src="img/${file}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()}" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`;
+  return `<img src="${file}.jpg" alt="${esc(p.name)} kurta, ${label.toLowerCase()}" loading="${big ? 'eager' : 'lazy'}" width="800" height="1000">`;
 }
 
 /* ---------- reviews (Google Sheet when live, shared on claude.ai, else this device) ---------- */
@@ -755,7 +755,7 @@ function renderPLP() {
   document.getElementById('picks').innerHTML = PRODUCTS.map(p => {
     const { n, k, avg } = revStats(p.id);
     const rate = !n ? '<span>No reviews yet</span>' : k ? `<span class="stars" aria-label="${avg.toFixed(1)} out of 5">${starText(avg)}</span> <span>${avg.toFixed(1)} · ${n} review${n === 1 ? '' : 's'}</span>` : `<span>${n} review${n === 1 ? '' : 's'}</span>`;
-    return `<a class="pick" href="#kurta-${p.id}"><span class="ph"><img src="img/${thumbOf(p)}.jpg" alt="${esc(p.name)} kurta" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span><span class="sub">${rate}</span><span class="pick-cta">View details</span></a>`;
+    return `<a class="pick" href="#kurta-${p.id}"><span class="ph"><img src="${thumbOf(p)}.jpg" alt="${esc(p.name)} kurta" loading="lazy" width="800" height="1000"></span><span class="meta"><b>${esc(p.name)}</b><small>${p.price}</small></span><span class="sub">${rate}</span><span class="pick-cta">View details</span></a>`;
   }).join('');
 }
 
@@ -1064,7 +1064,7 @@ function renderBag() {
   lines.innerHTML = bag.map((l, i) => {
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="line">
-      <img src="img/${thumbOf(p)}.jpg" alt="" width="76" height="95">
+      <img src="${thumbOf(p)}.jpg" alt="" width="76" height="95">
       <div><b>${esc(p.name)}</b><small>Size ${l.size}</small><small style="text-transform:none;letter-spacing:0">${shipNote(l.size)}</small>
         <div class="qty"><button type="button" id="q-dec-${i}" data-i="${i}" data-d="-1" aria-label="One less">−</button><span>${l.qty}</span><button type="button" id="q-inc-${i}" data-i="${i}" data-d="1" aria-label="One more">+</button></div>
       </div>
