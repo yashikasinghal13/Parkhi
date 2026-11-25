@@ -12,6 +12,8 @@
  *  (the URL stays the same).
  *
  * Hiding a review: in the "Reviews" tab, set the "Show" cell to No. It disappears from the site.
+ * Forgotten password: in the "Customers" tab, type a temporary password in that customer's "Reset to" cell
+ * and send it to them. It works once; they can then sign in and it becomes their password.
  */
 
 // Prices the site charges, in rupees. Keep in step with the website.
@@ -29,7 +31,7 @@ const SESSION_DAYS = 60;
 
 const SHEETS = {
   Orders:    ['Date', 'Order ID', 'Name', 'Mobile', 'Address', 'City', 'State', 'Pincode', 'Items', 'Total (₹)', 'Payment', 'Status', 'Customer ID'],
-  Customers: ['Customer ID', 'Name', 'Mobile', 'Email', 'Address', 'City', 'State', 'Pincode', 'Joined', 'Password hash', 'Salt'],
+  Customers: ['Customer ID', 'Name', 'Mobile', 'Email', 'Address', 'City', 'State', 'Pincode', 'Joined', 'Password hash', 'Salt', 'Reset to'],
   Sessions:  ['Token', 'Customer ID', 'Expires'],
   Reviews:   ['Date', 'Review ID', 'Kurta', 'Product ID', 'Name', 'Rating', 'Size', 'Review', 'Photo 1', 'Photo 2', 'Photo 3', 'Show'],
 };
@@ -132,7 +134,7 @@ const ACTIONS = {
     const cs = sheet('Customers');
     if (findRow(cs, 'Mobile', m)) return { ok: false, error: 'An account with this mobile number already exists. Please sign in.' };
     const id = 'C' + Date.now().toString(36).toUpperCase(), salt = Utilities.getUuid();
-    cs.appendRow([id, cell(name), "'" + m, cell(clean(d.email, 120)), '', '', '', '', new Date(), hash(d.password, salt), salt]);
+    cs.appendRow([id, cell(name), "'" + m, cell(clean(d.email, 120)), '', '', '', '', new Date(), hash(d.password, salt), salt, '']);
     const u = rowsOf('Customers').find(r => r['Customer ID'] === id);
     return { ok: true, token: newSession(id), user: pub(u) };
   },
@@ -140,6 +142,11 @@ const ACTIONS = {
   login(d) {
     const m = mobile(d.mobile);
     const u = rowsOf('Customers').find(r => String(r.Mobile) === m);
+    if (u && u['Reset to'] && String(d.password) === String(u['Reset to']) && String(d.password).length >= 6) {
+      const salt = Utilities.getUuid(), cs = sheet('Customers');   // one-time reset set by Parkhi
+      cs.getRange(u._row, 10, 1, 3).setValues([[hash(d.password, salt), salt, '']]);
+      return { ok: true, token: newSession(u['Customer ID']), user: pub(u) };
+    }
     if (!u || hash(d.password, u.Salt) !== u['Password hash']) return { ok: false, error: 'Mobile number or password is not right.' };
     return { ok: true, token: newSession(u['Customer ID']), user: pub(u) };
   },
@@ -187,6 +194,11 @@ function sheet(name) {
     sh.appendRow(SHEETS[name]);
     sh.setFrozenRows(1);
     sh.getRange(1, 1, 1, SHEETS[name].length).setFontWeight('bold');
+  }
+  // add any new columns to a sheet made by an older version of this script
+  const want = SHEETS[name], have = sh.getRange(1, 1, 1, Math.max(sh.getLastColumn(), 1)).getValues()[0];
+  if (have.length < want.length || want.some((h, i) => have[i] !== h)) {
+    want.forEach((h, i) => { if (have[i] !== h && !have[i]) sh.getRange(1, i + 1).setValue(h).setFontWeight('bold'); });
   }
   return sh;
 }

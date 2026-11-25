@@ -1109,7 +1109,7 @@ const SHOP = {
 };
 // Live on the real website. The claude.ai preview cannot reach Google, so it stays in preview mode there.
 const LIVE = !!SHOP.backendUrl && !(window.claude && window.claude.use);
-const ACCOUNTS = false;   // sign-in is switched off for now
+const ACCOUNTS = true;    // customer accounts: sign in, saved address, my orders
 const $ = id => document.getElementById(id);
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -1188,6 +1188,7 @@ async function previewApi(action, d) {
 let session = store.get('parkhi-session', null);   // { token, user }
 function setSession(s) { session = s; store.set('parkhi-session', s); renderAcctButton(); }
 function renderAcctButton() {
+  $('acct-open').hidden = !ACCOUNTS;
   const first = session ? String(session.user.name || '').split(' ')[0] : '';
   $('acct-label').textContent = session ? first || 'Account' : 'Sign in';
   $('acct-open').setAttribute('aria-label', session ? `Your account, signed in as ${session.user.name}` : 'Sign in or create an account');
