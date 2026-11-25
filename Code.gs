@@ -30,8 +30,8 @@ const PHOTO_FOLDER = 'Parkhi review photos';
 const SESSION_DAYS = 60;
 
 const SHEETS = {
-  Orders:    ['Date', 'Order ID', 'Name', 'Mobile', 'Address', 'City', 'State', 'Pincode', 'Items', 'Total (₹)', 'Payment', 'Status', 'Customer ID'],
-  Customers: ['Customer ID', 'Name', 'Mobile', 'Email', 'Address', 'City', 'State', 'Pincode', 'Joined', 'Password hash', 'Salt', 'Reset to'],
+  Orders:    ['Date', 'Order ID', 'Name', 'Mobile', 'Address', 'City', 'State', 'Pincode', 'Items', 'Total (₹)', 'Payment', 'Status', 'Customer ID', 'Lines'],
+  Customers: ['Customer ID', 'Name', 'Mobile', 'Email', 'Address', 'City', 'State', 'Pincode', 'Joined', 'Password hash', 'Salt', 'Reset to', 'Wishlist'],
   Sessions:  ['Token', 'Customer ID', 'Expires'],
   Reviews:   ['Date', 'Review ID', 'Kurta', 'Product ID', 'Name', 'Rating', 'Size', 'Review', 'Photo 1', 'Photo 2', 'Photo 3', 'Show'],
 };
@@ -108,7 +108,8 @@ const ACTIONS = {
     const orders = sheet('Orders');
     const existing = findRow(orders, 'Order ID', orderId);
     const row = [new Date(), orderId, cell(clean(c.name, 80)), "'" + mobile(c.phone), cell(clean(c.addr, 300)), cell(clean(c.city, 60)), cell(clean(c.state, 60)), "'" + String(c.pin),
-      itemText, total, d.paid ? 'Customer says paid' : 'Pay later', 'New', u ? u['Customer ID'] : ''];
+      itemText, total, d.paid ? 'Customer says paid' : 'Pay later', 'New', u ? u['Customer ID'] : '',
+      JSON.stringify(items.map(l => ({ id: l.id, size: String(l.size), qty: Number(l.qty), price: PRODUCTS[l.id].price })))];
     if (existing) orders.getRange(existing, 1, 1, row.length).setValues([row]); else orders.appendRow(row);
     if (u && d.saveAddress) setAddress(u._row, c);
     return { ok: true, orderId, total, upiId: UPI.id,
@@ -118,8 +119,9 @@ const ACTIONS = {
   myOrders(d) {
     const u = userFor(d.token);
     if (!u) return signin();
-    const orders = rowsOf('Orders').filter(o => o['Customer ID'] === u['Customer ID']).reverse().map(o => ({
-      orderId: o['Order ID'], total: Number(o['Total (₹)']) || 0, items: o.Items, payment: o.Payment, status: o.Status,
+    // orders placed while signed in, plus guest orders from the same mobile number
+    const orders = rowsOf('Orders').filter(o => o['Customer ID'] === u['Customer ID'] || String(o.Mobile) === String(u.Mobile)).reverse().map(o => ({
+      orderId: o['Order ID'], total: Number(o['Total (₹)']) || 0, items: o.Items, payment: o.Payment, status: o.Status, lines: linesOf(o),
       date: o.Date instanceof Date ? Utilities.formatDate(o.Date, 'Asia/Kolkata', 'd MMM yyyy') : String(o.Date),
     }));
     return { ok: true, orders };
@@ -134,7 +136,7 @@ const ACTIONS = {
     const cs = sheet('Customers');
     if (findRow(cs, 'Mobile', m)) return { ok: false, error: 'An account with this mobile number already exists. Please sign in.' };
     const id = 'C' + Date.now().toString(36).toUpperCase(), salt = Utilities.getUuid();
-    cs.appendRow([id, cell(name), "'" + m, cell(clean(d.email, 120)), '', '', '', '', new Date(), hash(d.password, salt), salt, '']);
+    cs.appendRow([id, cell(name), "'" + m, cell(clean(d.email, 120)), '', '', '', '', new Date(), hash(d.password, salt), salt, '', '']);
     const u = rowsOf('Customers').find(r => r['Customer ID'] === id);
     return { ok: true, token: newSession(id), user: pub(u) };
   },
@@ -158,6 +160,31 @@ const ACTIONS = {
   },
 
   me(d) { const u = userFor(d.token); return u ? { ok: true, user: pub(u) } : signin(); },
+
+  updateProfile(d) {
+    const u = userFor(d.token);
+    if (!u) return signin();
+    const name = clean(d.name, 80), m = mobile(d.mobile), email = clean(d.email, 120), np = String(d.newPassword || '');
+    if (!name) return { ok: false, error: 'Please enter your name.' };
+    if (!m) return { ok: false, error: 'Please enter a 10-digit Indian mobile number.' };
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'Please check your email address.' };
+    if (np && np.length < 6) return { ok: false, error: 'Choose a new password of at least 6 characters.' };
+    const changingKey = m !== String(u.Mobile) || !!np;
+    if (changingKey && hash(d.password, u.Salt) !== u['Password hash']) return { ok: false, error: 'Your current password is not right.' };
+    const cs = sheet('Customers');
+    if (m !== String(u.Mobile) && findRow(cs, 'Mobile', m)) return { ok: false, error: 'Another account already uses this mobile number.' };
+    cs.getRange(u._row, 2, 1, 3).setValues([[cell(name), "'" + m, cell(email)]]);
+    if (np) { const salt = Utilities.getUuid(); cs.getRange(u._row, 10, 1, 2).setValues([[hash(np, salt), salt]]); }
+    return { ok: true, user: pub(userFor(d.token)) };
+  },
+
+  saveWishlist(d) {
+    const u = userFor(d.token);
+    if (!u) return signin();
+    const list = (Array.isArray(d.wishlist) ? d.wishlist : []).filter(id => PRODUCTS[id]).slice(0, 50);
+    sheet('Customers').getRange(u._row, 13).setValue(list.join(','));
+    return { ok: true };
+  },
 
   saveAddress(d) {
     const u = userFor(d.token);
@@ -225,7 +252,15 @@ function userFor(token) {
 }
 function pub(u) {
   return { id: u['Customer ID'], name: u.Name, mobile: String(u.Mobile), email: u.Email,
+    wishlist: String(u.Wishlist || '').split(',').filter(id => PRODUCTS[id]),
     address: { addr: u.Address || '', city: u.City || '', state: u.State || '', pin: String(u.Pincode || '') } };
+}
+// an order's items as [{id, size, qty, price}]; older orders are read from the Items text
+function linesOf(o) {
+  try { const l = JSON.parse(o.Lines); if (Array.isArray(l)) return l; } catch (err) {}
+  const byName = {}; Object.keys(PRODUCTS).forEach(id => byName[PRODUCTS[id].name] = id);
+  return String(o.Items || '').split(', ').map(t => /^(.+) \((.+)\) x(\d+)$/.exec(t)).filter(m => m && byName[m[1]])
+    .map(m => ({ id: byName[m[1]], size: m[2], qty: Number(m[3]), price: PRODUCTS[byName[m[1]]].price }));
 }
 function setAddress(row, a) {
   sheet('Customers').getRange(row, 5, 1, 4).setValues([[cell(clean(a.addr, 300)), cell(clean(a.city, 60)), cell(clean(a.state, 60)), "'" + String(a.pin)]]);

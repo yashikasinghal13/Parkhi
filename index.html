@@ -269,6 +269,55 @@ nav a:hover, nav a:focus-visible { border-color: var(--beige); outline: none; }
 .paid-form { display: grid; gap: 12px; border-top: 1px solid color-mix(in srgb, var(--beige) 40%, transparent); padding-top: 18px; }
 .ok-note { font-size: 16px; margin: 0; padding: 12px; border: 1px solid var(--ink); }
 .btn[disabled] { opacity: .55; cursor: progress; }
+/* account menu and sub-pages */
+.acct-menu { display: grid; border-top: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); }
+.acct-menu button { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; padding: 16px 4px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 35%, transparent); }
+.acct-menu button span { font: 400 19px/1.2 var(--display); }
+.acct-menu button small { grid-column: 1; color: var(--beige); font-size: 14px; overflow-wrap: anywhere; }
+.acct-menu button::after { content: "›"; grid-column: 2; grid-row: 1 / span 2; font-size: 24px; color: var(--beige); }
+.acct-menu button:hover span, .acct-menu button:focus-visible span { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--beige); }
+.acct-menu button:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+.am { display: grid; gap: 16px; align-content: start; }
+.am h3 { font: 400 26px/1.15 var(--display); margin: 0; }
+.kv { display: grid; margin: 0; }
+.kv div { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
+.kv dt { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); }
+.kv dd { margin: 0; font-size: 17px; overflow-wrap: anywhere; }
+.ord-btn { all: unset; box-sizing: border-box; cursor: pointer; display: grid; gap: 10px; padding: 14px; border: 1px solid color-mix(in srgb, var(--beige) 50%, transparent); }
+.ord-btn:hover, .ord-btn:focus-visible { border-color: var(--ink); outline: none; }
+.ord-btn .top { display: flex; justify-content: space-between; gap: 10px; font-variant-numeric: tabular-nums; }
+.ord-thumbs { display: flex; gap: 6px; align-items: center; }
+.ord-thumbs img { width: 84px; height: 105px; object-fit: cover; display: block; }
+.oi-full { display: grid; gap: 12px; padding: 18px 0 22px; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
+.oi-full .ph { background: color-mix(in srgb, var(--beige) 18%, var(--paper)); aspect-ratio: 4/5; max-width: 100%; overflow: hidden; }
+.oi-full .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.oi-full .vw { display: flex; gap: 6px; }
+.oi-full .vw button { all: unset; cursor: pointer; width: 56px; height: 70px; outline: 1px solid transparent; outline-offset: 2px; }
+.oi-full .vw button img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.oi-full .vw button[aria-pressed="true"] { outline-color: var(--ink); }
+.oi-full .vw button:focus-visible { outline: 2px solid var(--ink); }
+.oi-full b { font: 400 24px/1.15 var(--display); display: block; }
+.oi-full .facts2 { display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.oi-full .actions .btn { padding: 14px 22px; }
+.ord-thumbs span { color: var(--beige); font-size: 14px; margin-left: 4px; }
+.oi { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid color-mix(in srgb, var(--beige) 30%, transparent); }
+.oi img { width: 110px; aspect-ratio: 4/5; object-fit: cover; display: block; }
+.oi b { font: 400 21px/1.15 var(--display); display: block; }
+.oi .muted { font-size: 14px; }
+.oi .row-btns { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; }
+.rate-now { margin-top: 10px; padding: 10px 12px; background: color-mix(in srgb, var(--beige) 14%, var(--paper)); display: grid; gap: 4px; }
+.rate-now p { margin: 0; font-size: 14px; }
+.rate-now .rs { display: flex; gap: 2px; }
+.rate-now .rs button { all: unset; cursor: pointer; font-size: 26px; line-height: 1; padding: 2px; color: color-mix(in srgb, var(--beige) 45%, transparent); }
+.rate-now .rs button:hover, .rate-now .rs button.on { color: var(--ink); }
+.rate-now .rs button:focus-visible { outline: 2px solid var(--ink); }
+.ord-sum { display: grid; gap: 6px; font-variant-numeric: tabular-nums; }
+.ord-sum div { display: flex; justify-content: space-between; gap: 10px; }
+.wish-btn { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 0; }
+.wish-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.4; }
+.wish-btn[aria-pressed="true"] svg { fill: var(--ink); }
+.wish-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.from-order { margin: 0; padding: 10px 12px; background: color-mix(in srgb, var(--beige) 14%, var(--paper)); font-size: 15px; }
 @media (max-width: 400px) { .acct-btn > span { display: none; } }
 
 /* contact */
@@ -476,6 +525,7 @@ footer .mark { font-size: 18px; }
               <div class="photo-pick" id="rev-preview"><button type="button" class="add" id="rev-add-photo">+ Add photo</button></div>
               <input type="file" id="rev-photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple hidden>
             </div>
+            <p class="from-order" id="rev-from" hidden></p>
             <p class="err" id="rev-err" aria-live="polite"></p>
             <button type="submit" class="btn" id="rev-send" style="justify-self:start">Post review</button>
             <p class="rev-mode" id="rev-mode"></p>
@@ -503,7 +553,7 @@ footer .mark { font-size: 18px; }
         <div class="who">Yashika Singhal<small>Founder, Parkhi</small></div>
         <dl style="margin:0; display:grid; gap:18px;">
           <div class="row"><div><dt>Phone</dt><dd id="c-phone"><a href="tel:+919887375777">+91-9887375777</a></dd></div><button type="button" class="copy" id="copy-phone" data-copy="+91-9887375777">Copy</button></div>
-          <div class="row"><div><dt>Email</dt><dd id="c-email"><a href="mailto:yashika@parkhi.shop">yashika@parkhi.shop</a></dd></div><button type="button" class="copy" id="copy-email" data-copy="yashika@parkhi.shop">Copy</button></div>
+          <div class="row"><div><dt>Email</dt><dd id="c-email"><a href="mailto:parkhiby@gmail.com">parkhiby@gmail.com</a></dd></div><button type="button" class="copy" id="copy-email" data-copy="parkhiby@gmail.com">Copy</button></div>
         </dl>
       </div>
     </div>
@@ -513,7 +563,7 @@ footer .mark { font-size: 18px; }
 <footer>
   <div class="wrap">
     <span class="mark">Parkhi</span>
-    <span class="contact-line">Queries or complaints: Yashika Singhal · +91-9887375777 · yashika@parkhi.shop</span>
+    <span class="contact-line">Queries or complaints: Yashika Singhal · +91-9887375777 · parkhiby@gmail.com</span>
     <span>© 2026 Parkhi</span>
   </div>
 </footer>
@@ -570,22 +620,67 @@ footer .mark { font-size: 18px; }
     </form>
   </div>
   <div class="view" id="acct-user" hidden>
-    <p class="hello" id="a-hello"></p>
-    <p class="muted" id="a-meta"></p>
-    <p class="section-label">Delivery address</p>
-    <form id="f-addr" class="view" style="padding:0;gap:14px" novalidate>
-      <div class="field"><label for="a-addr">Address</label><textarea id="a-addr" autocomplete="street-address" required></textarea></div>
-      <div class="two">
-        <div class="field"><label for="a-city">City</label><input id="a-city" autocomplete="address-level2" required></div>
-        <div class="field"><label for="a-state">State</label><input id="a-state" autocomplete="address-level1" required></div>
-      </div>
-      <div class="field"><label for="a-pin">Pincode</label><input id="a-pin" inputmode="numeric" autocomplete="postal-code" maxlength="6" required></div>
-      <p class="err" id="a-err" aria-live="polite"></p>
-      <button type="submit" class="btn ghost" id="a-send">Save address</button>
-    </form>
-    <p class="section-label">My orders</p>
-    <div class="orders" id="a-orders"><p class="muted">Loading your orders…</p></div>
-    <button type="button" class="link" id="a-out" style="justify-self:start">Sign out</button>
+    <div class="am" id="am-home">
+      <div><p class="hello" id="a-hello"></p><p class="muted" id="a-meta"></p></div>
+      <nav class="acct-menu" aria-label="Your account">
+        <button type="button" id="go-profile" data-go="profile"><span>Profile</span><small>Name, phone and email</small></button>
+        <button type="button" id="go-address" data-go="address"><span>Delivery address</span><small id="am-addr-sub"></small></button>
+        <button type="button" id="go-orders" data-go="orders"><span>Orders</span><small>See what you ordered and review it</small></button>
+        <button type="button" id="go-wishlist" data-go="wishlist"><span>Wishlist</span><small id="am-wish-sub"></small></button>
+        <button type="button" id="go-bag" data-go="bag"><span>Bag</span><small id="am-bag-sub"></small></button>
+      </nav>
+      <button type="button" class="link" id="a-out" style="justify-self:start">Sign out</button>
+    </div>
+
+    <div class="am" id="am-profile" hidden>
+      <button type="button" class="back" data-go="home">← Your account</button>
+      <h3>Profile</h3>
+      <dl class="kv" id="prof-view"></dl>
+      <button type="button" class="btn ghost" id="prof-edit" style="justify-self:start">Edit details</button>
+      <form id="f-prof" class="am" novalidate hidden>
+        <div class="field"><label for="p-name">Full name</label><input id="p-name" autocomplete="name" maxlength="80" required></div>
+        <div class="field"><label for="p-mobile">Mobile</label><input id="p-mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required></div>
+        <div class="field"><label for="p-email">Email (optional)</label><input id="p-email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="p-newpass">New password (leave blank to keep yours)</label><input id="p-newpass" type="password" autocomplete="new-password" minlength="6"></div>
+        <div class="field" id="p-curwrap" hidden><label for="p-curpass">Current password</label><input id="p-curpass" type="password" autocomplete="current-password"></div>
+        <p class="muted" id="p-curhint" hidden>To change your mobile number or password, enter your current password.</p>
+        <p class="err" id="p-err" aria-live="polite"></p>
+        <div class="actions"><button type="submit" class="btn" id="p-send">Save changes</button><button type="button" class="link" id="p-cancel">Cancel</button></div>
+      </form>
+    </div>
+
+    <div class="am" id="am-address" hidden>
+      <button type="button" class="back" data-go="home">← Your account</button>
+      <h3>Delivery address</h3>
+      <p class="muted">We fill this in for you at checkout.</p>
+      <form id="f-addr" class="am" novalidate>
+        <div class="field"><label for="a-addr">Address</label><textarea id="a-addr" autocomplete="street-address" required></textarea></div>
+        <div class="two">
+          <div class="field"><label for="a-city">City</label><input id="a-city" autocomplete="address-level2" required></div>
+          <div class="field"><label for="a-state">State</label><input id="a-state" autocomplete="address-level1" required></div>
+        </div>
+        <div class="field"><label for="a-pin">Pincode</label><input id="a-pin" inputmode="numeric" autocomplete="postal-code" maxlength="6" required></div>
+        <p class="err" id="a-err" aria-live="polite"></p>
+        <button type="submit" class="btn" id="a-send" style="justify-self:start">Save address</button>
+      </form>
+    </div>
+
+    <div class="am" id="am-orders" hidden>
+      <button type="button" class="back" data-go="home">← Your account</button>
+      <h3>Orders</h3>
+      <div class="orders" id="a-orders"></div>
+    </div>
+
+    <div class="am" id="am-order" hidden>
+      <button type="button" class="back" data-go="orders">← All orders</button>
+      <div id="a-order"></div>
+    </div>
+
+    <div class="am" id="am-wishlist" hidden>
+      <button type="button" class="back" data-go="home">← Your account</button>
+      <h3>Wishlist</h3>
+      <div id="a-wish"></div>
+    </div>
   </div>
 </aside>
 <aside class="drawer" id="drawer" aria-label="Your bag" aria-hidden="true" inert>
@@ -804,6 +899,7 @@ function renderPDP(p) {
       <div class="fit-wrap"><div><p class="fit-head" id="${p.id}-fithead">Fit</p><div class="sizes fits" role="group" aria-labelledby="${p.id}-fithead"></div></div></div>
       <p class="avail" aria-live="polite">M, L, XL in stock · XS, S, XXL delivered in 1 week</p>
       <div class="actions"><button type="button" class="btn ghost" id="${p.id}-add">Add to bag</button><button type="button" class="btn" id="${p.id}-buy">Buy now</button></div>
+      <button type="button" class="wish-btn" id="${p.id}-wish" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.3C19.5 15.4 12 20 12 20Z"/></svg><span>Save to wishlist</span></button>
       <p class="note" aria-live="polite"></p>
     </div>`;
 
@@ -814,6 +910,10 @@ function renderPDP(p) {
     stage.innerHTML = viewMarkup(p, k, true) + `<span class="tag">${p.views[k][1]}</span>`;
   }));
   el.querySelector('#pdp-rate').addEventListener('click', () => toReviews());
+  const wb = el.querySelector(`#${p.id}-wish`);
+  const paintWish = () => { const on = wish.includes(p.id); wb.setAttribute('aria-pressed', on); wb.querySelector('span').textContent = on ? 'Saved to wishlist' : 'Save to wishlist'; };
+  wb.addEventListener('click', () => { toggleWish(p.id); paintWish(); });
+  paintWish();
 
   let base = null, fit = null;
   const full = () => base && fit ? `${base}-${fit}` : null;
@@ -966,7 +1066,7 @@ document.getElementById('rev-form').addEventListener('submit', async e => {
   const res = await addReview({ product: current.id, name: name.slice(0, 40), rating: revRating, size: document.getElementById('rev-size').value, text: text.slice(0, 800), createdAt: new Date().toISOString() }, revPhotos);
   btn.disabled = false; btn.textContent = 'Post review';
   if (!res.ok) { err.textContent = res.error || 'Your review did not save. Please try again.'; return; }
-  e.target.reset(); revRating = 0; paintStars(0); revPhotos = []; paintPhotoPick();
+  e.target.reset(); revRating = 0; paintStars(0); revPhotos = []; paintPhotoPick(); $('rev-from').hidden = true;
   err.textContent = 'Thank you. Your review is up.';
 });
 
@@ -977,7 +1077,7 @@ function route() {
   if (p) {
     HOME.forEach(s => s.hidden = true); pdpEl.hidden = false;
     if (current !== p) { renderPDP(p); showTab('details'); }
-    if (m[2]) toReviews(); else window.scrollTo(0, 0);
+    if (m[2]) { toReviews(); applyPendingReview(); } else window.scrollTo(0, 0);
     document.title = `${p.name} · Parkhi`;
   } else {
     current = null; pdpEl.hidden = true; HOME.forEach(s => s.hidden = false); document.title = 'Parkhi';
@@ -1133,7 +1233,7 @@ async function previewApi(action, d) {
   const save = () => store.set('parkhi-preview-db', db);
   const mob = v => { let x = String(v || '').replace(/\D/g, ''); if (x.length > 10 && /^(91|0)/.test(x)) x = x.slice(-10); return /^[6-9]\d{9}$/.test(x) ? x : ''; };
   const me = () => db.users.find(u => u.id === db.sessions[d.token]);
-  const pub = u => ({ id: u.id, name: u.name, mobile: u.mobile, email: u.email, address: u.address });
+  const pub = u => ({ id: u.id, name: u.name, mobile: u.mobile, email: u.email, address: u.address, wishlist: u.wishlist || [] });
   const tok = id => { const t = Math.random().toString(36).slice(2) + Date.now().toString(36); db.sessions[t] = id; return t; };
   const addrErr = a => !String(a.addr || '').trim() ? 'Please enter your delivery address.' : !String(a.city || '').trim() ? 'Please enter your city.'
     : !String(a.state || '').trim() ? 'Please enter your state.' : !/^[1-9]\d{5}$/.test(String(a.pin || '')) ? 'Please enter a 6-digit pincode.' : '';
@@ -1166,7 +1266,8 @@ async function previewApi(action, d) {
     const dt = new Date();
     const orderId = d.orderId;
     db.orders.push({ orderId, uid: u ? u.id : null, phone: mob(c.phone), date: dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total, payment: d.paid ? 'Customer says paid' : 'Pay later', status: 'New' });
+      items: d.items.map(l => `${PRODUCTS.find(p => p.id === l.id).name} (${l.size}) x${l.qty}`).join(', '), total,
+      lines: d.items.map(l => ({ id: l.id, size: l.size, qty: l.qty, price: priceOf(PRODUCTS.find(p => p.id === l.id)) })), payment: d.paid ? 'Customer says paid' : 'Pay later', status: 'New' });
     if (u && d.saveAddress) u.address = { addr: c.addr, city: c.city, state: c.state, pin: c.pin };
     save();
     return { ok: true, orderId, total, upiId: SHOP.upiId,
@@ -1179,7 +1280,22 @@ async function previewApi(action, d) {
   }
   if (action === 'myOrders') {
     const u = me(); if (!u) return { ok: false, code: 'signin', error: 'Please sign in again.' };
-    return { ok: true, orders: db.orders.filter(o => o.uid === u.id).reverse() };
+    return { ok: true, orders: db.orders.filter(o => o.uid === u.id || o.phone === u.mobile).reverse() };
+  }
+  if (action === 'saveWishlist') {
+    const u = me(); if (!u) return { ok: false, code: 'signin', error: 'Please sign in again.' };
+    u.wishlist = (d.wishlist || []).filter(id => PRODUCTS.some(p => p.id === id)); save(); return { ok: true };
+  }
+  if (action === 'updateProfile') {
+    const u = me(); if (!u) return { ok: false, code: 'signin', error: 'Please sign in again.' };
+    const m = mob(d.mobile);
+    if (!String(d.name || '').trim()) return { ok: false, error: 'Please enter your name.' };
+    if (!m) return { ok: false, error: 'Please enter a 10-digit Indian mobile number.' };
+    if ((m !== u.mobile || d.newPassword) && d.password !== u.pass) return { ok: false, error: 'Your current password is not right.' };
+    if (m !== u.mobile && db.users.some(x => x.mobile === m)) return { ok: false, error: 'Another account already uses this mobile number.' };
+    if (d.newPassword && String(d.newPassword).length < 6) return { ok: false, error: 'Choose a new password of at least 6 characters.' };
+    u.name = d.name.trim(); u.mobile = m; u.email = String(d.email || '').trim(); if (d.newPassword) u.pass = d.newPassword;
+    save(); return { ok: true, user: pub(u) };
   }
   return { ok: false, error: 'Unknown action.' };
 }
@@ -1218,29 +1334,185 @@ function setTab(t) {
   $('f-in').hidden = t !== 'in'; $('f-up').hidden = t !== 'up';
 }
 let afterSignIn = null;   // e.g. go back to checkout after signing in from there
-function renderAcct(tab) {
+function renderAcct(tab, page) {
   $('acct-preview').hidden = LIVE;
   $('acct-guest').hidden = !!session; $('acct-user').hidden = !session;
-  $('acct-title').textContent = session ? 'Your account' : 'Sign in';
-  if (!session) { setTab(tab || 'in'); return; }
+  if (!session) { $('acct-title').textContent = 'Sign in'; setTab(tab || 'in'); return; }
   const u = session.user;
   $('a-hello').textContent = `Hello, ${u.name}`;
-  $('a-meta').textContent = `+91 ${u.mobile}${u.email ? ' · ' + u.email : ''}`;
-  $('a-addr').value = u.address.addr || ''; $('a-city').value = u.address.city || '';
-  $('a-state').value = u.address.state || ''; $('a-pin').value = u.address.pin || '';
-  $('a-err').textContent = '';
-  loadOrders();
+  $('a-meta').textContent = `+91 ${u.mobile}`;
+  const a = u.address || {};
+  $('am-addr-sub').textContent = a.addr ? `${a.addr.split('\n')[0]}, ${a.city} ${a.pin}` : 'Not added yet';
+  $('am-wish-sub').textContent = wish.length ? `${wish.length} saved kurta${wish.length === 1 ? '' : 's'}` : 'Nothing saved yet';
+  const n = bag.reduce((t, l) => t + l.qty, 0);
+  $('am-bag-sub').textContent = n ? `${n} item${n === 1 ? '' : 's'} · ${rupees(bag.reduce((t, l) => t + priceOf(PRODUCTS.find(x => x.id === l.id)) * l.qty, 0))}` : 'Empty';
+  goPage(page || 'home');
 }
+const PAGES = { home: 'Your account', profile: 'Profile', address: 'Delivery address', orders: 'Orders', order: 'Order', wishlist: 'Wishlist' };
+function goPage(pg, arg) {
+  if (pg === 'bag') { closeAcct(); openBag(); return; }
+  Object.keys(PAGES).forEach(k => $(`am-${k}`).hidden = k !== pg);
+  $('acct-title').textContent = PAGES[pg];
+  const u = session.user;
+  if (pg === 'profile') showProfile(false);
+  if (pg === 'address') {
+    const a = u.address || {};
+    $('a-addr').value = a.addr || ''; $('a-city').value = a.city || ''; $('a-state').value = a.state || ''; $('a-pin').value = a.pin || ''; $('a-err').textContent = '';
+  }
+  if (pg === 'orders') loadOrders();
+  if (pg === 'order') showOrder(arg);
+  if (pg === 'wishlist') showWish();
+  const head = $(`am-${pg}`).querySelector('h3, .back');
+  $('acct').querySelector('.view#acct-user').scrollTop = 0;
+  if (head && pg !== 'home') head.focus && setTimeout(() => $(`am-${pg}`).querySelector('.back')?.focus(), 50);
+}
+$('acct-user').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) goPage(b.dataset.go); });
+
+/* profile */
+function showProfile(edit) {
+  const u = session.user;
+  $('prof-view').innerHTML = [['Name', u.name], ['Mobile', '+91 ' + u.mobile], ['Email', u.email || 'Not added']]
+    .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(String(v))}</dd></div>`).join('');
+  $('prof-view').hidden = edit; $('prof-edit').hidden = edit; $('f-prof').hidden = !edit;
+  if (edit) {
+    $('p-name').value = u.name; $('p-mobile').value = u.mobile; $('p-email').value = u.email || '';
+    $('p-newpass').value = ''; $('p-curpass').value = ''; $('p-err').textContent = ''; needCur(); $('p-name').focus();
+  }
+}
+function needCur() {
+  const need = digits10($('p-mobile').value) !== session.user.mobile || !!$('p-newpass').value;
+  $('p-curwrap').hidden = !need; $('p-curhint').hidden = !need;
+  return need;
+}
+$('p-mobile').addEventListener('input', needCur); $('p-newpass').addEventListener('input', needCur);
+$('prof-edit').onclick = () => showProfile(true);
+$('p-cancel').onclick = () => showProfile(false);
+$('f-prof').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('p-name').value.trim(), mobile = digits10($('p-mobile').value), email = $('p-email').value.trim(), np = $('p-newpass').value, cur = $('p-curpass').value;
+  const err = !name ? 'Please enter your name.' : !/^[6-9]\d{9}$/.test(mobile) ? 'Please enter a 10-digit Indian mobile number.'
+    : email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Please check your email address.' : np && np.length < 6 ? 'Choose a new password of at least 6 characters.'
+    : needCur() && !cur ? 'Enter your current password to change your mobile number or password.' : '';
+  if (err) { $('p-err').textContent = err; return; }
+  busy($('p-send'), 'Saving…', async () => {
+    const r = await api('updateProfile', { token: session.token, name, mobile, email, password: cur, newPassword: np });
+    if (!r.ok) { $('p-err').textContent = r.error; if (r.code === 'signin') { setSession(null); renderAcct(); } return; }
+    setSession({ ...session, user: r.user }); renderAcct(null, 'profile');
+    $('prof-view').insertAdjacentHTML('afterend', '<p class="ok-note" id="p-saved">Your details are saved.</p>');
+    setTimeout(() => $('p-saved')?.remove(), 3000);
+  });
+});
+
+/* orders */
+let myOrders = [];
+const prodOf = id => PRODUCTS.find(x => x.id === id);
+// what the customer sees for the Payment and Status cells in the sheet
+const payLabel = v => /says paid/i.test(v) ? 'Payment being confirmed' : /later/i.test(v) ? 'Payment due' : String(v || '');
+const orderChip = o => `<span class="chip ${/^paid|payment received|confirmed paid/i.test(o.payment) ? 'paid' : ''}">${esc(payLabel(o.payment))}${o.status && o.status !== 'New' ? ' · ' + esc(o.status) : ''}</span>`;
 async function loadOrders() {
   const box = $('a-orders');
   box.innerHTML = '<p class="muted">Loading your orders…</p>';
   const r = await api('myOrders', { token: session.token });
   if (!r.ok) { if (r.code === 'signin') { setSession(null); renderAcct(); } else box.innerHTML = `<p class="err">${esc(r.error)}</p>`; return; }
-  box.innerHTML = r.orders.length ? r.orders.map(o => `<div class="ord">
-      <div class="top"><b>${esc(o.orderId)}</b><span>${rupees(o.total)}</span></div>
-      <span class="muted">${esc(o.date)}</span><span>${esc(o.items)}</span>
-      <span class="chip ${/paid/i.test(o.payment) && !/awaiting/i.test(o.payment) ? 'paid' : ''}">${esc(o.payment)}${o.status && o.status !== 'New' ? ' · ' + esc(o.status) : ''}</span>
-    </div>`).join('') : '<p class="muted">No orders yet. Your orders will show here.</p>';
+  // orders from an older script come without item details: read them from the item text instead
+  const fromText = t => String(t || '').split(', ').map(x => /^(.+) \((.+)\) x(\d+)$/.exec(x)).filter(m => m && PRODUCTS.some(p => p.name === m[1]))
+    .map(m => { const p = PRODUCTS.find(x => x.name === m[1]); return { id: p.id, size: m[2], qty: +m[3], price: priceOf(p) }; });
+  myOrders = (r.orders || []).map(o => (o.lines && o.lines.length) ? o : { ...o, lines: fromText(o.items) });
+  box.innerHTML = myOrders.length ? myOrders.map((o, i) => {
+    const lines = (o.lines || []).filter(l => prodOf(l.id)), n = lines.reduce((t, l) => t + l.qty, 0);
+    return `<button type="button" class="ord-btn" data-o="${i}" aria-label="Order ${esc(o.orderId)}, ${esc(o.date)}, ${rupees(o.total)}. Open order">
+      <span class="top"><b>${esc(o.date)}</b><span>${rupees(o.total)}</span></span>
+      <span class="ord-thumbs">${lines.slice(0, 3).map(l => `<img src="${thumbOf(prodOf(l.id))}.jpg" alt="" width="52" height="65">`).join('')}<span>${n ? `${n} item${n === 1 ? '' : 's'}` : esc(o.items || '')}</span></span>
+      <span class="muted">${esc(o.orderId)}</span>${orderChip(o)}
+    </button>`;
+  }).join('') : '<p class="muted">No orders yet. When you order while signed in, it shows here.</p>';
+  box.querySelectorAll('.ord-btn').forEach(b => b.addEventListener('click', () => goPage('order', +b.dataset.o)));
+}
+function showOrder(i) {
+  const o = myOrders[i]; if (!o) { goPage('orders'); return; }
+  const lines = (o.lines || []).filter(l => prodOf(l.id));
+  $('a-order').innerHTML = `<div class="am">
+    <div><h3>Order of ${esc(o.date)}</h3><p class="muted">${esc(o.orderId)}</p></div>
+    ${orderChip(o)}
+    ${lines.length > 1 ? `<button type="button" class="btn" id="reorder-all" style="justify-self:start">Reorder all ${lines.reduce((t, l) => t + l.qty, 0)} items</button>` : ''}
+    <div>${lines.length ? lines.map((l, j) => { const p = prodOf(l.id), [base, fit] = String(l.size).split('-'), m = fit && FIT_STEP[base] ? rowOf(base, fit) : null;
+      return `<div class="oi-full">
+        <div class="ph"><img id="oi-img-${j}" src="${p.views[0][0]}.jpg" alt="${esc(p.name)} kurta, ${esc(p.views[0][1].toLowerCase())}" width="800" height="1000"></div>
+        <div class="vw" role="group" aria-label="${esc(p.name)} photos">${p.views.map(([f, lab], k) => `<button type="button" data-img="${j}" data-f="${f}" data-lab="${esc(lab)}" aria-pressed="${k === 0}" aria-label="${esc(lab)}"><img src="${f}.jpg" alt="" loading="lazy" width="56" height="70"></button>`).join('')}</div>
+        <div>
+          <b>${esc(p.name)}</b>
+          <p class="muted" style="margin:4px 0 8px">${esc(p.colour)}</p>
+          <div class="facts2">
+            <span>Size ${esc(l.size)}${m ? ` <span class="muted">(bust ${m[1]} in, waist ${m[3]} in, hips ${m[4]} in)</span>` : ''}</span>
+            <span>Qty ${l.qty} · ${rupees((l.price || priceOf(p)) * l.qty)}</span>
+          </div>
+        </div>
+        <div class="actions"><button type="button" class="btn" data-again="${j}">Reorder</button><a class="btn ghost" href="#kurta-${p.id}" data-close>View kurta</a></div>
+        <div class="rate-now">
+          <p>How is your ${esc(p.name)}? Tap a star to review it.</p>
+          <div class="rs" role="group" aria-label="Rate ${esc(p.name)}">${[1, 2, 3, 4, 5].map(k => `<button type="button" data-rate="${k}" data-p="${p.id}" data-size="${esc(l.size)}" aria-label="${k} star${k > 1 ? 's' : ''}">★</button>`).join('')}</div>
+        </div>
+      </div>`; }).join('') : `<p>${esc(o.items || '')}</p>`}</div>
+    <div class="ord-sum"><div><span>Shipping</span><span>Free</span></div><div style="font-size:19px"><span>Total</span><span>${rupees(o.total)}</span></div></div>
+    <p class="muted">Questions about this order? WhatsApp us on +91-9887375777 with the order number.</p>
+  </div>`;
+  const box = $('a-order');
+  const reorder = ls => { ls.forEach(l => { for (let q = 0; q < l.qty; q++) addToBag(l.id, l.size); }); closeAcct(); openBag(); };
+  box.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeAcct));
+  box.querySelectorAll('[data-again]').forEach(b => b.addEventListener('click', () => reorder([lines[+b.dataset.again]])));
+  $('reorder-all') && ($('reorder-all').onclick = () => reorder(lines));
+  box.querySelectorAll('.vw button').forEach(b => b.addEventListener('click', () => {
+    const img = $(`oi-img-${b.dataset.img}`); img.src = `${b.dataset.f}.jpg`; img.alt = img.alt.replace(/, [^,]*$/, ', ' + b.dataset.lab.toLowerCase());
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  }));
+  box.querySelectorAll('.rs button').forEach(b => {
+    const row = b.parentElement, k = +b.dataset.rate;
+    b.addEventListener('mouseenter', () => row.querySelectorAll('button').forEach((x, j) => x.classList.toggle('on', j < k)));
+    b.addEventListener('mouseleave', () => row.querySelectorAll('button').forEach(x => x.classList.remove('on')));
+    b.addEventListener('click', () => { closeAcct(); startReview(b.dataset.p, { rating: k, size: b.dataset.size, date: o.date }); });
+  });
+}
+
+/* review straight from an order */
+let pendingReview = null;
+function startReview(pid, info) {
+  pendingReview = { pid, ...info };
+  const h = `#kurta-${pid}-reviews`;
+  if (location.hash === h) applyPendingReview(); else location.hash = h;
+}
+function applyPendingReview() {
+  const r = pendingReview; if (!r || !current || current.id !== r.pid) return;
+  pendingReview = null;
+  if (r.size) $('rev-size').value = r.size;
+  if (session && !$('rev-name').value) $('rev-name').value = String(session.user.name || '').split(' ')[0];
+  if (r.rating) { revRating = r.rating; const inp = $(`rev-r${r.rating}`); if (inp) inp.checked = true; paintStars(revRating); }
+  const f = $('rev-from'); f.hidden = false; f.textContent = `You ordered this in size ${r.size}${r.date ? ' on ' + r.date : ''}. Add a few words or a photo if you like, then post.`;
+  setTimeout(() => { $('rev-form').scrollIntoView({ behavior: 'smooth', block: 'start' }); $('rev-text').focus({ preventScroll: true }); }, 250);
+}
+
+/* wishlist: kept on this device, and in the account when signed in */
+let wish = store.get('parkhi-wish', []).filter(id => prodOf(id));
+function saveWish() {
+  store.set('parkhi-wish', wish);
+  if (session) { session.user.wishlist = wish.slice(); store.set('parkhi-session', session); api('saveWishlist', { token: session.token, wishlist: wish }); }
+}
+function toggleWish(id) { wish = wish.includes(id) ? wish.filter(x => x !== id) : [...wish, id]; saveWish(); }
+function mergeWishFromAccount() {
+  const theirs = (session && Array.isArray(session.user.wishlist)) ? session.user.wishlist.filter(id => prodOf(id)) : [];
+  const merged = [...new Set([...theirs, ...wish])];
+  const changed = merged.length !== theirs.length;
+  wish = merged; store.set('parkhi-wish', wish);
+  if (changed && session) saveWish();
+}
+function showWish() {
+  const box = $('a-wish');
+  box.innerHTML = wish.length ? wish.map(id => { const p = prodOf(id); return `<div class="oi">
+      <a href="#kurta-${p.id}" data-close><img src="${thumbOf(p)}.jpg" alt="${esc(p.name)} kurta" width="110" height="138"></a>
+      <div><b>${esc(p.name)}</b><p class="muted" style="margin:2px 0 6px">${esc(p.colour)}</p><div>${p.price}</div>
+        <div class="row-btns"><a class="link" href="#kurta-${p.id}" data-close>Choose size</a><button type="button" class="link" data-unwish="${p.id}">Remove</button></div></div>
+    </div>`; }).join('') : '<p class="muted">Nothing saved yet. Tap "Save to wishlist" on any kurta to keep it here.</p>';
+  box.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeAcct));
+  box.querySelectorAll('[data-unwish]').forEach(b => b.addEventListener('click', () => { toggleWish(b.dataset.unwish); showWish(); if (current) renderPDP(current); }));
 }
 $('acct-open').onclick = () => openAcct();
 $('acct-close').onclick = closeAcct;
@@ -1250,6 +1522,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAcct();
 
 function signedIn(r) {
   setSession({ token: r.token, user: r.user });
+  mergeWishFromAccount(); if (current) renderPDP(current);
   if (afterSignIn) { const go = afterSignIn; afterSignIn = null; closeAcct(); go(); } else renderAcct();
 }
 $('f-in').addEventListener('submit', e => {
@@ -1282,6 +1555,7 @@ $('f-addr').addEventListener('submit', e => {
     const r = await api('saveAddress', { token: session.token, address });
     if (!r.ok) { $('a-err').textContent = r.error; if (r.code === 'signin') { setSession(null); renderAcct(); } return; }
     setSession({ ...session, user: r.user }); $('a-err').textContent = 'Address saved.';
+    $('am-addr-sub').textContent = `${address.addr.split('\n')[0]}, ${address.city} ${address.pin}`;
   });
 });
 $('a-out').onclick = async () => { const t = session && session.token; setSession(null); renderAcct(); if (t) api('logout', { token: t }); };
@@ -1410,7 +1684,7 @@ renderPLP();
 route();
 initReviews();
 // refresh the signed-in customer's details (and drop an expired sign-in) in the background
-if (session) api('me', { token: session.token }).then(r => { if (r.ok) setSession({ ...session, user: r.user }); else if (r.code === 'signin') setSession(null); });
+if (session) api('me', { token: session.token }).then(r => { if (r.ok) { setSession({ ...session, user: r.user }); mergeWishFromAccount(); if (current) renderPDP(current); } else if (r.code === 'signin') setSession(null); });
 
 /* ---------- copy contact ---------- */
 document.querySelectorAll('.row .copy').forEach(b => b.addEventListener('click', () => {
