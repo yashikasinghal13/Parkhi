@@ -384,8 +384,11 @@ footer .contact-line { font-variant-numeric: tabular-nums; }
 .fit-wrap { overflow: hidden; display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .3s ease, opacity .3s ease; }
 .fit-wrap.open { grid-template-rows: 1fr; opacity: 1; }
 .fit-wrap > div { min-height: 0; }
+.size-note { font-size: 15px; margin: -12px 0 18px; color: var(--beige); }
+.size-note b { font-weight: 400; color: var(--ink); }
 .fit-head { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--beige); margin: 0 0 10px; }
-.fits button { min-width: 64px; height: auto; padding: 8px 10px; grid-template-rows: auto auto; gap: 2px; }
+.fits { flex-wrap: nowrap; max-width: 440px; }
+.fits button { flex: 1 1 0; min-width: 0; height: auto; padding: 8px 4px; grid-template-rows: auto auto; gap: 2px; text-align: center; }
 .fits button small { font-size: 12px; letter-spacing: 0; opacity: .8; }
 .chart tr.grp-start th, .chart tr.grp-start td { border-top: 1px solid var(--beige); }
 .size-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
@@ -895,7 +898,8 @@ function renderPDP(p) {
       <p class="colour-line">${esc(p.colour)}</p>
       <p class="desc">${esc(p.desc)}</p>
       <div class="size-head"><span>Size</span><button type="button" class="chart-link" id="${p.id}-chart">Size chart</button></div>
-      <div class="sizes" role="group" aria-label="Size">${SIZES.map(s => `<button type="button" id="${p.id}-s-${s}" aria-pressed="false">${s}</button>`).join('')}</div>
+      <div class="sizes" role="group" aria-label="Size, by bust" aria-describedby="${p.id}-size-note">${SIZES.map(s => `<button type="button" id="${p.id}-s-${s}" aria-pressed="false">${s}</button>`).join('')}</div>
+      <p class="size-note" id="${p.id}-size-note" aria-live="polite">XS to XXL is your <b>bust</b> size. After you pick one, fits A to D let you choose the <b>waist and hips</b>.</p>
       <div class="fit-wrap"><div><p class="fit-head" id="${p.id}-fithead">Fit</p><div class="sizes fits" role="group" aria-labelledby="${p.id}-fithead"></div></div></div>
       <p class="avail" aria-live="polite">M, L, XL in stock · XS, S, XXL delivered in 1 week</p>
       <div class="actions"><button type="button" class="btn ghost" id="${p.id}-add">Add to bag</button><button type="button" class="btn" id="${p.id}-buy">Buy now</button></div>
@@ -930,7 +934,9 @@ function renderPDP(p) {
     if (base !== b.textContent) fit = null;
     base = b.textContent;
     el.querySelectorAll('.sizes:not(.fits) button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    el.querySelector('.fit-head').textContent = `Fit for ${base}`;
+    el.querySelector('.fit-head').textContent = `Fit for ${base}: waist and hips`;
+    const [, bust, sh] = rowOf(base, 'A');
+    el.querySelector('.size-note').innerHTML = `Size ${base} is for a <b>${bust} in bust</b> (shoulder ${sh} in). Now pick a fit: A to D change the <b>waist and hips</b>, from A (closest) to D (roomiest).`;
     fitRow.innerHTML = FITS.map(f => {
       const [, , , w, h] = rowOf(base, f);
       return `<button type="button" data-f="${f}" aria-pressed="${f === fit}" aria-label="${base}-${f}, waist ${w} inches, hips ${h} inches">${base}-${f}<small>W ${w} · H ${h}</small></button>`;
